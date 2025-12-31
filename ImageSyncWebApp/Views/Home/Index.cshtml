@@ -1,0 +1,140 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <button onclick="SyncBtnClicked()">Sync Grievance Data</button>
+    <button onclick="SyncOTJJMClicked()">Sync OT JJM Data</button>
+    <button onclick="SyncRVEDDGClicked()()">Sync RVE-DDG Data</button>
+    <button onclick="SyncOTRVEDDGClicked()">Sync OT RVE DDG Data</button>
+    <button onclick="SyncBioGasClicked()">Sync Bio Gas Data</button>
+    <button onclick="SyncJJMClicked()">Sync JJM Data</button>
+    <button onclick="SyncHighMastClicked()">Sync High Mast Data</button>
+    <button onclick="SyncSSYClicked()">Sync SSY Data</button>
+    <button onclick="SyncInsIPClicked()">Sync Inspection In Progress Data</button>
+    <button onclick="SyncOnGridPowerPlantClicked()">On Grid Power Plant Data</button>
+    <button onclick="SyncMiniMastClicked()">Mini Mast Data</button>
+    <button onclick="SyncSSYInProgressClicked()">SSY In Progress Data</button>
+</div>
+
+
+
+<script>
+    function SyncBtnClicked() {
+        $.ajax({
+            url: '/Home/GetGrievanceListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    }
+    function SyncJJMClicked() {
+        $.ajax({
+            url: '/Home/GetJJMListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    }
+    function SyncOTJJMClicked() {
+        $.ajax({
+            url: '/Home/GetOTJJMListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    } 
+    function SyncRVEDDGClicked() {
+        $.ajax({
+            url: '/Home/GetRVEDDGListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    }
+    function SyncOTRVEDDGClicked() {
+        $.ajax({
+            url: '/Home/GetOTRVEDDGListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    }
+
+    function SyncBioGasClicked() {
+        $.ajax({
+            url: '/Home/GetBioGasListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    }
+
+    function SyncHighMastClicked() {
+        $.ajax({
+            url: '/Home/GetHghMastListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    }
+    function SyncSSYClicked() {
+        $.ajax({
+            url: '/Home/GetSSYListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    }
+    function SyncInsIPClicked() {
+        $.ajax({
+            url: '/Home/GetInspectionInProgressListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    }
+
+    function SyncOnGridPowerPlantClicked() {
+        $.ajax({
+            url: '/Home/GetOnGridPowerPlantListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    }
+
+    function SyncMiniMastClicked() {
+        $.ajax({
+            url: '/Home/GetMiniMastListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    }
+
+    function SyncSSYInProgressClicked() {
+        $.ajax({
+            url: '/Home/GetSSYIPListRishant',
+            type: 'GET',
+            success: function (data) {
+                alert("Image Save successfully");
+            }
+        });
+    }
+
+</script>
+
+
+

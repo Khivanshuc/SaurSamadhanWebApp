@@ -1,0 +1,590 @@
+﻿@model WebApp.Models.VwSSYalreadyCompletedDetailModel
+
+<style>
+    .geo-tag-container {
+        display: flex;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .geo-tag-text {
+        max-width: calc(100% - 70px); /* Adjust based on button size */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+        .geo-tag-text:hover {
+            overflow: auto;
+            white-space: normal;
+        }
+
+    .copy-btn {
+        margin-left: 10px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .copy-btn:hover {
+            background-color: #e1e1e1;
+        }
+
+    .copy-message {
+        margin-top: 10px;
+        color: green;
+        font-size: 14px;
+        display: none; /* Initially hide the message */
+    }
+
+    
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+    }
+
+    /* Modal Content (image) */
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 500px;
+    }
+
+    /* Add Animation */
+    .modal-content, .close {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    @@keyframes zoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    /* The Close Button */
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        z-index: 1300;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    /* Zoom Buttons */
+    .zoom-btn {
+        border-radius: 14px;
+        position: inherit;
+        bottom: 20px;
+        right: 20px;
+        color: black;
+        font-size: 30px;
+        padding: 10px 20px;
+        background-color: lightgray;
+        cursor: pointer;
+    }
+
+    #zoomIn {
+        margin-right: 5px;
+        right: 70px;
+    }
+
+    #zoomOut {
+        right: 20px;
+    }
+
+    .clickable-image {
+        border-radius: 14px;
+    }
+
+    #detail-img {
+        position: relative;
+        right: 1pc;
+    }
+
+    #table th {
+        font-weight: bold;
+    }
+
+    #table td {
+        width: 26pc;
+    }
+
+    #tables-alignment{
+        display:flex;
+    }
+
+    .table-spacing{
+        display: flex;
+        padding-left: 3pc;
+        flex-direction: column-reverse;
+    }
+
+    #img-detl-report{
+        position: relative;
+        bottom: 6pc;
+        right: 17pc;
+    }
+   
+</style>
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+
+        <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="detail-report-btn">
+                <h4> SSY - Report </h4>
+                <div class="form-group"> 
+                    <button asp-action="SSYAC" class="btn btn-primary" style="display:none!important"> <img src="/img/Back_icon.png" alt="Alternate Text" class="back-icon">Back to List</button>
+                    <button type="button" class="btn btn-primary" onclick="downloadSSYclicked(@Model.Id)">
+                        <img src="~/img/Download_icon.png" alt="Alternate Text" class="download_icon" />
+                    Downnload as PDF</button>
+                </div>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-around">
+                <div id="tables-alignment">
+                    <div class="form-group">
+                        <table class="table table-bordered" id="table">
+                            <tbody>
+                                <tr>
+                                    <th>Inspection ID:</th>
+                                    <td>@Html.DisplayFor(model => model.Id)</td>
+                                </tr>
+                                <tr>
+                                    <th>Inspecteed By:</th>
+                                    <td>@Html.DisplayFor(model => model.UserName)</td>
+                                </tr>
+                                <tr>
+                                    <th>District:</th>
+                                    <td>@Html.DisplayFor(model => model.DistrictName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Block:</th>
+                                    <td>@Html.DisplayFor(model => model.BlockName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Village:</th>
+                                    <td>@Html.DisplayFor(model => model.VillageName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Place/Beneficiary Name:</th>
+                                    <td>@Html.DisplayFor(model => model.PlaceOrBeneficiaryName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Place/Beneficiary Id:</th>
+                                    <td>@Html.DisplayFor(model => model.PlaceOrBeneficiaryId)</td>
+                                </tr>
+                                
+                                <tr>
+                                    <th>Project Name:</th>
+                                    <td>@Html.DisplayFor(model => model.ProjectName)</td>
+                                </tr>
+                                @* <tr>
+                                    <th>Phase:</th>
+                                    <td>@Html.DisplayFor(model => model.ProjectName)</td>
+                                </tr> *@
+                                <tr>
+                                    <th>SI Name:</th>
+                                    <td>@Html.DisplayFor(model => model.SIName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Inspection Date:</th>
+                                    <td>@Html.DisplayFor(model => model.InspectionDate)</td>
+                                </tr>
+                                <tr>
+                                    <th>Is System Working:</th>
+                                    <td>
+                                        @if (@Model.IsSystemWorking)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is System Working Remark:</th>
+                                    <td>@Html.DisplayFor(model => model.IsSystemWorkingRemarks)</td>
+                                </tr>
+                                <tr>
+                                    <th>Is Pump Working:</th>
+                                    <td>
+                                        @if (@Model.PumpStatus)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is Controller Working:</th>
+                                    <td>
+                                        @if (@Model.ControllerStatus)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>System Layout:</th>
+                                    <td>@Html.DisplayFor(model => model.SystemLayout)</td>
+                                </tr>
+                                <tr>
+                                    <th>Is Module Working:</th>
+                                    <td>
+                                        @if (@Model.IsModuleWorking)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Number of Modules:</th>
+                                    <td>@Html.DisplayFor(model => model.NumberOfModules)</td>
+                                </tr>
+                                <tr>
+                                    <th>Module Capacity:</th>
+                                    <td>@Html.DisplayFor(model => model.ModuleCapacity)</td>
+                                </tr>
+                                <tr>
+                                    <th>Structure Status:</th>
+                                    <td>
+                                        @if (@Model.StructureStatus)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Controller Make:</th>
+                                    <td>@Html.DisplayFor(model => model.ControllerMake)</td>
+                                </tr>
+                                <tr>
+                                    <th>Pipeline Status:</th>
+                                    <td>
+                                        @if (@Model.PipelineStatus)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-spacing">
+                        <table class="table table-bordered" id="table">
+                            <tbody>
+                            
+                                <tr>
+                                    <th>Lighting Arrester:</th>
+                                    <td>
+                                        @if (@Model.LightingArrester)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is Water Leaking:</th>
+                                    <td>
+                                        @if (@Model.IsWaterLeaking)
+                                        {
+                                            <span>Yes</span>
+                                        }
+                                        else
+                                        {
+                                            <span>No</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Tank Lid Status:</th>
+                                    <td>
+                                        @if (@Model.TankLidStatus)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is Sensor Working:</th>
+                                    <td>
+                                        @if (@Model.IsSensorWorking)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is Union Working:</th>
+                                    <td>
+                                        @if (@Model.IsUnionWorking)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is Nipple Working:</th>
+                                    <td>
+                                        @if (@Model.IsNippleWorking)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is Socket Working:</th>
+                                    <td>
+                                        @if (@Model.IsSocketWorking)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is Gate Valve Working:</th>
+                                    <td>
+                                        @if (@Model.IsGateValveWorking)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is Cable Working:</th>
+                                    <td>
+                                        @if (@Model.IsCableWorking)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is Rope Wire Working:</th>
+                                    <td>
+                                        @if (@Model.IsRopeWireWorking)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is Stand Post Correction Needed:</th>
+                                    <td>
+                                        @if (@Model.IsStandPostCorrectionNeeded)
+                                        {
+                                            <span>Yes</span>
+                                        }
+                                        else
+                                        {
+                                            <span>No</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Is System Clean:</th>
+                                    <td>
+                                        @if (@Model.IsSystemClean)
+                                        {
+                                            <span>Yes</span>
+                                        }
+                                        else
+                                        {
+                                            <span>No</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Last Water Tank Clean Date:</th>
+                                    <td>@Html.DisplayFor(model => model.LastWaterTankCleanDate)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    
+                        <div class="form-group">
+                            <div class="d-flex justify-content-around">
+                                <div id="img-detl-report">
+                                    <dt class="col-sm-8" id="img-name">System Working Image:</dt>
+                                    <dd class="col-sm-9">
+                                        @if (!string.IsNullOrEmpty(Model.SystemWorkingImage))
+                                        {
+                                            <img class="clickable-image" width="150px" height="150px" src="data:@Model.SystemWorkingImageType;base64,@Model.SystemWorkingImage" />
+                                        }
+                                        else
+                                        {
+                                            <p>No image available.</p>
+                                        }
+                                    </dd>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal for displaying the image -->
+
+                <div id="imageModal" class="image-modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="modalImage">
+                    <div id="zoomIn" class="zoom-btn">+</div>
+                    <div id="zoomOut" class="zoom-btn">-</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function copyGeoTag(event, geoTagId, messageId) {
+        // Prevent default behavior
+        event.preventDefault();
+
+        // Select the text from the appropriate span
+        const geoTagText = document.getElementById(geoTagId).textContent;
+
+        // Create a temporary input element
+        const tempInput = document.createElement('input');
+        document.body.appendChild(tempInput);
+        tempInput.value = geoTagText;
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the text inside the input
+        document.execCommand('copy');
+
+        // Remove the temporary input element
+        document.body.removeChild(tempInput);
+
+        
+        const copyMessage = document.getElementById(messageId);
+        copyMessage.textContent = 'Geotag copied to clipboard!';
+        copyMessage.style.display = 'block';
+
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+            copyMessage.style.display = 'none';
+        }, 3000);
+    }
+
+
+    var modal = document.getElementById('imageModal');
+    var modalImg = document.getElementById("modalImage");
+
+    var images = document.getElementsByClassName('clickable-image');
+    for (var i = 0; i < images.length; i++) {
+        images[i].onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        }
+    }
+
+    var span = document.getElementsByClassName("close")[0];
+
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    var zoomLevel = 1;
+    document.getElementById('zoomIn').onclick = function () {
+        zoomLevel += 0.1;
+        modalImg.style.transform = `scale(${zoomLevel})`;
+    }
+
+    document.getElementById('zoomOut').onclick = function () {
+        if (zoomLevel > 0.1) {
+            zoomLevel -= 0.1;
+            modalImg.style.transform = `scale(${zoomLevel})`;
+        }
+    }
+</script>
+
+
+

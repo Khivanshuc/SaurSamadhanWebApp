@@ -1,0 +1,56 @@
+﻿@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Administrator | ";
+}
+
+<p class=" text-center  mb-3 fw-semibold">
+    कृपया उपयोगकर्ता का मोबाइल नंबर दर्ज करें और <b>‘Get OTP’</b> पर क्लिक करें ताकि उनका लॉगिन OTP प्राप्त किया जा सके।
+</p>
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <form id="otpForm" class="w-100" style="max-width: 500px;">
+        <div class="d-flex">
+            <input type="tel" id="mobileNumber" maxlength="10" placeholder="Enter 10 Digit Number" class="form-control me-2" required style="flex: 1;">
+            <button type="submit" class="btn btn-primary">Get OTP</button>
+        </div>
+        <div id="otpResult" class="mt-3 fw-bold"></div>
+    </form>
+</div>
+
+@section PageScripts {
+	<script>
+		$(document).ready(function(){
+            $('#otpForm').on('submit', function (e) {
+                e.preventDefault();
+
+                const mobile = $('#mobileNumber').val().trim();
+
+                if (!/^\d{10}$/.test(mobile)) {
+                    $('#otpResult').text("❌ Please enter a valid 10‑digit mobile number.");
+                    return;
+                }
+
+                $('#otpResult').text("⏳ Fetching OTP…");
+
+                $.ajax({
+                    url: '/ManualGrievance/GetOTP',   
+                    method: 'GET',                 
+                    data: { mobileNumber: mobile },
+                    success: function (data) {
+                        $('#otpResult').html(`✅ OTP for <b>${data.mobile}</b> is <span class="text-primary">${data.otp}</span>`);
+                    },
+                    error: function (xhr) {
+                        let msg = "❌ Something went wrong.";
+                        try {
+                            const err = JSON.parse(xhr.responseText);
+                            msg = `❌ ${err.message || msg}`;
+                        } catch (_) {
+                        }
+                        $('#otpResult').text(msg);
+                    }
+                });
+             });
+		});
+	</script>
+}
+

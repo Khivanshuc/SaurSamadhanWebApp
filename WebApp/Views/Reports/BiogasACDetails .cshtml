@@ -1,0 +1,268 @@
+﻿@model WebApp.Models.VwBiogasalreadycompletedModel
+<style>
+    .geo-tag-container {
+        display: flex;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .geo-tag-text {
+        max-width: calc(100% - 70px); /* Adjust based on button size */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+        .geo-tag-text:hover {
+            overflow: auto;
+            white-space: normal;
+        }
+
+    .copy-btn {
+        margin-left: 10px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .copy-btn:hover {
+            background-color: #e1e1e1;
+        }
+
+    .copy-message {
+        margin-top: 10px;
+        color: green;
+        font-size: 14px;
+        display: none; /* Initially hide the message */
+    }
+
+    .clickable-image {
+        border-radius: 14px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+        .clickable-image:hover {
+            transform: scale(1.05);
+        }
+
+    .image-label {
+        margin-top: 10px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    #table th {
+        font-weight: bold;
+        width: 36%;
+        vertical-align: top;
+    }
+
+    #table td {
+        width: 70%;
+    }
+
+    .image-grid {
+        margin-top: 20px;
+    }
+
+        .image-grid .col-md-4 {
+            margin-bottom: 30px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 10pc;
+        }
+
+</style>
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+
+        <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="detail-report-btn">
+                <h4> Biogas - Report </h4>
+                <div class="form-group">
+                    <button asp-action="BiogasAC" class="btn btn-primary"><img src="/img/Back_icon.png" alt="Alternate Text" class="back-icon">Back to List</button>
+                    <button asp-action="" style="cursor:pointer" class="btn btn-primary"><img src="~/img/Download_icon.png" alt="Alternate Text" class="download_icon" /> Downnload as PDF</button>
+                </div>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-around">
+                <div class="form-group ">
+                    <table class="table table-bordered" id="table">
+                        <tbody>
+                            <tr>
+                                <th>Inspection ID:</th>
+                                <td>@Html.DisplayFor(model => model.Id)</td>
+                            </tr>
+                            <tr>
+                                <th>User Name:</th>
+                                <td>@Html.DisplayFor(model => model.User)</td>
+                            </tr>
+                            <tr>
+                                <th>District Name:</th>
+                                <td>@Html.DisplayFor(model => model.District)</td>
+                            </tr>
+                            <tr>
+                                <th>Block Name:</th>
+                                <td>@Html.DisplayFor(model => model.Block)</td>
+                            </tr>
+                            <tr>
+                                <th>Village Name:</th>
+                                <td>@Html.DisplayFor(model => model.Village)</td>
+                            </tr>
+                            <tr>
+                                <th>Site Name:</th>
+                                <td>@Html.DisplayFor(model => model.Site)</td>
+                            </tr>
+                            <tr>
+                                <th>Project Name:</th>
+                                <td>@Html.DisplayFor(model => model.Project)</td>
+                            </tr>
+                            <tr>
+                                <th>Inspection Date:</th>
+                                <td>@Html.DisplayFor(model => model.InspectionDate)</td>
+                            </tr>
+                            <tr>
+                                <th>Inspector Designation:</th>
+                                <td>@Html.DisplayFor(model => model.InspectorDesignation)</td>
+                            </tr>
+                            <tr>
+                                <th>Gram Name:</th>
+                                <td>@Html.DisplayFor(model => model.GramName)</td>
+                            </tr>
+                            <tr>
+                                <th>Gram Panchayat Name:</th>
+                                <td>@Html.DisplayFor(model => model.GramPanchayatName)</td>
+                            </tr>
+                            <tr>
+                                <th>Beneficiary Name:</th>
+                                <td>@Html.DisplayFor(model => model.BeneficiaryName)</td>
+                            </tr>
+                            <tr>
+                                <th>Biogas Installation Year:</th>
+                                <td>@Html.DisplayFor(model => model.BiogasInstallationYear)</td>
+                            </tr>
+                            <tr>
+                                <th>Biogas Meshan Name:</th>
+                                <td>@Html.DisplayFor(model => model.BiogasMeshanName)</td>
+                            </tr>
+                            <tr>
+                                <th>Biogas SEW Name:</th>
+                                <td>@Html.DisplayFor(model => model.BiogasSEWName)</td>
+                            </tr>
+                            <tr>
+                                <th>Beneficiary Class:</th>
+                                <td>@Html.DisplayFor(model => model.BeneficiaryClass)</td>
+                            </tr>
+                            <tr>
+                                <th>Dinbandhu Biogas Capacity:</th>
+                                <td>@Html.DisplayFor(model => model.DinbandhuBiogasCapacity)</td>
+                            </tr>
+                            <tr>
+                                <th>Construction Material:</th>
+                                <td>@Html.DisplayFor(model => model.ConstructionMaterial)</td>
+                            </tr>
+                            <tr>
+                                <th>System Construction Status:</th>
+                                <td>@Html.DisplayFor(model => model.SystemConstructionStatus)</td>
+                            </tr>
+                            <tr>
+                                <th>Extra Construction Material:</th>
+                                <td>@Html.DisplayFor(model => model.ExtraConstructionMaterial)</td>
+                            </tr>
+                            <tr>
+                                <th>Is System Working:</th>
+                                <td>
+                                    @{
+                                        if (@Model.IsSystemWorking)
+                                        {
+                                            <span>Working</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Not Working</span>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Remarks:</th>
+                                <td>@Html.DisplayFor(model => model.Remarks)</td>
+                            </tr>
+                            <tr>
+                                <th>Updated By:</th>
+                                <td>@Html.DisplayFor(model => model.UpdatedBy)</td>
+                            </tr>
+                            <tr>
+                                <th>Image GeoTag:</th>
+                                <td>@Html.DisplayFor(model => model.GeoTag)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="image-grid">
+                        <div class="row" id="set-img-row">
+                            <!-- System Working Image -->
+                            <div class="col-md-4 text-center">
+                                <p class="image-label">Upload Photo:</p>
+                                @if (!string.IsNullOrEmpty(Model.UploadPhoto))
+                                {
+                                    <img class="clickable-image" width="100%" height="auto" src="data:@Model.UploadPhotoType;base64,@Model.UploadPhoto" />
+                                }
+                                else
+                                {
+                                    <p>No image available.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function copyGeoTag(event, geoTagId, messageId) {
+        // Prevent default behavior
+        event.preventDefault();
+
+        // Select the text from the appropriate span
+        const geoTagText = document.getElementById(geoTagId).textContent;
+
+        // Create a temporary input element
+        const tempInput = document.createElement('input');
+        document.body.appendChild(tempInput);
+        tempInput.value = geoTagText;
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the text inside the input
+        document.execCommand('copy');
+
+        // Remove the temporary input element
+        document.body.removeChild(tempInput);
+
+        
+        const copyMessage = document.getElementById(messageId);
+        copyMessage.textContent = 'Geotag copied to clipboard!';
+        copyMessage.style.display = 'block';
+
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+            copyMessage.style.display = 'none';
+        }, 3000);
+    }
+</script>
+
+
+

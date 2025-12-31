@@ -1,0 +1,206 @@
+﻿@model WebApp.Models.VwGrievanceModel
+
+@{
+    Layout = "_BlankLayout";
+}
+
+<style>
+    body {
+        font-family: Hind,sans-serif;
+    }
+
+    .Reportcontainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .details-table {
+        border-collapse: collapse;
+        width: 100%;
+        float: left;
+    }
+
+        .details-table th,
+        .details-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            height: 30px;
+        }
+
+        .details-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            width: 28%;
+        }
+
+        .details-table td {
+            width: 40%;
+        }
+
+    .image-section {
+        width: 33%;
+        text-align: center;
+        display: inline-block;
+        float: right;
+        margin-left: 20px;
+    }
+
+        /*     img {
+                width: 35%;
+                height: auto;
+            } */
+
+        .image-section p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid #ddd;
+    }
+
+    #setpdfimg {
+        display: flex !important;
+        justify-content: space-evenly;
+    }
+
+    #imgpdf {
+        width: 25.4pc;
+        position: relative;
+        right: 12pc;
+    }
+
+
+    #SSimg {
+        width: 7pc;
+        position: relative;
+        left: 12pc;
+    }
+
+    .footer {
+        margin-top: 1130px;
+    }
+
+</style>
+
+<body>
+    <div class="header">
+        <div id="setpdfimg">
+            <img src="~/img/creda_black_logo_title.png" alt="Alternate Text" id="imgpdf" />
+            <img src="~/img/CREDA_SS.png" alt="img" id="SSimg" />
+        </div>
+    </div>
+    <hr />
+    </div>
+
+    <div class="Reportcontainer">
+        <!-- Details Table -->
+        <table class="details-table">
+            <tr>
+                <th>Complaint ID</th>
+                <td>@Model.Id</td>
+                <td><strong>Fault Image</strong></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>@Model.DistrictName</td>
+                <td rowspan="6"><img src="data:@Model.FaultImageType;base64,@Model.FaultImageBase64" alt="Fault Image" height="200px" width="300px" /></td>
+            </tr>
+            <tr>
+                <th>Block</th>
+                <td>@Model.BlockName</td>
+            </tr>
+            <tr>
+                <th>Village</th>
+                <td>@Model.VillageName</td>
+            </tr>
+            <tr>
+                <th>Region</th>
+                <td>@Model.Region</td>
+            </tr>
+            <tr>
+                <th>Applicant's Name'</th>
+                <td>@Model.Area</td>
+            </tr>
+            <tr>
+                <th>Site</th>
+                <td>@Model.SiteName</td>
+            </tr>
+            <tr>
+                <th>Project Name</th>
+                <td>@Model.ProjectName</td>
+                <td><strong>Mobile Photo:</strong></td>
+            </tr>
+            <tr>
+                <th>System Integrator</th>
+                <td>@Model.SIName</td>
+                <td rowspan="6"><img src="data:@Model.MobilePhotoType;base64,@Model.MobilePhotoBase64" alt="Image with Complete System" height="200px" width="300px" /></td>
+            </tr>
+            <tr>
+                <th>Fault Remark</th>
+                <td>@Model.FaultRemark</td>
+            </tr>
+            <tr>
+                <th>GeoTag:</th>
+                <td>@Model.FaultImageGeoTag</td>
+            </tr>
+            <tr>
+                <th>Applicant's Mobile Number</th>
+                <td>@Model.MobileNumber</td>
+                
+            </tr>
+            <tr>
+                <th>Complaint Date:</th>
+                <td>@Model.CreatedOn</td>
+            </tr>
+            <tr>
+                <th>Severity:</th>
+                <td>@Model.Severity</td>
+            </tr>
+            <tr>
+                <th>Assigned To:</th>
+                <td>@Model.AssignTo</td>
+            </tr>
+            <tr>
+                <th>Assigned Date:</th>
+                <td>@Model.OpenDate</td>
+            </tr>
+            <tr>
+                <th>Remark by CREDA Official:</th>
+                <td>@Model.AdminComment</td>
+            </tr>
+            <tr>
+                <th>Remark After Verification:</th>
+                <td>@Model.VerifyComment</td>
+            </tr>
+
+            <tr>
+                <th>Verification Date:</th>
+                <td>@Model.VerifyDate</td>
+            </tr>
+            <tr>
+                <th>Complaint Closing Date:</th>
+                <td>@Model.CloseDate</td>
+            </tr>
+
+            <tr>
+                <th>Grievance Status:</th>
+                <td>@Model.GrievanceStatus </td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="footer">
+        <hr />
+        <p style="text-align: right; padding-right: 20px;"><strong>Report generated on:</strong> @DateTime.Now.ToString("dd-MM-yyyy")</p>
+    </div>
+</body>
+
+

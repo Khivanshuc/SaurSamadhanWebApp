@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Administrator | CREDA ";
+}
+
+
+<div>
+    <h4 style="color:#566a7f">Deleted Grievance List</h4>
+</div>
+
+<div id="deletedGrievancePartialView">
+
+</div>
+
+@section PageScripts {
+    <script src="~/js/deletedgrievance.js"></script>
+    <script>
+        $(document).ready(function(){
+            getDeletedGrievanceList();
+        });
+    </script>
+}
+
+
+

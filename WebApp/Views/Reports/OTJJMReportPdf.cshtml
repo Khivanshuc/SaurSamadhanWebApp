@@ -1,0 +1,287 @@
+﻿@model WebApp.Models.VwOTJJMAlreadyCompletedModel
+
+@{
+    Layout = "_BlankLayout";
+}
+<style>
+    body {
+        font-family:Arial,sans-serif;
+    }
+
+    .Reportcontainer {
+        display: flex;
+        justify-content: space-between;
+        margin-top:-10px;
+    }
+
+    .details-table {
+        border-collapse: collapse;
+        width: 50%;
+        float: left;
+    }
+
+    .details-table th,
+    .details-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        height: 30px;
+    }
+
+    .details-table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        width: 10%;
+    }
+
+    .details-table td {
+        width: 10%;
+        font-weight:100;
+    }
+
+    .image-section {
+        width: 45%;
+        text-align: center;
+        display: inline-block;
+        float: right;
+        margin-left: 20px;
+    }
+
+/*     .image-section img {
+        width: 35%;
+        height: auto;
+       
+    } */
+
+    .image-section p {
+        font-weight: bold;
+        margin-top: 0;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border-top: 2px solid #ddd;
+    }
+
+    #setpdfimg {
+        display: flex !important;
+        justify-content: space-evenly;
+    }
+
+    #imgpdf {
+        width: 25.4pc;
+        position: relative;
+        right: 12pc;
+    }
+
+
+    #SSimg {
+        width: 7pc;
+        position: relative;
+        left: 12pc;
+    }
+
+    .details-table2 th,
+    .details-table2 td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .details-table2 th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        width: 50%;
+    }
+
+    .details-table2 td {
+        width: 50%;
+    }
+
+    .footer{
+        margin-top: 1150px;
+    }
+
+</style>
+
+<body>
+    <div class="header">
+        <div id="setpdfimg">
+            <img src="~/img/creda_black_logo_title.png" alt="Alternate Text" id="imgpdf" />
+            <img src="~/img/CREDA_SS.png" alt="img" id="SSimg" />
+        </div>
+    </div>
+
+    <hr>
+   
+    <div class="Reportcontainer">
+        <!-- Details Table -->
+        <table class="details-table">
+            <tr>
+                <th>Project</th>
+                <td>@Model.Project</td>
+            </tr>
+            <tr>
+                <th>Inspection ID</th>
+                <td>@Model.Id</td>
+            </tr>
+            <tr>
+                <th>Inspected By</th>
+                <td>@Model.User</td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>@Model.District</td>
+            </tr>
+            <tr>
+                <th>Block</th>
+                <td>@Model.Block</td>
+            </tr>
+            <tr>
+                <th>Village</th>
+                <td>@Model.Village</td>
+            </tr>
+            <tr>
+                <th>Site</th>
+                <td>@Model.Site</td>
+            </tr>
+            <tr>
+                <th>Inspection Date</th>
+                <td>@Model.InspectionDate?.ToShortDateString()</td>
+
+            </tr>
+            <tr>
+                <th>SI Name</th>
+                <td>@Model.SIName</td>
+            </tr>
+            <tr>
+                <th>System Working</th>
+                <td>@(Model.IsSystemWorking ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <th>System Working Remark</th>
+                <td>@Model.IsSystemWorkingRemark</td>
+            </tr>
+            <tr>
+                <th>Pump Make</th>
+                <td>@(Model.PumpMake)</td>
+            </tr>
+            <tr>
+                <th>Pump Working Status</th>
+                <td>@(Model.IsSystemWorking ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>Controller Make</th>
+                <td>@(Model.ControllerMake)</td>
+            </tr>
+            <tr>
+                <th>Controller Working Status</th>
+                <td>@(Model.IsSystemWorking ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>System Layout</th>
+                <td>@Model.SystemLayout</td>
+            </tr>
+            <tr>
+                <th>Panel Make</th>
+                <td>@Model.PanelMake</td>
+            </tr>
+            <tr>
+                <th>Panel Volt - Each (in volt)</th>
+                <td>@(Model.PanelVolt ? "12" : "24")</td>
+            </tr>
+            <tr>
+                <th>Panel Capacity - Each (in watt)</th>
+                <td>@Model.PanelCapacity</td>
+            </tr>
+            <tr>
+                <th>Number Of Panel</th>
+                <td>@Model.NumberOfPanel</td>
+            </tr>
+            <tr>
+                <th>Handpump Working Status</th>
+                <td>@(Model.IsHandpumpWorking ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>Standpost Condition</th>
+                <td>@(Model.StandpostCondition ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>No. Of Defective Modules</th>
+                <td>@Model.DefectiveNumberOfModules</td>
+            </tr>
+        </table>
+        <div class="image-section">
+            <table class="details-table2" style="margin-left:-40px">
+                <tr>
+                    <th>System Clean</th>
+                    <td>@(Model.IsSystemClean ? "Yes" : "No")</td>
+                </tr>
+                <tr>
+                    <th>Tap Working</th>
+                    <td>@(Model.IsTapWorking ? "Yes" : "No")</td>
+                </tr>
+                <tr>
+                    <th>Water Tank Leaking</th>
+                    <td>@(Model.IsWaterTankLeaking ? "Yes" : "No")</td>
+                </tr>
+                <tr>
+                    <th>Tank Lid Present</th>
+                    <td>@(Model.IsTankLidPresent ? "Yes" : "No")</td>
+                </tr>
+                <tr>
+                    <th>Sensor Working</th>
+                    <td>@(Model.IsSensorWorking ? "Yes" : "No")</td>
+                </tr>
+                <tr>
+                    <th>Union Working</th>
+                    <td>@(Model.IsUnionWorking ? "Yes" : "No")</td>
+                </tr>
+                <tr>
+                    <th>Nipple Working</th>
+                    <td>@(Model.IsNippleWorking ? "Yes" : "No")</td>
+                </tr>
+                <tr>
+                    <th>Socket Working</th>
+                    <td>@(Model.IsSocketWorking ? "Yes" : "No")</td>
+                </tr>
+                <tr>
+                    <th>Gate Valve Working</th>
+                    <td>@(Model.IsGateValveWorking ? "Yes" : "No")</td>
+                </tr>
+                <tr>
+                    <th>Cable Working</th>
+                    <td>@(Model.IsCableWorking ? "Yes" : "No")</td>
+                </tr>
+                <tr>
+                    <th>Rope Wire Working</th>
+                    <td>@(Model.IsRopeWireWorking ? "Yes" : "No")</td>
+                </tr>
+                <tr>
+                    <th>StandPost Correction Needed</th>
+                    <td>@(Model.IsRopeWireWorking ? "Needed" : "Not Needed")</td>
+                </tr>
+                <tr>
+                    <th>Last Cleaning Date of Water Tank</th>
+                    <td>@Model.LastWaterTankCleanDate</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <p style="text-align:center; padding:10px 0;">Image with Functionality</p>
+                        <img src="data:@Model.ImageWithFunctionalityType;base64,@Model.ImageWithFunctionality" alt="image with functionality" height="325px" width="300px" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>    
+  
+    <div class="footer">
+        <hr />
+        <p style="text-align: right; padding-right: 20px;"><strong>Report generated on:</strong> @DateTime.Now.ToString("dd-MM-yyyy")</p>
+    </div>
+</body>
+

@@ -1,0 +1,61 @@
+﻿@model List<WebApp.Models.ShowProjectReportModel>
+@{
+    Layout = "_BlankLayout";
+}
+<div class="row justify-content-center my-5">
+    <div class="col-md-12">
+        <form class="p-4 border rounded shadow-sm bg-light" style="width:100%;">
+            <div class="card-body">
+                <div class="table-responsive" style="height:40vh">
+                    <table class="table table-hover table-bordered" style="max-height:40vh; overflow:auto;width:100%;">
+                        <thead class="table-dark" style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important">
+
+                            <tr>
+                                <th style="color:white; width:5%; font-weight: bold;">SNo.</th>
+                                <th style="color:white; width:5%; font-weight: bold;">Project</th>
+                                <th style="color:white; width:5%; font-weight: bold;">District</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Block</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Village</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Site</th>
+                                <th style="color:white; width:10%; font-weight: bold;">System Integrator</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Inspected By</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Inspection Date</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Working Status</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Faulty Remark</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.SNo</td>
+                                        <td>@item.ProjectName</td>
+                                        <td>@item.DistrictName</td>
+                                        <td>@item.BlockName</td>
+                                        <td>@item.VillageName</td>
+                                        <td>@item.SiteName</td>
+                                        <td>@item.SIName</td>
+                                        <td>@item.InspectionDoneBy</td>
+                                        <td>@item.InspectionDate</td>
+                                        <td>@item.WorkingStatus</td>
+                                        <td>@item.FaultyRemark</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="13" class="text-center">No data available</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,843 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
+build_property.RootNamespace = WebApp
+build_property.RootNamespace = WebApp
+build_property.ProjectDir = C:\Work\SaurSamadhanWebApp\WebApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Work\SaurSamadhanWebApp\WebApp
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Administrator/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Administrator/DeletedGrievanceList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxEZWxldGVkR3JpZXZhbmNlTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Administrator/DeletedGrievances.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxEZWxldGVkR3JpZXZhbmNlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Administrator/GrievanceList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxHcmlldmFuY2VMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Administrator/GrievanceManualForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxHcmlldmFuY2VNYW51YWxGb3JtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Administrator/Grievances.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxHcmlldmFuY2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Administrator/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Administrator/LoginAccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxMb2dpbkFjY2Vzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Administrator/ManualGrievanceEntry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRvclxNYW51YWxHcmlldmFuY2VFbnRyeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/AdminPanelUserListPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5QYW5lbFVzZXJMaXN0UGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/AdminUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Vc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/ApplicantPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQXBwbGljYW50UGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/EditUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/Registrations.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmVnaXN0cmF0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/Settings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2V0dGluZ3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/SitePartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2l0ZVBhcnRpYWxWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/SitesList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2l0ZXNMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/SIUserPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU0lVc2VyUGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/UserProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlclByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/UsersList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlcnNMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Admin/_SitesList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cX1NpdGVzTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Auth/ForgotPasswordBasic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxGb3Jnb3RQYXNzd29yZEJhc2ljLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Auth/LoginBasic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbkJhc2ljLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Auth/RegisterBasic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3RlckJhc2ljLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Cards/Basic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZHNcQmFzaWMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/CaseClosing.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxDYXNlQ2xvc2luZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/ComplaintList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxDb21wbGFpbnRMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/DeductionOfFunds.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxEZWR1Y3Rpb25PZkZ1bmRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/ForwardedComplaint.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxGb3J3YXJkZWRDb21wbGFpbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/ForwardedComplaintListPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxGb3J3YXJkZWRDb21wbGFpbnRMaXN0UGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/ForwardedGrievanceDetailPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxGb3J3YXJkZWRHcmlldmFuY2VEZXRhaWxQYXJ0aWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/ForwardHOLandingPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxGb3J3YXJkSE9MYW5kaW5nUGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/GenerateNotice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxHZW5lcmF0ZU5vdGljZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/Notice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxOb3RpY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/Others.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxPdGhlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/RegisterComplaint.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxSZWdpc3RlckNvbXBsYWludC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/_ActionComplaintDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxfQWN0aW9uQ29tcGxhaW50RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/_ComplaintList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxfQ29tcGxhaW50TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/_EditComplaintDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxfRWRpdENvbXBsYWludERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/_PGrievanceRgstrCmplnt.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxfUEdyaWV2YW5jZVJnc3RyQ21wbG50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ComplaintManagement/_ViewComplaintDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGxhaW50TWFuYWdlbWVudFxfVmlld0NvbXBsYWludERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Dashboards/GrievanceReporting.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkc1xHcmlldmFuY2VSZXBvcnRpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Dashboards/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Dashboards/LandingPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkc1xMYW5kaW5nUGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Dashboards/MonitoringHome.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkc1xNb25pdG9yaW5nSG9tZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DIAction/Abc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRElBY3Rpb25cQWJjLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DIAction/AbcList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRElBY3Rpb25cQWJjTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DIAction/NWork.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRElBY3Rpb25cTldvcmsuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DIAction/Test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRElBY3Rpb25cVGVzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DownloadReport/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG93bmxvYWRSZXBvcnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DownloadReport/ProjectReportCount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG93bmxvYWRSZXBvcnRcUHJvamVjdFJlcG9ydENvdW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DownloadReport/ProjectReportCountList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG93bmxvYWRSZXBvcnRcUHJvamVjdFJlcG9ydENvdW50TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DownloadReport/ProjectReportCountListDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG93bmxvYWRSZXBvcnRcUHJvamVjdFJlcG9ydENvdW50TGlzdERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DownloadReport/ProjectReportList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG93bmxvYWRSZXBvcnRcUHJvamVjdFJlcG9ydExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DownloadReport/ProjectWiseReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG93bmxvYWRSZXBvcnRcUHJvamVjdFdpc2VSZXBvcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DownloadReport/UserReportCount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG93bmxvYWRSZXBvcnRcVXNlclJlcG9ydENvdW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DownloadReport/UserReportCountList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG93bmxvYWRSZXBvcnRcVXNlclJlcG9ydENvdW50TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/DownloadReport/UserReportCountListDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG93bmxvYWRSZXBvcnRcVXNlclJlcG9ydENvdW50TGlzdERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ExtendedUi/PerfectScrollbar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXh0ZW5kZWRVaVxQZXJmZWN0U2Nyb2xsYmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/ExtendedUi/TextDivider.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXh0ZW5kZWRVaVxUZXh0RGl2aWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/FormLayouts/Horizontal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybUxheW91dHNcSG9yaXpvbnRhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/FormLayouts/Vertical.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybUxheW91dHNcVmVydGljYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Forms/BasicInputs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXNcQmFzaWNJbnB1dHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Forms/InputGroups.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXNcSW5wdXRHcm91cHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Home/CmnReportView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDbW5SZXBvcnRWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Icons/Boxicons.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWNvbnNcQm94aWNvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Imports/Block.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wb3J0c1xCbG9jay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Imports/District.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wb3J0c1xEaXN0cmljdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Imports/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wb3J0c1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Imports/Village.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wb3J0c1xWaWxsYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/LayoutExamples/Blank.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGF5b3V0RXhhbXBsZXNcQmxhbmsuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/LayoutExamples/Container.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGF5b3V0RXhhbXBsZXNcQ29udGFpbmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/LayoutExamples/Fluid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGF5b3V0RXhhbXBsZXNcRmx1aWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/LayoutExamples/WithoutMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGF5b3V0RXhhbXBsZXNcV2l0aG91dE1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/LayoutExamples/WithoutNavbar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGF5b3V0RXhhbXBsZXNcV2l0aG91dE5hdmJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/NoticeReport/JJMLastNoticeToSI.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWNlUmVwb3J0XEpKTUxhc3ROb3RpY2VUb1NJLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Pages/AccountSettings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcQWNjb3VudFNldHRpbmdzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Pages/AccountSettingsConnections.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcQWNjb3VudFNldHRpbmdzQ29ubmVjdGlvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Pages/AccountSettingsNotifications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcQWNjb3VudFNldHRpbmdzTm90aWZpY2F0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Pages/MiscError.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcTWlzY0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Pages/MiscUnderMaintenance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcTWlzY1VuZGVyTWFpbnRlbmFuY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/BiogasAC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xCaW9nYXNBQy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/BiogasACDetails .cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xCaW9nYXNBQ0RldGFpbHMgLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/BiogasACDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xCaW9nYXNBQ0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/BiogasACList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xCaW9nYXNBQ0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/BiogasReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xCaW9nYXNSZXBvcnRQZGYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/CIAC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xDSUFDLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/CIACDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xDSUFDRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/CIACList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xDSUFDTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/CIACReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xDSUFDUmVwb3J0UGRmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/CMGGYAC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xDTUdHWUFDLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/CMGGYACDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xDTUdHWUFDRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/CMGGYACList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xDTUdHWUFDTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/CMGGYReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xDTUdHWVJlcG9ydFBkZi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/EditGrievances.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xFZGl0R3JpZXZhbmNlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/Grievances.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xHcmlldmFuY2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/GrievancesDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xHcmlldmFuY2VzRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/GrievancesList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xHcmlldmFuY2VzTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/GrievancesReportAnalytics.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xHcmlldmFuY2VzUmVwb3J0QW5hbHl0aWNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/GrievancesReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xHcmlldmFuY2VzUmVwb3J0UGRmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/GrirvancesDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xHcmlydmFuY2VzRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/HMAC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xITUFDLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/HMACDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xITUFDRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/HMACList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xITUFDTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/HMACReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xITUFDUmVwb3J0UGRmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/InProgressInspectionList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xJblByb2dyZXNzSW5zcGVjdGlvbkxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/IPIDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xJUElEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/IPInspection.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xJUEluc3BlY3Rpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/IPReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xJUFJlcG9ydFBkZi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/JJMAC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xKSk1BQy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/JJMACDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xKSk1BQ0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/JJMACList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xKSk1BQ0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/JJMReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xKSk1SZXBvcnRQZGYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/MMAC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xNTUFDLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/MMACDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xNTUFDRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/MMACList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xNTUFDTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/MMACReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xNTUFDUmVwb3J0UGRmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OGPPAC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPR1BQQUMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OGPPACDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPR1BQQUNEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OGPPACList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPR1BQQUNMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OGPPReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPR1BQUmVwb3J0UGRmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OTJJMAC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPVEpKTUFDLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OTJJMACDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPVEpKTUFDRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OTJJMACList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPVEpKTUFDTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OTJJMReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPVEpKTVJlcG9ydFBkZi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OTRVDDMReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPVFJWRERNUmVwb3J0UGRmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OTRVEDDMDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPVFJWRURETURldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OTRVEDDMList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPVFJWRURETUxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/OTRVEDDMReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xPVFJWRURETVJlcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/Project.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xQcm9qZWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/Projects.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xQcm9qZWN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/RVEDDGAC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xSVkVEREdBQy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/RVEDDGACDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xSVkVEREdBQ0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/RVEDDGACList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xSVkVEREdBQ0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/RVEDDGReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xSVkVEREdSZXBvcnRQZGYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/SSYAC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xTU1lBQy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/SSYACDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xTU1lBQ0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/SSYACList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xTU1lBQ0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/SSYInprogress.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xTU1lJbnByb2dyZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/SSYInProgressInspectionList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xTU1lJblByb2dyZXNzSW5zcGVjdGlvbkxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/SSYIPIDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xTU1lJUElEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/SSYIPReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xTU1lJUFJlcG9ydFBkZi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/SSYReportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xTU1lSZXBvcnRQZGYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/Village.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xWaWxsYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Reports/_GrievancesAnalyticsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xfR3JpZXZhbmNlc0FuYWx5dGljc0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/CommonView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbW1vblZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/Sections/Footer/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXEZvb3RlclxfRm9vdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/Sections/Menu/_VerticalMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXE1lbnVcX1ZlcnRpY2FsTWVudS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/Sections/Navbar/_Navbar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXE5hdmJhclxfTmF2YmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/Sections/Navbar/_NavbarPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXE5hdmJhclxfTmF2YmFyUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/Sections/_Scripts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXF9TY3JpcHRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/Sections/_ScriptsIncludes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXF9TY3JpcHRzSW5jbHVkZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/Sections/_Styles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXF9TdHlsZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/Sections/_Variables.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb25zXF9WYXJpYWJsZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/_AdminNavbar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbk5hdmJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/_BlankLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9CbGFua0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/_CommonMasterLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db21tb25NYXN0ZXJMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/_ContentNavbarLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db250ZW50TmF2YmFyTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/SSY/GrievanceGlance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1NZXEdyaWV2YW5jZUdsYW5jZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/SSY/GrievanceGlanceDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1NZXEdyaWV2YW5jZUdsYW5jZURldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/SSY/GrievanceGlanceList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1NZXEdyaWV2YW5jZUdsYW5jZUxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/SSY/GrievanceGlanceListDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1NZXEdyaWV2YW5jZUdsYW5jZUxpc3REZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/SSY/SSY_Check_Status.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1NZXFNTWV9DaGVja19TdGF0dXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/SSY/SSY_Check_Status_PartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1NZXFNTWV9DaGVja19TdGF0dXNfUGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/SSY/SSY_Registration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU1NZXFNTWV9SZWdpc3RyYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/StockManagement/GenerateChallan.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvY2tNYW5hZ2VtZW50XEdlbmVyYXRlQ2hhbGxhbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/StockManagement/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvY2tNYW5hZ2VtZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/StockManagement/ViewItemList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvY2tNYW5hZ2VtZW50XFZpZXdJdGVtTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/StockManagement/ViewItemListDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvY2tNYW5hZ2VtZW50XFZpZXdJdGVtTGlzdERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/StockManagement/ViewItems.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvY2tNYW5hZ2VtZW50XFZpZXdJdGVtcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Tables/Basic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFibGVzXEJhc2ljLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Test/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFxBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Test/AddBio.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFxBZGRCaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Test/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Accordion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcQWNjb3JkaW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Alerts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcQWxlcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Badges.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcQmFkZ2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Buttons.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcQnV0dG9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Carousel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcQ2Fyb3VzZWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Collapse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcQ29sbGFwc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Dropdowns.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcRHJvcGRvd25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcRm9vdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/ListGroups.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcTGlzdEdyb3Vwcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Modals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcTW9kYWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Navbar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcTmF2YmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Offcanvas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcT2ZmY2FudmFzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/PaginationBreadcrumbs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcUGFnaW5hdGlvbkJyZWFkY3J1bWJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Progress.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcUHJvZ3Jlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Spinners.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcU3Bpbm5lcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/TabsPills.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcVGFic1BpbGxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Toasts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcVG9hc3RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/TooltipsPopovers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcVG9vbHRpcHNQb3BvdmVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/Ui/Typography.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVWlcVHlwb2dyYXBoeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/_Partials/_Macros.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1BhcnRpYWxzXF9NYWNyb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Work/SaurSamadhanWebApp/WebApp/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

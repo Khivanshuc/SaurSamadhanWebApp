@@ -1,0 +1,57 @@
+﻿@model List<WebApp.Models.GrievanceDeleteLogModel>
+
+<style>
+	.tbl-header-style {
+		color: white;
+		background-color: #00ccdd !important;
+	}
+
+	.card-body {
+		padding: 0px 5px 5px 5px;
+	}
+</style>
+<div class="row justify-content-center " style="z-index:0;">
+	<div class="col-md-12">
+		<form asp-action="View" style="width: 100%;">
+			<div class="card-body">
+				@* <h4 class="card-title mb-4">Grievances List</h4> *@
+				<div style="height:85vh">
+					<table id="deletedGrievanceTable" class="table table-bordered table-striped" style="max-height:80vh; overflow:auto;width:100%;">
+						<thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important ">
+							<tr>
+								<th class="tbl-header-style" style=" width:5%;">S.No</th>
+								<th class="tbl-header-style" style=" width:5%;">Grievance Id</th>
+								<th class="tbl-header-style" style=" width:30%;">Remark</th>
+								<th class="tbl-header-style" style=" width:10%;">Date of Deletion</th>
+							</tr>
+						</thead>
+						<tbody>
+							@{
+								if (Model.Count > 0)
+								{
+									@foreach (var item in Model)
+									{
+										<tr>
+											<td>  @item.Id</td>
+											<td>  @item.GrievanceId</td>
+											<td>  @item.Remark</td>
+											<td>  @(item.UpdatedOn?.ToString("dd-MM-yyyy"))</td>
+										</tr>
+									}
+								}
+								else
+								{
+									<tr>
+										<td colspan="8" style="text-align:center">
+											No Record Found
+										</td>
+									</tr>
+								}
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

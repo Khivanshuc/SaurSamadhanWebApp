@@ -1,0 +1,77 @@
+﻿<link href="~/css/forwardholandingpage.css" rel="stylesheet" / >
+
+<div class="ag-format-container">
+    <button id="backToDashButtonmonitotingHome" class="btn btn-back-to-dash-MonitotingHome" onclick="BackToDashboard()">
+        <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+    </button>
+    <div class="ag-courses_box">
+        <div class="ag-courses_item" id="img">
+            <a asp-controller="ComplaintManagement" asp-action="GenerateNotice" class="ag-courses-item_link">
+                <div class="ag-courses-item_bg"></div>
+                <div class="ag-courses-item_title">
+                    Generate Notice
+                </div>
+                <img src="~/img/Registration.png" alt="Icon" class="cardicon">
+                <div class="ag-courses-item_date-box">
+                    <span class="ag-courses-item_date">
+                        <!-- 30.11.2022 -->
+                    </span>
+                </div>
+            </a>
+        </div>
+
+        <div class="ag-courses_item">
+            <a asp-controller="ComplaintManagement" asp-action="DeductionOfFunds" class="ag-courses-item_link">
+                <div class="ag-courses-item_bg"></div>
+                <div class="ag-courses-item_title">
+                    Deduction of Funds
+                </div>
+                <img src="~/img/Import master data.png" alt="Icon" class="cardicon" id="imdimg">
+                <div class="ag-courses-item_date-box">
+                    @* Start: *@
+                    <span class="ag-courses-item_date">
+                        @* 31.10.2022 *@
+                    </span>
+                </div>
+            </a>
+        </div>
+
+        <div class="ag-courses_item">
+            <a asp-controller="ComplaintManagement" asp-action="CaseClosing" class="ag-courses-item_link">
+                <div class="ag-courses-item_bg"></div>
+                <div class="ag-courses-item_title">
+                    Case Closing
+                </div>
+                <img src="~/img/Import master data.png" alt="Icon" class="cardicon" id="imdimg">
+                <div class="ag-courses-item_date-box">
+                    @* Start: *@
+                    <span class="ag-courses-item_date">
+                        @* 31.10.2022 *@
+                    </span>
+                </div>
+            </a>
+        </div>
+
+        <div class="ag-courses_item">
+            <a asp-controller="ComplaintManagement" asp-action="Others" class="ag-courses-item_link">
+                <div class="ag-courses-item_bg"></div>
+                <div class="ag-courses-item_title">
+                    Others
+                </div>
+                <img src="~/img/Import master data.png" alt="Icon" class="cardicon" id="imdimg">
+                <div class="ag-courses-item_date-box">
+                    @* Start: *@
+                    <span class="ag-courses-item_date">
+                        @* 31.10.2022 *@
+                    </span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function BackToDashboard() {
+        window.location.href = '../Dashboards/LandingPage';
+    }
+</script>

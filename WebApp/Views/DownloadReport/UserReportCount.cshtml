@@ -1,0 +1,192 @@
+﻿@{
+    ViewData["Title"] = "User Wise Report | CREDA";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+
+<!-- Font Awesome (for icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+<style>
+
+    /* Universal Loader CSS */
+    #universalLoader {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .spinner {
+        width: 64px;
+        height: 64px;
+        border: 8px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #3498db;
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+    }
+
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .select2-container--default .select2-selection--single {
+        height: 38px;
+        border: var(--bs-border-width) solid #d9dee3;
+    }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 35px;
+            color: #697a8d;
+        }
+
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 5px
+        }
+</style>
+<div id="universalLoader">
+    <div class="spinner"></div>
+</div>
+
+<div id="FaultFiltersView">
+    <div class="row justify-content-center mt-md-3">
+        <h2>User Wise Reports</h2>
+        <button id="backToDashButton" class="btn btn-back-to-dash">
+            <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+        </button>
+        <div class="col-12">
+            <form class="p-4 border rounded shadow-sm bg-light">
+                <!-- First row of fields -->
+                <div class="row g-3 mb-3">
+                    <div class="setform">
+                        <!-- First column -->
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="d-flex align-items-center position-relative" id="down">
+                                    <select id="District" class="form-control custom-dropdown" onchange="districtOptionClick()">
+                                        <option>Select District</option>
+                                    </select>
+                                    <span class="dropdown-arrow"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6 col-lg-3" style="display:none">
+                                <div class="d-flex align-items-center" id="down">
+                                    <select id="Block" class="form-control custom-dropdown" onchange="searchUserList()">
+                                        <option>Select Block</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <!-- Second column -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="d-flex align-items-center position-relative">
+                                    <select id="User" class="form-control custom-dropdown" onchange="userOptionClicked()">
+                                        <option>Select User</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4" id="Size1">
+                                <!-- Date Picker Input -->
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-question-circle mr-3" data-toggle="tooltip" data-placement="top" title="कृपया दिनांक फ़िल्टर लागू करने के लिए चेकबॉक्स का चयन करें|" style="opacity:0.5;"></i>
+                                    <input type="checkbox" id="dateFilter" onchange="userDateFilterClicked(this)" style="margin-right:10px;height: 38px;width: 18px;margin-left:10px;" />
+                                    <input type="date" id="StartDate" class="form-control custom-dropdown ms-2" onchange="userStartDatePickerChanged(this)" disabled>
+                                    
+                                </div>
+                            </div>
+                            <!-- Last Date Picker column -->
+                            <div class="col-md-6 col-lg-4" id="Size1">
+                                <div class="d-flex align-items-center">
+                                    <input type="date" id="EndDate" class="form-control custom-dropdown" onchange="userEndDatePickerChanged(this)" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Search and Clear Buttons -->
+                        <div class="col-12 col-md-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
+                            <div class="alinebutton">
+                                <button type="button" class="btn btn-primary" id="searchButton" onclick="" style=""><img src="~/img/Search_icon.png" alt="" class="search_icon" />SEARCH</button>
+                                <button type="button" class="btn btn-primary ms-2" id="clearButtonreport" onclick="clearButtonClicked()"><img src="~/img/Clear_icon.png" alt="Alternate Text" class="clear_icon" /> CLEAR</button>
+                            </div>
+                            <div class="alinedownlodbtn">
+                                <button type="button" class="btn btn-primary ms-2" id="DownloadButton" onclick="DownloadUserReportCountListClicked()"><img src="~/img/Download_icon.png" alt="" class="download_icon" /> DOWNLOAD</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="userReportPartialView"></div>
+<div id="userReportDetailPartialView"></div>
+
+
+@section PageScripts {
+
+    <script src="~/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/downloadreports.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            loadOneMonthAgoDate();
+            fetchDistforAdminPanel();
+            userReportList();
+            getUserList();
+
+            $("#User").select2();
+
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var today = new Date();
+
+            var day = ("0" + today.getDate()).slice(-2);
+            var month = ("0" + (today.getMonth() + 1)).slice(-2);
+            var formattedDate = today.getFullYear() + '-' + month + '-' + day;
+
+            document.getElementById('StartDate').value = formattedDate;
+            document.getElementById('EndDate').value = formattedDate;
+
+            var startDatePicker = document.getElementById('StartDate');
+            var endDatePicker = document.getElementById('EndDate');
+
+            endDatePicker.setAttribute('max', formattedDate);
+            startDatePicker.setAttribute('max', formattedDate);
+        });
+
+
+        document.getElementById('backToDashButton').addEventListener('click', function () {
+            BackToDashboard();
+        });
+
+    </script>
+
+}

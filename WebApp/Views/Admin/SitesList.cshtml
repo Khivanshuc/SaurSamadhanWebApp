@@ -1,0 +1,57 @@
+﻿@model List<WebApp.Models.VwSiteModel>
+
+
+@section PageScripts {
+    <script src="~/js/admin.js"></script>
+}
+
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form asp-action="View" class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="card-body">
+               
+                <div class="table-responsive" id="SiteTablediv" style="height:50vh">
+                    <table class="table table-hover">
+                        <thead style="position: sticky; top: 0; z-index: 1;background:#003c00;color:white !important">
+                            <tr>
+                                <th style="color:white;" scope="col">Site Name</th>
+                                <th style="color:white;" scope="col">Dsitrict</th>
+                                <th style="color:white;" scope="col">Block</th>
+                                <th style="color:white;" scope="col">Village</th>
+                                @* <th scope="col">Created On</th> *@
+                                @* <th scope="col">Actions</th> *@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.SiteName</td>
+                                    <td>@item.DistrictName</td>
+                                    <td>@item.BlockName</td>
+                                    <td>@item.VillageName</td>
+                                    @* <td>
+                                <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="#" class="btn btn-info btn-sm">Details</a>
+                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                </td> *@
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/admin.js"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

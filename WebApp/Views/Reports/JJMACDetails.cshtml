@@ -1,0 +1,452 @@
+﻿@model WebApp.Models.VwJJMAlreadyCompletedModel
+<style>
+    .geo-tag-container {
+        display: flex;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .geo-tag-text {
+        max-width: calc(100% - 70px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+        .geo-tag-text:hover {
+            overflow: auto;
+            white-space: normal;
+        }
+
+    .copy-btn {
+        margin-left: 10px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .copy-btn:hover {
+            background-color: #e1e1e1;
+        }
+
+    .copy-message {
+        margin-top: 10px;
+        color: green;
+        font-size: 14px;
+        display: none;
+    }
+
+
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+    }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 500px;
+    }
+
+    .modal-content, .close {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    @@keyframes zoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        z-index: 1300;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .zoom-btn {
+        border-radius: 14px;
+        position: inherit;
+        bottom: 20px;
+        right: 20px;
+        color: black;
+        font-size: 30px;
+        padding: 10px 20px;
+        background-color: lightgray;
+        cursor: pointer;
+    }
+
+    #zoomIn {
+        margin-right: 5px;
+        right: 70px;
+    }
+
+    #zoomOut {
+        right: 20px;
+    }
+
+    .image-grid {
+        margin-top: 20px;
+    }
+
+        .image-grid .col-md-4 {
+            margin-bottom: 30px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 10pc;
+        }
+
+    #set-img-row {
+        justify-content: space-around;
+    }
+
+    #set-secondrow-img {
+        justify-content: space-evenly;
+    }
+
+    .clickable-image {
+        border-radius: 14px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+        .clickable-image:hover {
+            transform: scale(1.05);
+        }
+
+
+    #table th {
+        font-weight: bold;
+        width: 36%;
+        vertical-align: top;
+    }
+
+    #table td {
+        width: 70%;
+    }
+
+    #tables-alignment {
+        display: flex;
+        width: 89.5pc;
+    }
+
+    .table-spacing {
+        width: 49pc;
+        display: flex;
+        padding-left: 1pc;
+        flex-direction: column-reverse;
+    }
+
+    #img-detl-report {
+        width: 40pc;
+        position: relative;
+        left: 4pc;
+        bottom: 4pc;
+    }
+
+    #first-table {
+        width: 41pc;
+    }
+
+    #detail-img {
+        position: relative;
+        right: 1.5pc;
+        width: 10pc;
+        margin-top: 10px;
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="detail-report-btn">
+                <h4><strong>Jal Jivan Mission - Report</strong></h4>
+                <div class="form-group">
+                    <button asp-action="JJMAC" class="btn btn-primary" style="display:none!important">
+                        <img src="/img/Back_icon.png" alt="Alternate Text" class="back-icon">Back to List
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="downloadJJMPdfclicked(@Model.Id)">
+                        <img src="~/img/Download_icon.png" alt="Download as PDF" class="download_icon" />Download as PDF
+                    </button>
+
+                </div>
+            </div>
+            <hr />
+
+            <div class="d-flex justify-content-around">
+                <div id="tables-alignment">
+                    <div class="form-group" id="first-table">
+                        <table class="table table-bordered" id="table">
+                            <tbody>
+                                <tr>
+                                    <th>Inspection ID:</th>
+                                    <td>@Html.DisplayFor(model => model.Id)</td>
+                                </tr>
+                                <tr>
+                                    <th>Inspected By:</th>
+                                    <td>@Html.DisplayFor(model => model.UserName)</td>
+                                </tr>
+                                <tr>
+                                    <th>District:</th>
+                                    <td>@Html.DisplayFor(model => model.District)</td>
+                                </tr>
+                                <tr>
+                                    <th>Block:</th>
+                                    <td>@Html.DisplayFor(model => model.Block)</td>
+                                </tr>
+                                <tr>
+                                    <th>Village:</th>
+                                    <td>@Html.DisplayFor(model => model.Village)</td>
+                                </tr>
+                                <tr>
+                                    <th>Site:</th>
+                                    <td>@Html.DisplayFor(model => model.Site)</td>
+                                </tr>
+                                <tr>
+                                    <th>Project Name:</th>
+                                    <td>@Html.DisplayFor(model => model.Project)</td>
+                                </tr>
+                                <tr>
+                                    <th>Inspection Date:</th>
+                                    <td>@Html.DisplayFor(model => model.InspectionDate)</td>
+                                </tr>
+                                <tr>
+                                    <th>System Name:</th>
+                                    <td>@Html.DisplayFor(model => model.SystemName)</td>
+                                </tr>
+                                <tr>
+                                    <th>SI Name:</th>
+                                    <td>@Html.DisplayFor(model => model.SIName)</td>
+                                </tr>
+                                <tr>
+                                    <th>System Working:</th>
+                                    <td>@(Model.IsSystemWorking ? "Working" : "Not Working")</td>
+                                </tr>
+                                <tr>
+                                    <th>System Working Remark:</th>
+                                    <td>@Html.DisplayFor(model => model.IsSystemWorkingRemark)</td>
+                                </tr>
+                                <tr>
+                                    <th>Pump Working Status:</th>
+                                    <td>@(Model.IsPumpWorking ? "Working" : "Not Working")</td>
+                                </tr>
+                                <tr>
+                                    <th>Controller Working Status:</th>
+                                    <td>@(Model.IsControllerWorking ? "Working" : "Not Working")</td>
+                                </tr>
+                                <tr>
+                                    <th> System Working Remark:</th>
+                                    <td>@Html.DisplayFor(model => model.IsSystemWorkingRemark)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-spacing">
+                        <table class="table table-bordered" id="table">
+                            <tbody>
+                                <tr>
+                                    <th>System Layout:</th>
+                                    <td>@Html.DisplayFor(model => model.SystemLayout)</td>
+                                </tr>
+                                <tr>
+                                    <th>Panel Make:</th>
+                                    <td>@Html.DisplayFor(model => model.PanelMake)</td>
+                                </tr>
+                                <tr>
+                                    <th>Pipeline Working Status:</th>
+                                    <td>@(Model.IsPipelineWorking ? "Working" : "Not Working")</td>
+                                </tr>
+                                <tr>
+                                    <th>OHT Working Status:</th>
+                                    <td>@(Model.IsOHTWorking ? "Working" : "Not Working")</td>
+                                </tr>
+                                <tr>
+                                    <th>Total Depth (in meters):</th>
+                                    <td>@Html.DisplayFor(model => model.TotalDepth)</td>
+                                </tr>
+                                <tr>
+                                    <th>System Working Duration (in hours):</th>
+                                    <td>@Html.DisplayFor(model => model.SystemWorkingDuration)</td>
+                                </tr>
+                                <tr>
+                                    <th>Technical Fault Remark:</th>
+                                    <td>@Html.DisplayFor(model => model.TechnicalFaultRemark)</td>
+                                </tr>
+                                <tr>
+                                    <th>Any Other Remarks:</th>
+                                    <td>@Html.DisplayFor(model => model.AnyOtherRemarks)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- Inline Images Section -->
+                        <div class="form-group col-md-6">
+                            <div id="img-detl-report">
+                                <div class="image-grid">
+                                    <div class="row" id="set-img-row">
+                                        <div class="col-md-4 text-center">
+                                            <p class="col-sm-8" id="detail-img">Image With Functionality:</p>
+                                            @if (!string.IsNullOrEmpty(Model.ImageWithFunctionality))
+                                            {
+                                                <img class="clickable-image" width="150px" height="150px" src="data:@Model.ImageWithFunctionalityType;base64,@Model.ImageWithFunctionality" />
+                                            }
+                                            else
+                                            {
+                                                <p>No image available.</p>
+                                            }
+                                        </div>
+
+
+                                        <!-- Image With Complete System -->
+                                        <div class="col-md-4 text-center">
+                                            <p class="col-sm-8" id="detail-img">Image With Complete System:</p>
+                                            @if (!string.IsNullOrEmpty(Model.ImageWithCompleteSystem))
+                                            {
+                                                <img class="clickable-image" width="150px" height="150px" src="data:@Model.ImageWithCompleteSystemType;base64,@Model.ImageWithCompleteSystem" />
+                                            }
+                                            else
+                                            {
+                                                <p>No image available.</p>
+                                            }
+                                        </div>
+
+                                        <div class="col-md-4 text-center">
+                                            <p class="col-sm-8" id="detail-img">Image Mangpatra:</p>
+                                            @if (!string.IsNullOrEmpty(Model.ImageMangpatra))
+                                            {
+                                                <img class="clickable-image" id="detail-img" width="150px" height="150px" src="data:@Model.ImageMangpatraType;base64,@Model.ImageMangpatra" />
+                                            }
+                                            else
+                                            {
+                                                <p>No image available.</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="imageModal" class="image-modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="modalImage">
+                    <div id="zoomIn" class="zoom-btn">+</div>
+                    <div id="zoomOut" class="zoom-btn">-</div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    function copyGeoTag(event, geoTagId, messageId) {
+        event.preventDefault();
+
+        const geoTagText = document.getElementById(geoTagId).textContent;
+
+        const tempInput = document.createElement('input');
+        document.body.appendChild(tempInput);
+        tempInput.value = geoTagText;
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999);
+
+        document.execCommand('copy');
+
+        document.body.removeChild(tempInput);
+
+
+        const copyMessage = document.getElementById(messageId);
+        copyMessage.textContent = 'Geotag copied to clipboard!';
+        copyMessage.style.display = 'block';
+
+        setTimeout(() => {
+            copyMessage.style.display = 'none';
+        }, 3000);
+    }
+
+    // function DownloadJJMReportClicked() {
+    //     alert("Clicked");
+    //     $.ajax({
+    //         url: '/Reports/DownloadPdf',
+    //         dataType: 'html',
+    //         data: { DistrictId: District, BlockId: Block },
+    //         success: function (response) {
+    //             // $('#HMACPartialView').html('');
+    //             // $('#HMACPartialView').html(response);
+    //             // hideLoader();
+    //         },
+    //         error: function (xhr, status, error) {
+    //         }
+    //     });
+    // }
+
+    var modal = document.getElementById('imageModal');
+    var modalImg = document.getElementById("modalImage");
+
+
+    var images = document.getElementsByClassName('clickable-image');
+    for (var i = 0; i < images.length; i++) {
+        images[i].onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        }
+    }
+
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    var zoomLevel = 1;
+    document.getElementById('zoomIn').onclick = function () {
+        zoomLevel += 0.1;
+        modalImg.style.transform = `scale(${zoomLevel})`;
+    }
+
+    document.getElementById('zoomOut').onclick = function () {
+        if (zoomLevel > 0.1) {
+            zoomLevel -= 0.1;
+            modalImg.style.transform = `scale(${zoomLevel})`;
+        }
+    }
+
+</script>

@@ -1,0 +1,247 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Administrator | CREDA ";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #universalLoader {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 64px;
+            height: 64px;
+            border: 8px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #3498db;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+        }
+
+        @@keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #ReportLoader {
+            display: none !important;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader {
+            text-align: center;
+            line-height: 86px;
+            text-align: center;
+            position: relative;
+            padding: 0 48px;
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #566a7f;
+        }
+
+            .loader:before, .loader:after {
+                content: "";
+                display: block;
+                width: 15px;
+                height: 15px;
+                background: currentColor;
+                position: absolute;
+                animation: load .7s infinite alternate ease-in-out;
+                top: 0;
+            }
+
+            .loader:after {
+                top: auto;
+                bottom: 0;
+            }
+
+        @@keyframes load {
+            0% {
+                left: 0;
+                height: 43px;
+                width: 15px;
+                transform: translateX(0)
+            }
+
+            50% {
+                height: 10px;
+                width: 40px
+            }
+
+            100% {
+                left: 100%;
+                height: 43px;
+                width: 15px;
+                transform: translateX(-100%)
+            }
+        }
+    </style>
+</head>
+
+<input type="hidden" id="hiddenGrievenceId" />
+
+<div id="universalLoader">
+    <div class="spinner"></div>
+</div>
+
+<div id="grievanceListPartialView">
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="revertModal" tabindex="-1" aria-labelledby="revertModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="revertModalLabel">Revert Grievance</h5>
+                <button type="button" class="close" onclick="revertModalCloseBtnClicked()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="revertForm">
+                    <div class="form-group">
+                        <label for="revertReason">Revert Reason</label>
+                        <textarea class="form-control" id="grievanceRevertReason" placeholder="Enter reason" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="revertStatus">Revert Status</label>
+                        <select class="form-control" id="revertStatus" required>
+                            <option value="">Select Status</option>
+                            <option value="InProgress">सुधार किया गया फोटो दोबारा अपलोड करें</option>
+                            <option value="Verified">दोबारा टिप्पणी दर्ज करें</option>
+                        </select>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="revertModalCloseBtnClicked()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="revertSubmitBtnClicked()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Upload Modal -->
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadModalLabel">Upload Grievance</h5>
+                <button type="button" class="close" onclick="uploadModalCloseBtnClicked()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="uploadForm">
+                    <div class="form-group">
+                        <label for="uploadStatus">Upload type</label>
+                        <select class="form-control" id="uploadStatus" required onchange="toggleFields()">
+                            <option value="">Select Status</option>
+                            <option value="InProgress">सुधार होने से पहले का फोटो</option>
+                            <option value="Verified">सुधार होने के बाद का फोटो</option>
+                        </select>
+                    </div>
+
+                    <!-- Fields for InProgress -->
+                    <div id="inProgressFields" style="display: none;">
+                        <div class="form-group">
+                            <label for="uploadImageInProgress">Upload Image</label>
+                            <input type="file" class="form-control" id="uploadImageInProgress" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="dateTimeInProgress">Choose Date & Time</label>
+                            <input type="datetime-local" class="form-control" id="dateTimeInProgress">
+                        </div>
+                        <div class="form-group">
+                            <label for="latitudeLongitudeInProgress">Latitude, Longitude</label>
+                            <input type="text" class="form-control" id="latitudeLongitudeInProgress" placeholder="Enter latitude, longitude">
+                        </div>
+                    </div>
+
+                    <!-- Fields for Verified -->
+                    <div id="verifiedFields" style="display: none;">
+                        <div class="form-group">
+                            <label for="uploadImageVerified">Upload Image</label>
+                            <input type="file" class="form-control" id="uploadImageVerified" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="uploadPdfVerified">Upload PDF</label>
+                            <input type="file" class="form-control" id="uploadPdfVerified" accept=".pdf">
+                        </div>
+                        <div class="form-group">
+                            <label for="verifiedDateTime">Choose Date & Time</label>
+                            <input type="datetime-local" class="form-control" id="verifiedDateTime">
+                        </div>
+                        <div class="form-group">
+                            <label for="verificationComment">Verification Comment</label>
+                            <textarea class="form-control" id="verificationComment" placeholder="Enter verification comment"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="latitudeLongitudeVerified">Latitude, Longitude</label>
+                            <input type="text" class="form-control" id="latitudeLongitudeVerified" placeholder="Enter latitude, longitude">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="uploadModalCloseBtnClicked()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="uploadSubmitBtnClicked()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section PageScripts {
+    <script src="~/js/AdministratorGrievance.js"></script>
+    <script>
+        $(document).ready(async function () {
+            getGrievanceList();
+
+            $('#grievanceTable').DataTable({
+                "pageLength": 10,           // default rows per page
+                "lengthMenu": [5, 10, 25, 50, 100], // page size options
+                "ordering": true,           // enable column sorting
+                "searching": true,          // enable search box
+                "info": true,               // show "Showing 1 to N of M entries"
+                "autoWidth": false,         // disable auto column width
+                "language": {
+                    "search": "🔍 Search:", // customize search label
+                    "lengthMenu": "Show _MENU_ entries"
+                }
+            });
+
+       });
+
+
+    </script>
+}
+
+

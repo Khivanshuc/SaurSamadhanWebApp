@@ -1,0 +1,281 @@
+﻿@model WebApp.Models.VwCIalreadycompletedModel
+
+@{
+    Layout = "_BlankLayout";
+}
+
+<style>
+    body {
+        font-family: Hind,sans-serif;
+    }
+
+    .Reportcontainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .details-table {
+        border-collapse: collapse;
+        width: 100%;
+        float: left;
+    }
+
+        .details-table th,
+        .details-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            height: 30px;
+        }
+
+        .details-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            width: 35%;
+        }
+
+        .details-table td {
+            width: 40%;
+        }
+
+    .image-section {
+        width: 33%;
+        text-align: center;
+        display: inline-block;
+        float: right;
+        margin-left: 20px;
+    }
+
+        /*     img {
+                width: 35%;
+                height: auto;
+            } */
+
+        .image-section p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid #ddd;
+    }
+
+    #setpdfimg {
+        display: flex !important;
+        justify-content: space-evenly;
+    }
+
+    #imgpdf {
+        width: 25.4pc;
+        position: relative;
+        right: 12pc;
+    }
+
+
+    #SSimg {
+        width: 7pc;
+        position: relative;
+        left: 12pc;
+    }
+
+        .details-table {
+        border-collapse: collapse;
+        width: 100%;
+        float: left;
+    }
+
+    .table2 th,
+    .table2 td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        height: 30px;
+    }
+
+    .table2 th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        width: 35%;
+    }
+
+    .table2 td {
+        width: 40%;
+    }
+
+    .footer{
+        margin-top:900px;
+    }
+
+
+</style>
+
+<body>
+    <div class="header">
+        <div id="setpdfimg">
+            <img src="~/img/creda_black_logo_title.png" alt="Alternate Text" id="imgpdf" />
+            <img src="~/img/CREDA_SS.png" alt="img" id="SSimg" />
+        </div>
+    </div>
+    <hr />
+
+    <div class="Reportcontainer">
+        <!-- Details Table -->
+        <table class="details-table">
+            <tr>
+                <th>Inspection ID</th>
+                <td>@Model.Id</td>
+                <td><strong>Solar Pump Image</strong></td>
+            </tr>
+            <tr>
+                <th>Inspected By</th>
+                <td>@Model.User</td>
+                <td rowspan="5"><img src="data:@Model.SolarPumpImageType;base64,@Model.SolarPumpImage" alt="Image with Functionality" height="160px" width="250px" /></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>@Model.District</td>
+
+            </tr>
+            <tr>
+                <th>Block</th>
+                <td>@Model.Block</td>
+
+            </tr>
+            <tr>
+                <th>Village</th>
+                <td>@Model.Village</td>
+
+            </tr>
+            <tr>
+                <th>Site</th>
+                <td>@Model.Site</td>
+                
+            </tr>
+            <tr>
+                <th>Project Name</th>
+                <td>@Model.Project</td>
+                <td><strong>Solar Pump Image</strong></td>
+            </tr>
+            <tr>
+                <th>Inspection Date</th>
+                <td>@Model.InspectionDate.ToShortDateString()</td>
+                <td rowspan="5"><img src="data:@Model.ControlRoomImageType;base64,@Model.ControlRoomImage" alt="Image with Complete System" height="160px" width="250px" /></td>
+            </tr>
+            <tr>
+                <th>Gram Panchayat</th>
+                <td>@Model.GramPanchayat</td>
+            </tr>
+            <tr>
+                <th>Water Source Name</th>
+                <td>@Model.WaterSourceName</td>
+            </tr>
+            <tr>
+                <th>Project Area (in hectare)</th>
+                <td>@Model.ProjectArea</td>
+                
+            </tr>
+            <tr>
+                <th>Number of Farmers</th>
+                <td>@(Model.FarmerCount)</td>
+               
+            </tr>
+            <tr>
+                <th>Solar Pump Capacity (in Hp)</th>
+                <td>@(Model.SolarPumpCapacityinHP)</td>
+               <td><strong>Solar Panel Image</strong></td>
+            </tr>
+            <tr>
+                <th>Number of Solar Pump</th>
+                <td>@Model.SolarPumpCount</td> 
+                <td rowspan="5"><img src="data:@Model.SolarPanelImageType;base64,@Model.SolarPanelImage" height="160px" width="250px" /></td>
+            </tr>
+            <tr>
+                <th>Number of Working Pump</th>
+                <td>@Model.WorkingPumpCount</td>
+            </tr>
+            <tr>
+                <th>Number of Non Working Pump</th>
+                <td>@(Model.NonWorkingPumpCount)</td>
+               
+            </tr>
+            <tr>
+                <th>Controller Status</th>
+                <td>@(Model.ControllerStatus ? "Working" : "Not Working")</td>
+                 
+            </tr>
+            <tr>
+                <th>Number of Working Controller</th>
+                <td>@Model.WorkingControllerCount</td>
+                
+            </tr>
+            <tr>
+                <th> Number of Non-Working Controller</th>
+                <td>@Model.NonWorkingControllerCount</td>
+                 <td><strong>Fencing Image</strong></td>
+            </tr>
+            <tr>
+                <th>Solar Module</th>
+                <td>@Model.SolarModule</td>
+                <td rowspan="5"><img src="data:@Model.PipeOutletImageType;base64,@Model.PipeOutletImage" height="160px" width="250px" /></td>
+            </tr>
+            <tr>
+                <th>Pump Status</th>
+                <td>@(Model.PumpStatus ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>Lightning Arrester & Earthing Status</th>
+                <td>@Model.LightningArresterStatus</td>
+                 
+            </tr>
+            <tr>
+                <th>Pipe Line Length (in meter)</th>
+                <td>@Model.PipelineLength</td>
+                
+                
+            </tr>
+            <tr>
+                <th>Pipe Line Status Remark</th>
+                <td>@Model.PipeLineStatusRemark</td> 
+            </tr>
+        </table>
+
+        <div>
+            <table class="table2" style="margin-top:100px">
+                <tr>
+                    <th>Safety Fencing Length</th>
+                    <td>@Model.SafetyFencingLength</td>
+                    <td><strong>Pipe Outlet Image</strong></td>
+                </tr>
+                <tr>
+                    <th>Fencing & Gate Status Remark</th>
+                    <td>@Model.FencingAndGateStatusRemark</td>
+                    <td rowspan="4"><img src="data:@Model.PipeOutletImageType;base64,@Model.PipeOutletImage" height="160px" width="250px" /></td>
+                </tr>
+                <tr>
+                    <th>Control Room & Pump Status Remark</th>
+                    <td>@Model.ControlRoomRemark</td>
+                </tr>
+                <tr>
+                    <th>System Working</th>
+                    <td>@Model.IsSystemWorking</td>
+                </tr>
+                <tr>
+                    <th>Other Remarks</th>
+                    <td>@Model.OtherRemark</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+     <div class="footer">
+            <hr />
+            <p style="text-align:end">Report generated on: @DateTime.Now.ToString("dd-MM-yyyy")</p>
+     </div>
+</body>
+

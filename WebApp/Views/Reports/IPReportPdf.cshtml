@@ -1,0 +1,146 @@
+﻿@model WebApp.Models.VWInspectionInProgressModel
+
+@{
+    Layout = "_BlankLayout";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .Reportcontainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .details-table {
+        border-collapse: collapse;
+        width: 100%;
+        float: left;
+    }
+
+        .details-table th,
+        .details-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            height: 30px;
+        }
+
+        .details-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            width: 28%;
+        }
+
+        .details-table td {
+            width: 40%;
+        }
+
+    .image-section {
+        width: 33%;
+        text-align: center;
+        display: inline-block;
+        float: right;
+        margin-left: 20px;
+    }
+
+        /*     img {
+                    width: 35%;
+                    height: auto;
+                } */
+
+        .image-section p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid #ddd;
+    }
+
+    #setpdfimg {
+        display: flex !important;
+        justify-content: space-evenly;
+    }
+
+    #imgpdf {
+        width: 25.4pc;
+        position: relative;
+        right: 12pc;
+    }
+
+
+    #SSimg {
+        width: 7pc;
+        position: relative;
+        left: 12pc;
+    }
+
+    }
+</style>
+
+<body>
+    <div class="header">
+        <div id="setpdfimg">
+            <img src="~/img/creda_black_logo_title.png" alt="Alternate Text" id="imgpdf" />
+            <img src="~/img/CREDA_SS.png" alt="img" id="SSimg" />
+        </div>
+    </div>
+    <hr />
+    </div>
+
+    <div class="Reportcontainer">
+        <!-- Details Table -->
+        <table class="details-table">
+            <tr>
+                <th>Inspection ID</th>
+                <td>@Model.Id</td>
+                <td><strong>Image</strong></td>
+            </tr>
+            <tr>
+                <th>Site Name</th>
+                <td>@Model.SiteName</td>
+                <td rowspan="5"><img src="data:@Model.GeoTagImageType;base64,@Model.GeoTagImageBase64" height="200px" width="300px" /></td>
+            </tr>
+            <tr>
+                <th>Project Name</th>
+                <td>@Model.ProjectName</td>
+            </tr>
+            <tr>
+                <th>Stage Name</th>
+                <td>@Model.StageName</td>
+
+            </tr>
+            <tr>
+                <th>Stage Is Completed</th>
+                <td>@(Model.IsComplete ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <th>Is Faulty</th>
+                <td>@(Model.IsFaulty ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <th>Remark</th>
+                <td>@Model.Remarks</td>
+                <td><strong>Report generated on:</strong> @DateTime.Now.ToString("dd-MM-yyyy")</td>
+            </tr>
+            <tr>
+                <th>Inspected By</th>
+                <td>@Model.InspectedBy</td>
+            </tr>
+            <tr>
+                <th>Inspection Date</th>
+                <td>@Model.InspectedOn</td>
+            </tr>
+
+        </table>
+    </div>
+</body>

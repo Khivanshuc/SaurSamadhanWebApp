@@ -1,0 +1,80 @@
+@inject IHttpContextAccessor httpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en"
+      class='light-style layout-menu-fixed'
+      data-theme="theme-default" data-assets-path='@((httpContextAccessor.HttpContext?.Request.PathBase ?? "") + "/")'
+      data-framework="aspnetcore-mvc"
+      data-template='vertical-menu-aspnet-core-mvc-template-free'>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    @{
+        string title = ViewData["title"] as string ?? "";
+        string appName = TempData.Peek("appName") as string ?? "";
+        string productPage = TempData.Peek("productPage") as string ?? "";
+    }
+    <title>@title @appName</title>
+    <meta name="description" content="" />
+
+    <!-- Canonical SEO -->
+    <link rel="canonical" href='@productPage'>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/img/favicon/favicon.ico" />
+
+    <!-- Core Styles -->
+    @await Html.PartialAsync("Sections/_Styles")
+
+    <!-- Vendor Styles -->
+    @RenderSection("VendorStyles", required: false)
+
+    <!-- Page Styles -->
+    @RenderSection("PageStyles", required: false)
+
+    <!-- Include Scripts for customizer, helper, analytics, config -->
+    @await Html.PartialAsync("Sections/_ScriptsIncludes")
+
+</head>
+
+<body>
+    <!-- Layout Content -->
+   
+    @RenderBody()
+    <!--/ Layout Content -->
+    <!-- Core Scripts -->
+    @await Html.PartialAsync("Sections/_Scripts")
+
+    <!-- Vendor Scripts -->
+    @RenderSection("VendorScripts", required: false)
+
+
+
+
+    <!-- Main JS-->
+    <script src='~/js/main.js'></script>
+
+    <!-- Page Scripts-->
+    @RenderSection("PageScripts", required: false)
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="~/js/import.js"></script>
+    <script src="~/js/loader1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery (optional, but required for Bootstrap 4 if you're using certain plugins) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Popper.js -->
+    <script src="~/vendor/libs/popper/popper.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+
+    
+
+</body>
+
+</html>

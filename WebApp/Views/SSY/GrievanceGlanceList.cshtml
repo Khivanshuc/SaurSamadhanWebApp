@@ -1,0 +1,186 @@
+﻿@model List<WebApp.Models.GrievanceGlanceCountModel>
+@{
+    Layout = "_BlankLayout";
+
+    // Totals
+    var totalTotalGrievances = Model.Sum(x => x.TotalGrievances);
+    var totalResolvedGrievances = Model.Sum(x => x.ResolvedGrievances);
+    var totalPendingDOLessThan30Days = Model.Sum(x => x.PendingDOLessThan30Days);
+    var totalPendingZOLessThan30Days = Model.Sum(x => x.PendingZOLessThan30Days);
+    var totalPendingHOLessThan30Days = Model.Sum(x => x.PendingHOLessThan30Days);
+    var totalPendingDOMoreThan30Days = Model.Sum(x => x.PendingDOMoreThan30Days);
+    var totalPendingZOMoreThan30Days = Model.Sum(x => x.PendingZOMoreThan30Days);
+    var totalPendingHOMoreThan30Days = Model.Sum(x => x.PendingHOMoreThan30Days);
+    var totalTotalPendingGrievances = Model.Sum(x => x.TotalPendingGrievances);
+
+}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-image: url('../img/DB_Background.png');
+        background-color: #f4f4f4;
+    }
+
+    .table-container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    #GrievanceListTable {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fbe8d3;
+        font-size: 16px;
+    }
+
+    #GrievanceListTable thead {
+        background: #00CCDD;
+        color: white !important;
+    }
+
+    #GrievanceListTable th, td {
+        font-weight: bold;
+        border: 1px solid #000;
+        text-align: center;
+        padding: 8px;
+    }
+
+        th[colspan="2"], th[rowspan="2"] {
+            font-weight: bold;
+            vertical-align: middle;
+            background: #00CCDD;
+            color: white !important;
+        }
+
+        th[rowspan="2"] {
+            font-weight: bold;
+            color: white !important;
+            width: 12%;
+        }
+
+        th[colspan="3"] {
+            font-weight: bold;
+            width: 36%;
+            text-align: center;
+        }
+
+    #GrievanceListTable tbody {
+        font-size: 15px;
+        background-color: #fff;
+        height: 40px;
+        color: #696cff;
+    }
+
+    #GrievanceListTable tfoot{
+        background-color: #00CCDD;
+        font-weight: bold;
+        color: #ffffff !important;
+        text-align:center;
+    }
+
+    a {
+        text-decoration: null;
+    }
+
+    /* table tbody tr td:nth-child(2) { */
+    /*     text-align: left; */
+    /*     color: grey; */
+    /*     /*  font-weight:bold; */ */
+    /* } */
+    /*table tbody tr td:nth-child(1){
+            width:;
+        } */
+
+</style>
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form class="" style="width: 100%;">
+            <div class="container-fluid p-3">
+                <div class="card-body">
+                    <div class="table-responsive" style="max-height:70vh; overflow:auto;">
+                        <table id="GrievanceListTable" class="table-hover table-bordered table-fixed-header" style="max-height:60vh;width:100%;">
+                            <thead style="position: sticky; top: 0; z-index: 10;">
+                                <tr>
+                                    <th colspan="11" style="background-color:orange!important;color:black;font-weight: bold;">सौर समाधान मोबाइल ऐप के माध्यम से क्रेडा को प्राप्त शिकायतों एवं निराकरण की जानकारी</th>
+                                </tr>
+                                <tr>
+                                    <th rowspan="3" style="width:8%!important">क्रमांक</th>
+                                    <th rowspan="3">जिले का नाम</th>
+                                    <th rowspan="3">कुल प्राप्त शिकायत</th>
+                                    <th rowspan="3">निराकृत शिकायत</th>
+                                    <th colspan="7">लंबित शिकायत</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3" style="width:18%!important">30 दिन से कम अवधि की शिकायतें</th>
+                                    <th colspan="3" style="width:18%!important">30 दिन से अधिक अवधि की शिकायतें</th>
+                                    <th rowspan="2">कुल लंबित शिकायत</th>
+                                </tr>
+                                <tr>
+                                    <th>DO</th>
+                                    <th>ZO</th>
+                                    <th>HO</th>
+                                    <th>DO</th>
+                                    <th>ZO</th>
+                                    <th>HO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    if (Model.Count > 0)
+                                    {
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.SerialNo</td>
+                                                <td style="">@item.DistrictName</td>
+                                                <td><a href="#" onclick="GetGrievanceGlanceDetailsClicked(@item.DistrictId,1,0,0,0,0,0,0,0,0,0,0)">@item.TotalGrievances</a></td>
+                                                <td><a href="#" onclick="GetGrievanceGlanceDetailsClicked(@item.DistrictId,0,1,0,0,0,0,0,0,0,0,0)">@item.ResolvedGrievances</a></td>
+                                                @*<td><a href="#" onclick="GetGrievanceGlanceDetailsClicked(@item.DistrictId,0,0,1,0,0)">@item.PendingLessThan30Days</a></td>*@
+                                                <td><a href="#" onclick="GetGrievanceGlanceDetailsClicked(@item.DistrictId,0,0,0,1,0,0,0,0,0,0,0)">@item.PendingDOLessThan30Days</a></td>
+                                                <td><a href="#" onclick="GetGrievanceGlanceDetailsClicked(@item.DistrictId,0,0,0,0,1,0,0,0,0,0,0)">@item.PendingZOLessThan30Days</a></td>
+                                                <td><a href="#" onclick="GetGrievanceGlanceDetailsClicked(@item.DistrictId,0,0,0,0,0,1,0,0,0,0,0)">@item.PendingHOLessThan30Days</a></td>
+                                                @*<td><a href="#" onclick="GetGrievanceGlanceDetailsClicked(@item.DistrictId,0,0,0,1,0)">@item.PendingMoreThan30Days</a></td>*@
+                                                <td><a href="#" onclick="GetGrievanceGlanceDetailsClicked(@item.DistrictId,0,0,0,0,0,0,0,1,0,0,0)">@item.PendingDOMoreThan30Days</a></td>
+                                                <td><a href="#" onclick="GetGrievanceGlanceDetailsClicked(@item.DistrictId,0,0,0,0,0,0,0,0,1,0,0)">@item.PendingZOMoreThan30Days</a></td>
+                                                <td><a href="#" onclick="GetGrievanceGlanceDetailsClicked(@item.DistrictId,0,0,0,0,0,0,0,0,0,1,0)">@item.PendingHOMoreThan30Days</a></td>
+                                                <td><a href="#" onclick="GetGrievanceGlanceDetailsClicked(@item.DistrictId,0,0,0,0,0,0,0,0,0,0,1)">@item.TotalPendingGrievances</a></td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="8" style="text-align:center">
+                                                No Record Found
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">कुल</td>
+                                    <td>@totalTotalGrievances</td>
+                                    <td>@totalResolvedGrievances</td>
+                                    <td>@totalPendingDOLessThan30Days</td>
+                                    <td>@totalPendingZOLessThan30Days</td>
+                                    <td>@totalPendingHOLessThan30Days</td>
+                                    <td>@totalPendingDOMoreThan30Days</td>
+                                    <td>@totalPendingZOMoreThan30Days</td>
+                                    <td>@totalPendingHOMoreThan30Days</td>
+                                    <td>@totalTotalPendingGrievances</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

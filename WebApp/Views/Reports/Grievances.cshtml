@@ -1,0 +1,428 @@
+﻿@model List<WebApp.Models.VwGrievanceModel>
+@{
+    ViewData["Title"] = "Public Grievances | CREDA";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+<!-- Font Awesome (for icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+<style>
+    /* Universal Loader CSS */
+    #universalLoader {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .spinner {
+        width: 64px;
+        height: 64px;
+        border: 8px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #3498db;
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    #ReportLoader {
+        display: none !important;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loader {
+        text-align: center;
+        line-height: 86px;
+        text-align: center;
+        position: relative;
+        padding: 0 48px;
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #566a7f;
+    }
+
+        .loader:before, .loader:after {
+            content: "";
+            display: block;
+            width: 15px;
+            height: 15px;
+            background: currentColor;
+            position: absolute;
+            animation: load .7s infinite alternate ease-in-out;
+            top: 0;
+        }
+
+        .loader:after {
+            top: auto;
+            bottom: 0;
+        }
+
+    @@keyframes load {
+        0% {
+            left: 0;
+            height: 43px;
+            width: 15px;
+            transform: translateX(0)
+        }
+
+        50% {
+            height: 10px;
+            width: 40px
+        }
+
+        100% {
+            left: 100%;
+            height: 43px;
+            width: 15px;
+            transform: translateX(-100%)
+        }
+    }
+
+    .select2-container {
+        width: 100% !important;
+        /*z-index: 1150; /* Adjust to match or exceed the modal's z-index */
+        position: relative;
+    }
+
+    .select2-container--default .select2-selection--single {
+        height: 38px;
+        border: var(--bs-border-width) solid #d9dee3;
+    }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 35px;
+            color: #697a8d;
+        }
+
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 5px;
+            right: 9px;
+        }
+
+    .hide {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+
+    /* Popup Container */
+    .popup-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    /* Popup Content */
+    .popup-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 400px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        /* text-align: center; */
+    }
+
+        /* Textarea Styling */
+        .popup-content textarea {
+            width: 100%;
+            padding: 10px;
+            /*margin-bottom: 15px; */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+    /* Popup Actions */
+    .popup-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+</style>
+<div id="universalLoader">
+    <div class="spinner"></div>
+</div>
+
+<div id="ReportLoader">
+    <span class="loader">Downloading Report.... </span>
+</div>
+
+<div id="FaultFiltersView">
+    <div class="row justify-content-center mt-md-3">
+        <h2>Grievances List</h2>
+        <button asp-action="" id="backToDashButton" class="btn btn-back-to-dash">
+            <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+        </button>
+        <div class="col-12">
+            <form class="p-4 border rounded shadow-sm bg-light">
+
+                <div class="row g-3 mt-3 mb-3">
+                    <!-- First column -->
+                    <div class="col-12 col-md-6 col-lg-4" id="Size1">
+                        <div class="d-flex align-items-center">
+                            <select id="SystemIntegrator" class="form-control custom-dropdown" onchange="GrievancesSystemIntegratorClicked()">
+                                <option value="">Select System Integrator</option>
+                            </select>
+                            <span class="dropdown-arrow"></span>
+                        </div>
+                    </div>
+
+                    <!-- Inspection ID Search -->
+                    <div class="col-12 col-md-6 col-lg-4" id="Size">
+                        <div class="d-flex align-items-center">
+                            <input id="GrievanceComplaintId" type="text" class="form-control search-box" placeholder="Grievance Id">
+                        </div>
+                    </div>
+                    @* <div class="col-12 col-md-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
+                    <button type="button" class="btn btn-primary" id="searchButton" onclick="SearchGrievanceList()" style=""><img src="~/img/Search_icon.png" alt="" class="search_icon" />SEARCH</button>
+                    <button type="button" class="btn btn-primary ms-2" id="clearButton" onclick="ClearAllGrievances()"><img src="~/img/Clear_icon.png" alt="Alternate Text" class="clear_icon" />CLEAR</button>
+                    <button type="button" class="btn btn-primary ms-2" id="DownloadButton" onclick="grievanceDownloadReportListClicked()"><img src="~/img/Download_icon.png" alt="" class="download_icon" />DOWNLOAD</button>
+                    </div> *@
+
+                    <div class="col-12 col-md-6 col-lg-4" id="Size1">
+                        <!-- Date Picker Input -->
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-question-circle mr-3" data-toggle="tooltip" data-placement="top" title="कृपया दिनांक फ़िल्टर लागू करने के लिए चेकबॉक्स का चयन करें|" style="opacity:0.5;"></i>
+                            <input type="checkbox" id="dateFilter" onchange="dateFilterClicked(this)" style="margin-right:10px;height: 38px;width: 18px;margin-left:10px;" />
+                            <input type="date" id="StartDate" class="form-control custom-dropdown ms-2" onchange="startDatePickerChanged(this)" disabled>
+
+                        </div>
+                    </div>
+                    <!-- Last Date Picker column -->
+                    <div class="col-12 col-md-6 col-lg-4" id="Size1">
+                        <div class="d-flex align-items-center">
+                            <input type="date" id="EndDate" class="form-control custom-dropdown" onchange="endDatePickerChanged(this)" disabled>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="d-flex align-items-center" id="down">
+                            <select id="District" class="form-control custom-dropdown" onchange="GrievancesDistrictClicked()">
+                                <option value="">Select District</option>
+                            </select>
+                            <span class="dropdown-arrow"></span>
+                        </div>
+                    </div>
+
+                    <!-- Second column -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="d-flex align-items-center position-relative" id="down">
+                            <select id="Block" class="form-control custom-dropdown" onchange="GrievancesBlockClicked()">
+                                <option value="">Select Block</option>
+                            </select>
+                            <span class="dropdown-arrow"></span>
+                        </div>
+                    </div>
+
+                    <!-- Third column -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="d-flex align-items-center" id="down">
+                            <select id="Village" class="form-control custom-dropdown" onchange="GrievancesVillageClicked()">
+                                <option value="" style="z-index:1000!important">Select Village</option>
+                            </select>
+                            <span class="dropdown-arrow"></span>
+                        </div>
+                    </div>
+
+                    <!-- Fourth column -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="d-flex align-items-center" id="down">
+                            <select id="WorkingStatus" class="form-control custom-dropdown" onchange="GrievanceWorkingStatusClicked()">
+                                <option value="0">Select Status</option>
+                                <option value="1">Open</option>
+                                <option value="2">In Progress</option>
+                                <option value="3">Verified</option>
+                                <option value="4">Closed</option>
+                            </select>
+                            <span class="dropdown-arrow"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <!-- Search and Clear Buttons -->
+                    <div class="col-12 col-md-12 col-lg-12 d-flex justify-content-end justify-content-lg-end">
+                        <button type="button" class="btn btn-primary" id="searchButton" onclick="SearchGrievanceData()" style=""><img src="~/img/Search_icon.png" alt="" class="search_icon" />SEARCH</button>
+                        <button type="button" class="btn btn-primary ms-2" id="clearButton" onclick="ClearAllGrievances()"><img src="~/img/Clear_icon.png" alt="Alternate Text" class="clear_icon" />CLEAR</button>
+                        <button type="button" class="btn btn-primary ms-2" id="DownloadButton" onclick="grievanceDownloadReportListClicked()"><img src="~/img/Download_icon.png" alt="" class="download_icon" />DOWNLOAD</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="GrievancesPartialView"></div>
+
+
+<!-- Reassign Modal Structure -->
+<div class="modal fade" id="reassignModal" tabindex="-1" aria-labelledby="reassignModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reassignModalLabel">Reassign Task</h5>
+                @* <button type="button" class="btn-close" onclick="reassignCloseModal()" aria-label="Close"></button> *@
+                <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="reassignForm">
+                    <!-- Dropdown 1 -->
+                    <div class="mb-3">
+                        <label for="reassignSIName" class="form-label">Select System Integroter</label><br />
+                        <select class="form-select" id="reassignSIName" required>
+                        </select>
+                    </div>
+                    <!-- Dropdown 2 -->
+                    <div class="mb-3">
+                        <label for="reassignUser" class="form-label">Select User</label><br />
+                        <select class="form-select" id="reassignUser" required>
+                        </select>
+                    </div>
+                    <!-- Input Field -->
+                    <div class="mb-3">
+                        <label for="inputField" class="form-label">District Incharge Comment</label>
+                        <input type="text" class="form-control" id="reassignDIComment" placeholder="Enter details" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="reassignCloseModal()">Close</button>
+                @* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> *@
+                <button type="button" class="btn btn-primary" onclick="reassignupdateBtnClicked()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Modal -->
+<div id="forwardPopup" class="popup-container">
+    <div class="popup-content">
+        <h5>Grievance Forwarding...</h5>
+        <label class="form-label d-flex">Forwarding Remark</label>
+        <textarea class="form-control" id="forwardRemark" rows="4" placeholder="Enter your remark here..."></textarea>
+        <span id="forwardRemarkError" class="text-danger"></span>
+
+        <label class="form-label d-flex mt-4">Attach PDF Document</label>
+        <input class="form-control" type="file" id="pdfPicker" accept="application/pdf" onchange="handleFileUpload(event)" />
+        <div id="fileInfo" class="text-muted"></div>
+        <span id="pdfPickerError" class="text-danger"></span>
+
+        <div class="popup-actions">
+            <button onclick="submitForward()" class="btn btn-success mt-4">Submit</button>
+            <button onclick="closePopup()" class="btn btn-secondary mt-4">Cancel</button>
+        </div>
+    </div>
+</div>
+
+@section PageScripts {
+
+    <script src="~/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/report.js"></script>
+    <script src="~/js/Grievances.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+    <script>
+        document.getElementById('backToDashButton').addEventListener('click', function () {
+            BackToDashboard();
+        });
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            fetchDistforAdminPanel();
+            getSIName();
+            SearchGrievancesList();
+
+            $("#SystemIntegrator").select2();
+            $("#Village").select2();
+
+            $("#reassignSIName").select2();
+            $("#reassignUser").select2();
+
+            // Clear error when user types in the remark input
+            $('#forwardRemark').on('input', function () {
+                $("#forwardRemarkError").text("");
+            });
+
+            // Clear error when a file is selected in the PDF picker
+            $('#pdfPicker').on('change', function () {
+                $("#pdfPickerError").text("");
+            });
+        });
+
+        function reassignCloseModal() {
+            $('#reassignModal').modal('hide');
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var today = new Date();
+
+            var day = ("0" + today.getDate()).slice(-2);
+            var month = ("0" + (today.getMonth() + 1)).slice(-2);
+            var formattedDate = today.getFullYear() + '-' + month + '-' + day;
+
+            // Calculate the date a month ago
+            var monthAgo = new Date();
+            monthAgo.setMonth(today.getMonth() - 1);
+
+            if (today.getDate() !== monthAgo.getDate()) {
+                monthAgo.setDate(0); // Sets to the last day of the previous month
+            }
+
+            var monthAgoDay = ("0" + monthAgo.getDate()).slice(-2);
+            var monthAgoMonth = ("0" + (monthAgo.getMonth() + 1)).slice(-2);
+            var formattedMonthAgoDate = monthAgo.getFullYear() + '-' + monthAgoMonth + '-' + monthAgoDay;
+
+            document.getElementById('StartDate').value = formattedMonthAgoDate;
+            document.getElementById('EndDate').value = formattedDate;
+
+            var startDatePicker = document.getElementById('StartDate');
+            var endDatePicker = document.getElementById('EndDate');
+
+            // endDatePicker.setAttribute('max', formattedDate);
+            // startDatePicker.setAttribute('max',formattedDate);
+        });
+    </script>
+
+}
+

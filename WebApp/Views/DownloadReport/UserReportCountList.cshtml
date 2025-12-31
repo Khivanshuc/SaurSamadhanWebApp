@@ -1,0 +1,71 @@
+﻿@model List<WebApp.Models.UserWiseAllProjectCountsAdminModel>
+@{
+    Layout = "_BlankLayout";
+}
+
+<script>
+    a{
+        cursor:pointer;
+    }
+</script>
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form class="p-4 border rounded shadow-sm bg-light" style="width:100%;">
+            <div class="card-body">
+                <div class="table-responsive" style="height:60vh">
+                    <table class="table table-hover table-bordered" style="max-height:60vh; overflow:auto;width:100%;">
+                        <thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important">
+                            <tr>
+                                <th style="color:white; width:5%; font-weight: bold;">Name of User</th>
+                                <th style="color:white; width:5%; font-weight: bold;">District</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Biogas</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Jal Jivan Mission</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Other Than JJM</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Saur Sujala Yojana </th>
+                                <th style="color:white; width:10%; font-weight: bold;">CM Gaon Ganga</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Community Irrigation</th>
+                                <th style="color:white; width:10%; font-weight: bold;">RVE DDG Monitoring</th>
+                                <th style="color:white; width:10%; font-weight: bold;">RVE DDG - Off Grid</th>
+                                <th style="color:white; width:10%; font-weight: bold;">On Grid Power Plant</th>
+                                <th style="color:white; width:10%; font-weight: bold;">High Mast</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Mini Mast</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(Model.Count > 0)
+                            {
+                                foreach(var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.UserName</td>
+                                        <td>@item.DistrictName</td>
+                                        <td><a href="#" data-td-id="5"  onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.BioGasProjectCount</a></td>
+                                        <td><a href="#" data-td-id="7"  onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.JJMProjectCount</a></td>
+                                        <td><a href="#" data-td-id="8"  onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.OtherThanJJMProjectCount</a></td>
+                                        <td><a href="#" data-td-id="10" onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.SSYProjectCount</a></td>
+                                        <td><a href="#" data-td-id="12" onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.CMYojnaProjectCount</a></td>
+                                        <td><a href="#" data-td-id="13" onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.CommunityIrrigationProjectCount</a></td>
+                                        <td><a href="#" data-td-id="14" onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.RVEDDProjectCount</a></td>
+                                        <td><a href="#" data-td-id="15" onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.OtherRVEDDProjectCount</a></td>
+                                        <td><a href="#" data-td-id="16" onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.OnGridProjectCount</a></td>
+                                        <td><a href="#" data-td-id="17" onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.HighMastProjectCount</a></td>
+                                        <td><a href="#" data-td-id="18" onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.MiniMastProjectCount</a></td>
+                                        <td><a href="#" data-td-id="0" onclick="GetUserCountDetailsClicked(@item.Id,0,this)">@item.TotalProjectCount</a></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="13" class="text-center">No Record found</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

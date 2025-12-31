@@ -1,0 +1,214 @@
+﻿@model WebApp.Models.otherthanjjmalreadycompleted
+
+<h4>otherthanjjmalreadycompleted</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Save">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SiteId" class="control-label"></label>
+                <input asp-for="SiteId" class="form-control" />
+                <span asp-validation-for="SiteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <input asp-for="ProjectId" class="form-control" />
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SIName" class="control-label"></label>
+                <input asp-for="SIName" class="form-control" />
+                <span asp-validation-for="SIName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InspectionDate" class="control-label"></label>
+                <input asp-for="InspectionDate" class="form-control" />
+                <span asp-validation-for="InspectionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSystemWorking" /> @Html.DisplayNameFor(model => model.IsSystemWorking)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsSystemWorkingRemark" class="control-label"></label>
+                <input asp-for="IsSystemWorkingRemark" class="form-control" />
+                <span asp-validation-for="IsSystemWorkingRemark" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsPumpWorking" /> @Html.DisplayNameFor(model => model.IsPumpWorking)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsControllerWorking" /> @Html.DisplayNameFor(model => model.IsControllerWorking)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="SystemLayout" class="control-label"></label>
+                <input asp-for="SystemLayout" class="form-control" />
+                <span asp-validation-for="SystemLayout" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PanelMake" class="control-label"></label>
+                <input asp-for="PanelMake" class="form-control" />
+                <span asp-validation-for="PanelMake" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="PanelVolt" /> @Html.DisplayNameFor(model => model.PanelVolt)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="PanelCapacity" class="control-label"></label>
+                <input asp-for="PanelCapacity" class="form-control" />
+                <span asp-validation-for="PanelCapacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfPanel" class="control-label"></label>
+                <input asp-for="NumberOfPanel" class="form-control" />
+                <span asp-validation-for="NumberOfPanel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ControllerMake" class="control-label"></label>
+                <input asp-for="ControllerMake" class="form-control" />
+                <span asp-validation-for="ControllerMake" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PumpMake" class="control-label"></label>
+                <input asp-for="PumpMake" class="form-control" />
+                <span asp-validation-for="PumpMake" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsHandpumpWorking" /> @Html.DisplayNameFor(model => model.IsHandpumpWorking)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="StandpostCondition" /> @Html.DisplayNameFor(model => model.StandpostCondition)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="DefectiveNumberOfModules" class="control-label"></label>
+                <input asp-for="DefectiveNumberOfModules" class="form-control" />
+                <span asp-validation-for="DefectiveNumberOfModules" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSystemClean" /> @Html.DisplayNameFor(model => model.IsSystemClean)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsTapWorking" /> @Html.DisplayNameFor(model => model.IsTapWorking)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsWaterTankLeaking" /> @Html.DisplayNameFor(model => model.IsWaterTankLeaking)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsTankLidPresent" /> @Html.DisplayNameFor(model => model.IsTankLidPresent)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSensorWorking" /> @Html.DisplayNameFor(model => model.IsSensorWorking)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsUnionWorking" /> @Html.DisplayNameFor(model => model.IsUnionWorking)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsNippleWorking" /> @Html.DisplayNameFor(model => model.IsNippleWorking)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSocketWorking" /> @Html.DisplayNameFor(model => model.IsSocketWorking)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsGateValveWorking" /> @Html.DisplayNameFor(model => model.IsGateValveWorking)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCableWorking" /> @Html.DisplayNameFor(model => model.IsCableWorking)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsRopeWireWorking" /> @Html.DisplayNameFor(model => model.IsRopeWireWorking)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsStandPostCorrectionNeeded" /> @Html.DisplayNameFor(model => model.IsStandPostCorrectionNeeded)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastWaterTankCleanDate" class="control-label"></label>
+                <input asp-for="LastWaterTankCleanDate" class="form-control" />
+                <span asp-validation-for="LastWaterTankCleanDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageWithFunctionality" class="control-label"></label>
+                <input asp-for="ImageWithFunctionality" class="form-control" />
+                <span asp-validation-for="ImageWithFunctionality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageWithFunctionalityType" class="control-label"></label>
+                <input asp-for="ImageWithFunctionalityType" class="form-control" />
+                <span asp-validation-for="ImageWithFunctionalityType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GeoTag" class="control-label"></label>
+                <input asp-for="GeoTag" class="form-control" />
+                <span asp-validation-for="GeoTag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedBy" class="control-label"></label>
+                <input asp-for="UpdatedBy" class="form-control" />
+                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedOn" class="control-label"></label>
+                <input asp-for="UpdatedOn" class="form-control" />
+                <span asp-validation-for="UpdatedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsUploaded" /> @Html.DisplayNameFor(model => model.IsUploaded)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

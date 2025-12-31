@@ -1,0 +1,52 @@
+﻿<link href="~/css/generatenotice.css" rel="stylesheet" />
+
+<div id="ReportLoader">
+    <span class="loader">Downloading Report.... </span>
+</div>
+
+<div id="detailsDiv" class="details">
+    @* <h3>Details</h3>
+    <p><strong>Complaint ID:</strong> <span id="detailId"></span></p>
+    <p><strong>Name:</strong> <span id="detailName">John Doe</span></p>
+    <p><strong>Class:</strong> <span id="detailClass">12th Grade</span></p>
+    <p><strong>City:</strong> <span id="detailCity">New York</span></p>
+    <p><strong>Branch:</strong> <span id="detailBranch">Main</span></p>  *@   
+    <button type="button" class="btn btn-primary" onclick="downloadNoticePdfclicked()">Print</button>
+
+    <div class="document">
+        <!-- Header Section -->
+        <div class="header">
+            <img src="emblem.jpg" alt="Government Emblem">
+            <h1>छत्तीसगढ़ राजपत्र</h1>
+            <p>(असाधारण)</p>
+            <p>प्राधिकर से प्रकाशित</p>
+        </div>
+
+        <!-- Subheader Section -->
+        <div class="subheader">
+            <p>क्र. 170 | रायपुर, शनिवार, दिनांक 29 अप्रैल 2017</p>
+            <p>LAW AND LEGISLATIVE AFFAIRS DEPARTMENT</p>
+            <p>Mantralaya, Mahanadi Bhawan, Naya Raipur</p>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content">
+            <p class="order-title">ORDER</p>
+            <div class="order-body">
+                <p>F. No. 4004/1361/XXI-B/C. G/17. — State Government, consequent to Memo No. 1/3/2008-E II (B) Government of India, Ministry of Finance, Department of Expenditure dated 07th April, 2017 hereby, enhances the Dearness Allowance payable to the Judicial Officers of the State from the existing rate of 132% to 136% with effect from 1st January, 2017.</p>
+            </div>
+            <div class="signature">
+                <p>By order and in the name of the Governor of Chhattisgarh,</p>
+                <p>V. K. HOTA, Additional Secretary.</p>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footerNotice border-top">
+            <p>संचालक, मुद्रण तथा लेखन सामग्री, छत्तीसगढ़ द्वारा प्रकाशन मुद्रालय, रायपुर से मुद्रित तथा प्रकाशित - 2017.</p>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/js/generatenotice.js"></script>

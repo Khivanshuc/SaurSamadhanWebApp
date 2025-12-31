@@ -1,0 +1,58 @@
+﻿@model List<WebApp.Models.VWInspectionInProgressListModel>
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="card-body">
+              
+                <div class="table-responsive" style="height:60vh">
+                    <table class="table table-hover table-bordered" style="max-height:60vh; overflow:auto;width:100%;">
+                        <thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important" >
+                            <tr>
+                                <th style="color:white; width:5%;">Inspection Id</th>
+                                <th style="color:white; width:5%;">District</th>
+                                <th style="color:white; width:5%;">Block</th>
+                                <th style="color:white; width:5%;">Village</th>
+                                <th style="color:white; width:5%;">Site Name</th>
+                                <th style="color:white; width:15%;">Project Name</th>
+                                <th style="color:white; width:10%;">Working Status</th>
+                                <th style="color:white; width:4%;">Inspection Date</th>
+                                <th style="color:white; width:1%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                if (Model.Count > 0)
+                                {
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>  @item.Id</td>
+                                            <td>  @item.DistrictName</td>
+                                            <td>  @item.BlockName</td>
+                                            <td>  @item.VillageName</td>
+                                            <td>  @item.SiteName</td>
+                                            <td>  @item.ProjectName</td>
+                                            <td>  @item.IsFaulty</td>
+                                            <td>  @item.UpdatedOn.ToString("dd-MM-yyyy")</td>
+                                            <td >
+                                                <a class="dropdown-item" style="cursor:pointer;" onclick="IPIDetails(@item.Id)">View More</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="8" style="text-align:center">
+                                            No Record Found
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+@{
+  TempData.Keep();
+  ViewData["containerNav"] = (ViewData["containerNav"] ??= "container-fluid");
+}
+
+<style>
+    .grain-background {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .grain-overlay {
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/w8AAwAB/1+VPgAAAABJRU5ErkJggg==');
+        opacity: 0.2; /* Adjust opacity as needed */
+    }
+
+        /* Additional background colors */
+        .grain-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, white, red, blue, purple); /* Adjust colors as needed */
+            opacity: 0.2; /* Adjust opacity as needed */
+        }
+</style>
+
+<footer class="content-footer footer bg-footer-theme">
+    <div class='@ViewData["containerNav"] grain-background d-flex flex-wrap justify-content-center align-items-center py-2 flex-md-row flex-column'>
+        <div class="mb-2 mb-md-0">
+            ©2024 <img src="~/img/credalogo.jpeg" class="img-fluid" style="max-width: 50px;width:30px;">
+        </div>
+        <div class="grain-overlay"></div>
+    </div>
+</footer>

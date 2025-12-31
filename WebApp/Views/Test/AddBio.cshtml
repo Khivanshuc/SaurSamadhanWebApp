@@ -1,0 +1,144 @@
+﻿@model WebApp.Models.biogasalreadycompleted
+
+<h4>biogasalreadycompleted</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SaveBio">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SiteId" class="control-label"></label>
+                <input asp-for="SiteId" class="form-control" />
+                <span asp-validation-for="SiteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <input asp-for="ProjectId" class="form-control" />
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InspectionDate" class="control-label"></label>
+                <input asp-for="InspectionDate" class="form-control" />
+                <span asp-validation-for="InspectionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InspectorDesignation" class="control-label"></label>
+                <input asp-for="InspectorDesignation" class="form-control" />
+                <span asp-validation-for="InspectorDesignation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GramName" class="control-label"></label>
+                <input asp-for="GramName" class="form-control" />
+                <span asp-validation-for="GramName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GramPanchayatName" class="control-label"></label>
+                <input asp-for="GramPanchayatName" class="form-control" />
+                <span asp-validation-for="GramPanchayatName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BeneficiaryName" class="control-label"></label>
+                <input asp-for="BeneficiaryName" class="form-control" />
+                <span asp-validation-for="BeneficiaryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiogasInstallationYear" class="control-label"></label>
+                <input asp-for="BiogasInstallationYear" class="form-control" />
+                <span asp-validation-for="BiogasInstallationYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiogasMeshanName" class="control-label"></label>
+                <input asp-for="BiogasMeshanName" class="form-control" />
+                <span asp-validation-for="BiogasMeshanName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiogasSEWName" class="control-label"></label>
+                <input asp-for="BiogasSEWName" class="form-control" />
+                <span asp-validation-for="BiogasSEWName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BeneficiaryClass" class="control-label"></label>
+                <input asp-for="BeneficiaryClass" class="form-control" />
+                <span asp-validation-for="BeneficiaryClass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DinbandhuBiogasCapacity" class="control-label"></label>
+                <input asp-for="DinbandhuBiogasCapacity" class="form-control" />
+                <span asp-validation-for="DinbandhuBiogasCapacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConstructionMaterial" class="control-label"></label>
+                <input asp-for="ConstructionMaterial" class="form-control" />
+                <span asp-validation-for="ConstructionMaterial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SystemConstructionStatus" class="control-label"></label>
+                <input asp-for="SystemConstructionStatus" class="form-control" />
+                <span asp-validation-for="SystemConstructionStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExtraConstructionMaterial" class="control-label"></label>
+                <input asp-for="ExtraConstructionMaterial" class="form-control" />
+                <span asp-validation-for="ExtraConstructionMaterial" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSystemWorking" /> @Html.DisplayNameFor(model => model.IsSystemWorking)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="UploadPhoto" class="control-label"></label>
+                <input asp-for="UploadPhoto" class="form-control" />
+                <span asp-validation-for="UploadPhoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GeoTag" class="control-label"></label>
+                <input asp-for="GeoTag" class="form-control" />
+                <span asp-validation-for="GeoTag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UploadPhotoType" class="control-label"></label>
+                <input asp-for="UploadPhotoType" class="form-control" />
+                <span asp-validation-for="UploadPhotoType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remarks" class="control-label"></label>
+                <input asp-for="Remarks" class="form-control" />
+                <span asp-validation-for="Remarks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedBy" class="control-label"></label>
+                <input asp-for="UpdatedBy" class="form-control" />
+                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedOn" class="control-label"></label>
+                <input asp-for="UpdatedOn" class="form-control" />
+                <span asp-validation-for="UpdatedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsUploaded" /> @Html.DisplayNameFor(model => model.IsUploaded)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

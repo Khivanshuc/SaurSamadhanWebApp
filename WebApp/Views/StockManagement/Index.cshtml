@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Stock Management | CREDA";
+}
+
+<link href="~/css/stockmanagement.css" rel="stylesheet" />
+
+<body>
+    <div class="d-flex justify-content:flex-end">
+        <button asp-action="" class="btn btn-back-to-dash mt-4" onclick="BackToDashboard();">
+            <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+        </button>
+    </div>
+
+    <div class="ag-format-container">
+        <div class="ag-courses_box" style="display:flex; justify-content:center">
+            <div class="ag-courses_item" id="img">
+                <a asp-controller="StockManagement" asp-action="GenerateChallan" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">
+                        Generate Challan
+                    </div>
+                    <img src="~/img/Registration.png" alt="Icon" class="cardicon">
+                    <div class="ag-courses-item_date-box">
+                        <span class="ag-courses-item_date">
+                        </span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="ag-courses_item" id="img">
+                <a asp-controller="StockManagement" asp-action="ViewItems" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">
+                        View Items
+                    </div>
+                    <img src="~/img/Registration.png" alt="Icon" class="cardicon">
+                    <div class="ag-courses-item_date-box">
+                        <span class="ag-courses-item_date">
+                        </span>
+                    </div>
+                </a>
+            </div>
+
+             <div class="ag-courses_item" id="img">
+                <a href="#" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">
+                        At a Glance
+                    </div>
+                    <img src="~/img/Registration.png" alt="Icon" class="cardicon">
+                    <div class="ag-courses-item_date-box">
+                        <span class="ag-courses-item_date">
+                        </span>
+                    </div>
+                </a>
+            </div> 
+        </div>
+    </div>
+</body>
+<script src="~/js/stockmanagement.js"></script>

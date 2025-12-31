@@ -1,0 +1,115 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers_1\**" />
+    <Compile Remove="Views_1\**" />
+    <Compile Remove="wwwroot\assets\**" />
+    <Compile Remove="wwwroot\bower_components\**" />
+    <Compile Remove="wwwroot_1\**" />
+    <Content Remove="Controllers_1\**" />
+    <Content Remove="Views_1\**" />
+    <Content Remove="wwwroot\assets\**" />
+    <Content Remove="wwwroot\bower_components\**" />
+    <Content Remove="wwwroot_1\**" />
+    <EmbeddedResource Remove="Controllers_1\**" />
+    <EmbeddedResource Remove="Views_1\**" />
+    <EmbeddedResource Remove="wwwroot\assets\**" />
+    <EmbeddedResource Remove="wwwroot\bower_components\**" />
+    <EmbeddedResource Remove="wwwroot_1\**" />
+    <None Remove="Controllers_1\**" />
+    <None Remove="Views_1\**" />
+    <None Remove="wwwroot\assets\**" />
+    <None Remove="wwwroot\bower_components\**" />
+    <None Remove="wwwroot_1\**" />
+    <TypeScriptCompile Remove="Controllers_1\**" />
+    <TypeScriptCompile Remove="Views_1\**" />
+    <TypeScriptCompile Remove="wwwroot\assets\**" />
+    <TypeScriptCompile Remove="wwwroot\bower_components\**" />
+    <TypeScriptCompile Remove="wwwroot_1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\bspld\.nuget\packages\select.htmltopdf.netcore\24.1.0\contentFiles\any\any\Select.Html.dep" />
+    <Content Remove="Views\DIAction\DistrictOfficeEscalate1.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\FaultDetail.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Controllers\AdminController.cs" />
+    <Content Include="Controllers\AdministratorController.cs" />
+    <Content Include="Controllers\AuthController.cs" />
+    <Content Include="Controllers\CardsController.cs" />
+    <Content Include="Controllers\ComplaintManagementController.cs" />
+    <Content Include="Controllers\DashboardsController.cs" />
+    <Content Include="Controllers\DIActionsController.cs" />
+    <Content Include="Controllers\DownloadReportController.cs" />
+    <Content Include="Controllers\ExtendedUiController.cs" />
+    <Content Include="Controllers\FormLayoutsController.cs" />
+    <Content Include="Controllers\FormsController.cs" />
+    <Content Include="Controllers\HomeController.cs" />
+    <Content Include="Controllers\IconsController.cs" />
+    <Content Include="Controllers\ImportsController.cs" />
+    <Content Include="Controllers\LayoutExamplesController.cs" />
+    <Content Include="Controllers\ManualGrievanceController.cs" />
+    <Content Include="Controllers\NoticeReportController.cs" />
+    <Content Include="Controllers\PagesController.cs" />
+    <Content Include="Controllers\ReportsController.cs" />
+    <Content Include="Controllers\SSYController.cs" />
+    <Content Include="Controllers\StockManagementController.cs" />
+    <Content Include="Controllers\TablesController.cs" />
+    <Content Include="Controllers\TestController.cs" />
+    <Content Include="Controllers\UiController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.0.2" />
+    <PackageReference Include="EPPlus" Version="7.3.0" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.4.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+    <PackageReference Include="popper.js" Version="1.16.1" />
+    <PackageReference Include="QuestPDF" Version="2024.7.3" />
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.3.2" />
+    <PackageReference Include="Select.HtmlToPdf.NetCore" Version="24.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CredaData.Client\CredaData.Client.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\DIAction\FaultDetail.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\DIAction\ZonalOfficeList.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\DownloadReport\ProjectReportCountListDetail.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\Grievances.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\DIAction\DistrictOfficeEscalate1.cshtml" />
+  </ItemGroup>
+
+</Project>

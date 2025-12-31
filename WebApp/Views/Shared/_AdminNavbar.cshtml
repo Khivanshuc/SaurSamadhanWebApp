@@ -1,0 +1,59 @@
+﻿<style>
+    .navbar {
+    background: rgba(255, 255, 200, 0.85) !important; /* Slight transparency */
+    backdrop-filter: blur(5px); /* Glassmorphism effect */
+    position: relative;
+    z-index: 1030;
+}
+
+.navbar .nav-link {
+    color: #111 !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar .nav-link:hover {
+    color: #00aaff !important; /* Modern blue hover effect */
+}
+
+.dropdown-menu {
+    animation: fadeIn 0.3s ease-in-out;
+    z-index: 1050;
+}
+
+@@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
+
+<nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <!-- Left Side: Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="~/img/credablue.png" alt="Logo" class="me-2" style="height: 35px;">
+            <span class="fw-bold">Creda</span>
+        </a>
+
+        <!-- Mobile Toggle Button (Only visible on small screens) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Right Side: Profile Dropdown -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle profile-icon text-white d-flex align-items-center" href="#"
+                   role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user-circle fs-4 me-1"></i>
+                    <span class="d-none d-lg-inline">Administrator</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm" aria-labelledby="profileDropdown" style="z-index:10000000;">
+                    <li><a class="dropdown-item text-danger" asp-controller="Auth" asp-action="Logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

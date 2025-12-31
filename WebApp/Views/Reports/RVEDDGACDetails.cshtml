@@ -1,0 +1,612 @@
+﻿@model WebApp.Models.VwRVEDDGalreadycompletedModel
+<style>
+    .geo-tag-container {
+        display: flex;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .geo-tag-text {
+        max-width: calc(100% - 70px); /* Adjust based on button size */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+        .geo-tag-text:hover {
+            overflow: auto;
+            white-space: normal;
+        }
+
+    .copy-btn {
+        margin-left: 10px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .copy-btn:hover {
+            background-color: #e1e1e1;
+        }
+
+    .copy-message {
+        margin-top: 10px;
+        color: green;
+        font-size: 14px;
+        display: none; /* Initially hide the message */
+    }
+
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+    }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 500px;
+    }
+
+    .modal-content, .close {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    @@keyframes zoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        z-index: 1300;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .zoom-btn {
+        border-radius: 14px;
+        position: inherit;
+        bottom: 20px;
+        right: 20px;
+        color: black;
+        font-size: 30px;
+        padding: 10px 20px;
+        background-color: lightgray;
+        cursor: pointer;
+    }
+
+    #zoomIn {
+        margin-right: 5px;
+        right: 70px;
+    }
+
+    #zoomOut {
+        right: 20px;
+    }
+
+    .image-grid {
+        margin-top: 20px;
+    }
+
+        .image-grid .col-md-4 {
+            margin-bottom: 30px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 10pc;
+        }
+
+    #set-img-row {
+        justify-content: space-between;
+    }
+
+    #set-secondrow-img {
+        justify-content: space-evenly;
+    }
+
+    .clickable-image {
+        border-radius: 14px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+        .clickable-image:hover {
+            transform: scale(1.05);
+        }
+
+    .image-label {
+        position: relative;
+        right: 4.5pc;
+        width: 17pc;
+        margin-top: 10px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    }
+
+    #table th {
+        font-weight: bold;
+        width: 36%;
+        vertical-align: top;
+    }
+
+    #table td {
+        width: 70%;
+    }
+
+    #tables-alignment {
+        display: flex;
+        width: 89.5pc;
+    }
+
+    .table-spacing {
+        width: 49pc;
+        display: flex;
+        padding-left: 1pc;
+        flex-direction: column-reverse;
+    }
+
+    #img-detl-report {
+        width: 40pc;
+        position: relative;
+        left: 4pc;
+        bottom: 8pc;
+    }
+
+</style>
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+
+        <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="detail-report-btn">
+                <h4> RVE-DDG Monitoring Report </h4>
+                <div class="form-group">
+                    <button asp-action="RVEDDGAC" class="btn btn-primary" style="display:none!important"> <img src="/img/Back_icon.png" alt="Alternate Text" class="back-icon">Back to List</button>
+                    <button type="button" class="btn btn-primary" onclick="downloadRVEDDGPdfclicked(@Model.Id)">
+                        <img src="~/img/Download_icon.png" alt="Alternate Text" class="download_icon" />
+                        Downnload as PDF</button>
+                </div>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-around">
+                <div id="tables-alignment">
+                    <div class="form-group ">
+                        <table class="table table-bordered" id="table">
+                            <tbody>
+                                <tr>
+                                    <th>Inspection ID:</th>
+                                    <td>@Html.DisplayFor(model => model.Id)</td>
+                                </tr>
+                                <tr>
+                                    <th>Inspected By:</th>
+                                    <td>@Html.DisplayFor(model => model.User)</td>
+                                </tr>
+                                <tr>
+                                    <th>District:</th>
+                                    <td>@Html.DisplayFor(model => model.District)</td>
+                                </tr>
+                                <tr>
+                                    <th>Block:</th>
+                                    <td>@Html.DisplayFor(model => model.Block)</td>
+                                </tr>
+                                <tr>
+                                    <th>Village:</th>
+                                    <td>@Html.DisplayFor(model => model.Village)</td>
+                                </tr>
+                                <tr>
+                                    <th>Site:</th>
+                                    <td>@Html.DisplayFor(model => model.Site)</td>
+                                </tr>
+                                <tr>
+                                    <th>Project Name:</th>
+                                    <td>@Html.DisplayFor(model => model.Project)</td>
+                                </tr>
+                                <tr>
+                                    <th>Inspection Date:</th>
+                                    <td>@Html.DisplayFor(model => model.InspectionDate)</td>
+                                </tr>
+                                <tr>
+                                    <th>SI Name:</th>
+                                    <td>@Html.DisplayFor(model => model.SIName)</td>
+                                </tr>
+                                <tr>
+                                    <th>System Name:</th>
+                                    <td>@Html.DisplayFor(model => model.SystemName)</td>
+                                </tr>
+                                <tr>
+                                    <th>System Working:</th>
+                                    <td>
+                                        @{
+                                            if (@Model.IsSystemWorking)
+                                            {
+                                                <span>Working</span>
+                                            }
+                                            else
+                                            {
+                                                <span>Not Working</span>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Monthly Working Days:</th>
+                                    <td>@Html.DisplayFor(model => model.MonthlyWorkingDays)</td>
+                                </tr>
+                                <tr>
+                                    <th>Number Of Batteries:</th>
+                                    <td>@Html.DisplayFor(model => model.NumberOfBattery)</td>
+                                </tr>
+                                <tr>
+                                    <th>Battery AH:</th>
+                                    <td>@Html.DisplayFor(model => model.BatteryAH)</td>
+                                </tr>
+                                <tr>
+                                    <th>Battery Rated Voltage:</th>
+                                    <td>@Html.DisplayFor(model => model.BatteryRatedVoltage)</td>
+                                </tr>
+                                <tr>
+                                    <th>Measured Battery Bank Voltage:</th>
+                                    <td>@Html.DisplayFor(model => model.MeasuredBatteryBankVoltage)</td>
+                                </tr>
+                                <tr>
+                                    <th>Last Date of Distilled Water in System:</th>
+                                    <td>@Html.DisplayFor(model => model.LastDateSystemDistilledWater)</td>
+                                </tr>
+                                <tr>
+                                    <th>Number Of Established Solar Panel:</th>
+                                    <td>@Html.DisplayFor(model => model.NumberOfEstablishedSolarPanel)</td>
+                                </tr>
+                                <tr>
+                                    <th>Solar Panel Capacity:</th>
+                                    <td>@Html.DisplayFor(model => model.SolarPanelCapacity)</td>
+                                </tr>
+                                <tr>
+                                    <th>Total Array:</th>
+                                    <td>@Html.DisplayFor(model => model.TotalArray)</td>
+                                </tr>
+                                <tr>
+                                    <th>Voltage Array 1:</th>
+                                    <td>@Html.DisplayFor(model => model.VoltageArray1)</td>
+                                </tr>
+                                <tr>
+                                    <th>Voltage Array 2:</th>
+                                    <td>@Html.DisplayFor(model => model.VoltageArray2)</td>
+                                </tr>
+                                <tr>
+                                    <th>Voltage Array 3:</th>
+                                    <td>@Html.DisplayFor(model => model.VoltageArray3)</td>
+                                </tr>
+                                <tr>
+                                    <th>Voltage Array 4:</th>
+                                    <td>@Html.DisplayFor(model => model.VoltageArray4)</td>
+                                </tr>
+                                <tr>
+                                    <th>Voltage Array 5:</th>
+                                    <td>@Html.DisplayFor(model => model.VoltageArray5)</td>
+                                </tr>
+                                <tr>
+                                    <th>Voltage Array 6:</th>
+                                    <td>@Html.DisplayFor(model => model.VoltageArray6)</td>
+                                </tr>
+                                <tr>
+                                    <th>Voltage Array 7:</th>
+                                    <td>@Html.DisplayFor(model => model.VoltageArray7)</td>
+                                </tr>
+                                <tr>
+                                    <th>Voltage Array 8:</th>
+                                    <td>@Html.DisplayFor(model => model.VoltageArray8)</td>
+                                </tr>
+                                <tr>
+                                    <th>Voltage Array 9:</th>
+                                    <td>@Html.DisplayFor(model => model.VoltageArray9)</td>
+                                </tr>
+                                <tr>
+                                    <th>Voltage Array 10:</th>
+                                    <td>@Html.DisplayFor(model => model.VoltageArray10)</td>
+                                </tr>
+                                <tr>
+                                    <th>Total Voltage:</th>
+                                    <td>@Html.DisplayFor(model => model.TotalVoltage)</td>
+                                </tr>
+                                <tr>
+                                    <th>Current Array 1:</th>
+                                    <td>@Html.DisplayFor(model => model.CurrentArray1)</td>
+                                </tr>
+                                <tr>
+                                    <th>Current Array 2:</th>
+                                    <td>@Html.DisplayFor(model => model.CurrentArray2)</td>
+                                </tr>
+                                <tr>
+                                    <th>Current Array 3:</th>
+                                    <td>@Html.DisplayFor(model => model.CurrentArray3)</td>
+                                </tr>
+                                <tr>
+                                    <th>Current Array 4:</th>
+                                    <td>@Html.DisplayFor(model => model.CurrentArray4)</td>
+                                </tr>
+                                <tr>
+                                    <th>Current Array 5:</th>
+                                    <td>@Html.DisplayFor(model => model.CurrentArray5)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-spacing">
+                        <table class="table table-bordered" id="table">
+                            <tbody>
+                                <tr>
+                                    <th>Current Array 6:</th>
+                                    <td>@Html.DisplayFor(model => model.CurrentArray6)</td>
+                                </tr>
+                                <tr>
+                                    <th>Current Array 7:</th>
+                                    <td>@Html.DisplayFor(model => model.CurrentArray7)</td>
+                                </tr>
+                                <tr>
+                                    <th>Current Array 8:</th>
+                                    <td>@Html.DisplayFor(model => model.CurrentArray8)</td>
+                                </tr>
+                                <tr>
+                                    <th>Current Array 9:</th>
+                                    <td>@Html.DisplayFor(model => model.CurrentArray9)</td>
+                                </tr>
+                                <tr>
+                                    <th>Current Array 10:</th>
+                                    <td>@Html.DisplayFor(model => model.CurrentArray10)</td>
+                                </tr>
+                                <tr>
+                                    <th>Total Current:</th>
+                                    <td>@Html.DisplayFor(model => model.TotalCurrent)</td>
+                                </tr>
+                                <tr>
+                                    <th>Energy Meter Reading:</th>
+                                    <td>@Html.DisplayFor(model => model.EnergyMeterReading)</td>
+                                </tr>
+                                <tr>
+                                    <th>AH Charging Meter Reading:</th>
+                                    <td>@Html.DisplayFor(model => model.AHChargingMeterReading)</td>
+                                </tr>
+                                <tr>
+                                    <th>Ah Discharging Meter Reading:</th>
+                                    <td>@Html.DisplayFor(model => model.AhDischargingMeterReading)</td>
+                                </tr>
+                                <tr>
+                                    <th>Number Of Poles:</th>
+                                    <td>@Html.DisplayFor(model => model.NumberOfPoles)</td>
+                                </tr>
+                                <tr>
+                                    <th>Number Of Family Members With System:</th>
+                                    <td>@Html.DisplayFor(model => model.NumberOfFamilyMembersWithSystem)</td>
+                                </tr>
+                                <tr>
+                                    <th>Number Of System Working Connection:</th>
+                                    <td>@Html.DisplayFor(model => model.NumberOfSystemWorkingConnection)</td>
+                                </tr>
+                                <tr>
+                                    <th>Number Of Established Street Light:</th>
+                                    <td>@Html.DisplayFor(model => model.NumberOfEstablishedStreetLight)</td>
+                                </tr>
+                                <tr>
+                                    <th>System Working Hours:</th>
+                                    <td>@Html.DisplayFor(model => model.SystemWorkingHours)</td>
+                                </tr>
+                                <tr>
+                                    <th>Number Of Working Street Lights:</th>
+                                    <td>@Html.DisplayFor(model => model.NumberOfWorkingStreetLights)</td>
+                                </tr>
+                                <tr>
+                                    <th>System Working Remark:</th>
+                                    <td>@Html.DisplayFor(model => model.IsSystemWorkingRemarks)</td>
+                                </tr>
+                                <tr>
+                                    <th>Number Of Defective Batteries:</th>
+                                    <td>@Html.DisplayFor(model => model.NumberOfDefectiveBattery)</td>
+                                </tr>
+                                <tr>
+                                    <th>Number Of Defective Module:</th>
+                                    <td>@Html.DisplayFor(model => model.NumberOfDefectiveModule)</td>
+                                </tr>
+                                <tr>
+                                    <th>Invertor Working:</th>
+                                    <td>@Html.DisplayFor(model => model.IsInvertorWorking)</td>
+                                </tr>
+                                <tr>
+                                    <th>PDN Status Remark:</th>
+                                    <td>@Html.DisplayFor(model => model.PDNStatusRemark)</td>
+                                </tr>
+                                <tr>
+                                    <th>Any Other Remark:</th>
+                                    <td>@Html.DisplayFor(model => model.AnyOtherRemark)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="form-group col-md-6">
+                            <div id="img-detl-report">
+                                <div class="image-grid">
+                                    <div class="row" id="set-img-row">
+
+                                        <div class="col-md-4 text-center">
+                                            <p class="image-label">Image With Panel And ControlRoom:</p>
+                                            @if (!string.IsNullOrEmpty(Model.ImageWithPanelAndControlRoom))
+                                            {
+                                                <img class="clickable-image" width="150px" height="150px" src="data:@Model.ImageWithPanelAndControlRoomType;base64,@Model.ImageWithPanelAndControlRoom" alt="Solar Pump Image" />
+                                            }
+                                            else
+                                            {
+                                                <p>No image available.</p>
+                                            }
+                                        </div>
+
+                                        <div class="col-md-4 text-center">
+                                            <p class="image-label">Image With PDN:</p>
+                                            @if (!string.IsNullOrEmpty(Model.ImageWithPDN))
+                                            {
+                                                <img class="clickable-image" width="150px" height="150px" src="data:@Model.ImageWithPDNType;base64,@Model.ImageWithPDN" alt="Control Room Image" />
+                                            }
+                                            else
+                                            {
+                                                <p>No image available.</p>
+                                            }
+                                        </div>
+
+                                        <div class="col-md-4 text-center">
+                                            <p class="image-label">Image With Functionality:</p>
+                                            @if (!string.IsNullOrEmpty(Model.ImageWithFunctionality))
+                                            {
+                                                <img class="clickable-image" width="150px" height="150px" src="data:@Model.ImageWithFunctionalityType;base64,@Model.ImageWithFunctionality" alt="Solar Panel Image" />
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="row" id="set-secondrow-img">
+                                        <!-- Fencing Image -->
+                                        <div class="col-md-4 text-center">
+                                            <p class="image-label">Image With Meter Reading:</p>
+                                            @if (!string.IsNullOrEmpty(Model.ImageWithMeterReading))
+                                            {
+                                                <img class="clickable-image" width="150px" height="150px" src="data:@Model.ImageWithMeterReadingType;base64,@Model.ImageWithMeterReading" alt="Fencing Image" />
+                                            }
+                                            else
+                                            {
+                                                <p>No image available.</p>
+                                            }
+                                        </div>
+
+                                        <div class="col-md-4 text-center">
+                                            <p class="image-label">Image With Mangpatra:</p>
+                                            @if (!string.IsNullOrEmpty(Model.ImageWithMangpatra))
+                                            {
+                                                <img class="clickable-image" width="150px" height="150px" src="data:@Model.ImageWithMangpatraType;base64,@Model.ImageWithMangpatra" alt="Pipe Outlet Image" />
+                                            }
+                                            else
+                                            {
+                                                <p>No image available.</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal for displaying the image -->
+                <div id="imageModal" class="image-modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="modalImage">
+                    <div id="zoomIn" class="zoom-btn">+</div>
+                    <div id="zoomOut" class="zoom-btn">-</div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function copyGeoTag(event, geoTagId, messageId) {
+        // Prevent default behavior
+        event.preventDefault();
+
+        // Select the text from the appropriate span
+        const geoTagText = document.getElementById(geoTagId).textContent;
+
+        // Create a temporary input element
+        const tempInput = document.createElement('input');
+        document.body.appendChild(tempInput);
+        tempInput.value = geoTagText;
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the text inside the input
+        document.execCommand('copy');
+
+        // Remove the temporary input element
+        document.body.removeChild(tempInput);
+
+        
+        const copyMessage = document.getElementById(messageId);
+        copyMessage.textContent = 'Geotag copied to clipboard!';
+        copyMessage.style.display = 'block';
+
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+            copyMessage.style.display = 'none';
+        }, 3000);
+    }
+
+    // Get the modal
+    var modal = document.getElementById('imageModal');
+    var modalImg = document.getElementById("modalImage");
+
+    // Get the images and attach click event
+    var images = document.getElementsByClassName('clickable-image');
+    for (var i = 0; i < images.length; i++) {
+        images[i].onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        }
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // Zoom functionality
+    var zoomLevel = 1;
+    document.getElementById('zoomIn').onclick = function () {
+        zoomLevel += 0.1;
+        modalImg.style.transform = `scale(${zoomLevel})`;
+    }
+
+    document.getElementById('zoomOut').onclick = function () {
+        if (zoomLevel > 0.1) {
+            zoomLevel -= 0.1;
+            modalImg.style.transform = `scale(${zoomLevel})`;
+        }
+    }
+</script>
+
+
+

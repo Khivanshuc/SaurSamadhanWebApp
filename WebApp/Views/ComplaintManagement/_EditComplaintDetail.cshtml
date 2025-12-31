@@ -1,0 +1,121 @@
+﻿@model List<WebApp.Models.VwSSYAlreadyCompletedListModel>
+
+<style>
+    .container1 {
+        background-color: white;
+        padding: 15px;
+        border-radius: 10px;
+    }
+</style>
+
+
+<div class="row justify-content-center mt-md-3">
+    <h2>Edit Complaint</h2>
+    <button id="" class="btn btn-back-to-list" onclick="BacktoList()" style="width:140px!important"><img src="~/img/Back_icon.png" alt="Alternate Text" class="back-icon" />Back to List</button>
+    <button id="backToDashButton" class="btn btn-back-to-dash" onclick="BackToDashboard()">
+        <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+    </button>
+</div>
+
+<div class="container1">
+    <div id="registerComplaint">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="inputAddress" class="fw-bold">शिकायत दर्ज करने का दिनांक</label>
+                        <input type="date" class="form-control" name="txtdate" id="txtdate" placeholder="" disabled style="cursor:not-allowed;">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="inputZip" class="fw-bold">जिला</label>
+                        <select name="txtjila" id="txtjila" class="form-control" onchange="getBlockByDistrict()" disabled style="cursor:not-allowed;">
+                            <option value="">जिला का चयन करें</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="inputZip" class="fw-bold">विकासखण्ड</label>
+                        <select id="txtvikaskhand" name="txtvikaskhand" class="form-control" onchange="blockOptionClicked()" disabled style="cursor:not-allowed;">
+                            <option value="">विकासखंड का चयन करें</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 mt-3">
+                <div class="row">
+
+                    <div class="form-group col-lg-4">
+                        <label for="inputZip" class="fw-bold">ग्राम</label>
+                        <select id="txtVillage" name="txtVillage" class="form-control" onchange="villageOptionClicked()" disabled style="cursor:not-allowed;">
+                            <option value="">गांव का चयन करें</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="inputZip" class="fw-bold">साइट</label>
+                        <select id="txtSite" name="txtSite" class="form-control" onchange="" disabled style="cursor:not-allowed;">
+                            <option value="">साइट का चयन करें</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="inputZip" class="fw-bold">शिकायत का विषय</label>
+                        <input type="text" class="form-control" name="txtComplaintRemark" id="txtComplaintRemark" placeholder="" disabled style="cursor:not-allowed;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 mt-3">
+                <div class="row">
+
+                    <div class="form-group col-lg-4">
+                        <label for="inputZip" class="fw-bold">शिकायत की स्थिति</label>
+                        <select id="txtComplaintStatus" name="txtComplaintStatus" class="form-control" disabled style="cursor:not-allowed;">
+                            <option value="0">Pending</option>
+                            <option value="1">Resolved</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="inputZip" class="fw-bold">SI Name</label>
+                        <select id="txtSIname" name="txtSIname" class="form-control" disabled style="cursor:not-allowed;">
+                            <option value="0">Pending</option>
+                            <option value="1">Resolved</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="inputZip" class="fw-bold">क्रेडा द्वारा SI को पत्र प्रदान करने की नियुक्त तिथि*</label>
+                        <input type="date" class="form-control" name="txtAssignedDate" id="txtAssignedDate" placeholder="">
+                        <label class="error" id="txtAssignedDateError"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="row">
+
+                    <div class="form-group col-lg-4">
+                        <label for="inputZip" class="fw-bold">रिमार्क</label>
+                        <textarea type="text" class="form-control" name="txtRemark" id="txtRemark" placeholder=""></textarea>
+                        <label class="error" id="RemarkError"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-flex">
+            <div class="col-sm-11"></div>
+            <div class="col-sm-1">
+                <button type="submit" id="btnsave" name="btnsave" class="btn btn-success" style="margin-top:25px">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section PageScripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/complaintmanagement.js"></script>
+    <script>
+        $(document).ready(async function () {
+            getDistrict();
+            // hideLoader();
+        });
+    </script>
+
+}

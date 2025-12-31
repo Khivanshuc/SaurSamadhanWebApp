@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin Dashboard</title>
+    <link href="~/library/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/library/fontawasome.css" rel="stylesheet" />
+    <link href="~/library/jquery.datatables.min.css" rel="stylesheet" />
+
+
+    <style>
+        body {
+            background-image: url('/img/db_background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .container-fluid {
+            width: 98%;
+            background: rgba(255, 255, 255, 0.2); /* Light transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid p-0 m-0">
+        @await Html.PartialAsync("_AdminNavbar") <!-- Navbar Included -->
+
+        <div class="container-fluid mt-2 p-0 m-0">
+            @RenderBody() <!-- Page Content -->
+        </div>
+    </div>
+    <script src="~/library/jquery-3.7.1.min.js"></script>
+	<script src="~/library/bootstrap.bundle.min.js"></script>
+	<script src="~/library/jquery.validate.min.js"></script>
+    <script src="~/library/jquery.datatables.min.js"></script>
+    <script src="~/library/datatables.bootstrap5.min.js"></script>
+    @RenderSection("PageScripts", required: false)
+</body>
+</html>

@@ -1,0 +1,460 @@
+﻿@{
+    Layout = "_BlankLayout";
+    ViewData["Title"] = " Online SSY Application";
+}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<link href="~/css/ssy.css" rel="stylesheet" />
+
+
+<body style="background-image: url('../img/DB_Background.png');">
+    <!-- ============ PAGE LOADER START ============ -->
+    <div id="universalLoader">
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        let $ideltimer, $idelcurrSeconds = 0;
+
+        function idelresetTimer() {
+            clearInterval($ideltimer);
+            $idelcurrSeconds = 0;
+            $ideltimer = setInterval(startIdleTimer, 100);
+        }
+        window.onload = idelresetTimer;
+        window.onmousemove = idelresetTimer;
+        window.onmousedown = idelresetTimer;
+        window.ontouchstart = idelresetTimer;
+        window.onclick = idelresetTimer;
+        window.onkeypress = idelresetTimer;
+
+        function startIdleTimer() {
+            $idelcurrSeconds++;
+
+            if ($idelcurrSeconds > 7000) {
+                clearInterval($ideltimer);
+                window.location = "home";
+            }
+        }
+    </script>
+
+    <form id="solarPumpForm">
+    <section id="jobs">
+         <div class="container" id="desktopScreen">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                            <div class="col-lg-1" style="display: flex; justify-content: flex-start;">
+                            <img src="~/img/cmcg.png" style="height: 200px;" />
+                        </div>
+                        <div class="col-lg-10" style="display:flex; justify-content:center;">
+                            <h3>
+                                <a class="btn btn-success" asp-controller="SSY" asp-action="SSY_Check_Status" style="font-size: smaller; margin-top:97px;
+                                    color: black;" target="_blank">सोलर  पंप  की  स्थापना  हेतु  हितग्राही  अपने  आवेदन  की  स्थिति  जांचें - <span style="color:red">यहां क्लिक करें </span></a>
+                            </h3>
+                        </div>
+                        <div class="col-lg-1" style="display: flex; justify-content: center;">
+                                <img src="~/img/pm.png" style="height:190px;margin-left: -25px;"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="mobileScreen">
+            <div class="row align-items-center">
+                <!-- Left Image (Logo) -->
+                <div class="col-6 text-center">
+                    <img src="~/img/cmcg.png" class="img-fluid cmcg-img" />
+                </div>
+
+                <!-- Right Image (Logo) -->
+                <div class="col-6 text-center">
+                    <img src="~/img/pm.png" class="img-fluid pm-img" />
+                </div>
+            </div>
+
+            <!-- Center Button with Text -->
+            <div class="row justify-content-center">
+                <div class="col-12 text-center my-3">
+                    <h3>
+                        <a class="btn btn-success" asp-controller="SSY" asp-action="SSY_Check_Status" style="font-size: smaller; color: black;" target="_blank">
+                            सोलर पंप की स्थापना हेतु हितग्राही अपने आवेदन की स्थिति जांचें -
+                            <span style="color:red">यहां क्लिक करें</span>
+                        </a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Heading with Scheme Name -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <h2>
+                        <u>
+                            <span id="txtscheme"></span> योजनान्तर्गत सोलर पंप की स्थापना हेतु हितग्राही का आवेदन पत्र
+                        </u>
+                    </h2>
+                </div>
+            </div>
+        </div>
+            
+        <div class="container1 mt-0">
+            <div id="ssy" style="display: block">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="inputPassword4" class="fw-bold">आवेदक का नाम*</label>
+                                <input type="text" class="form-control" name="txtappname" id="txtappname" placeholder="">
+                                <label class="error" id="appnameError"></label>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="inputAddress" class="fw-bold">लिंग</label>
+                                <select class="form-control input-md" id="sex1" name="sex1">
+                                    <option value="0">Select</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                    <option value="3">Third Gender</option>
+                                </select>
+                                <label class="error" id="sexError"></label>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="inputAddress" class="fw-bold">पिता/पति का नाम*</label>
+                                <input type="text" class="form-control" name="txtfathername" id="txtfathername" placeholder="">
+                                <label class="error" id="fathernameError"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="inputAddress2" class="fw-bold">स्थापना स्थल*</label>
+                                <input type="text" class="form-control" name="txtinstall" id="txtinstall" placeholder="">
+                                <label class="error" id="installError"></label>
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label for="inputState" class="fw-bold">हितग्राही का सम्पूर्ण पता*</label>
+                                <input type="text" class="form-control" name="txtbfnaddr" id="txtbfnaddr" placeholder="">
+                                <label class="error" id="beneficallyNameError"></label>
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">विधानसभा क्षेत्र*</label>
+                                <input type="text" class="form-control" name="txtvidhansabha" id="txtvidhansabha" placeholder="">
+                                <label class="error" id="vidhansabhaError"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">जिला*</label>
+                                <select name="txtjila" id="txtjila" class="form-control" onchange="getBlockByDistrict()">
+                                    <option value="">जिला का चयन करें</option>
+                                </select>
+                                <label class="error" id="distNameError"></label>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">विकासखण्ड*</label>
+                                <select id="txtvikaskhand" name="txtvikaskhand" class="form-control">
+                                    <option value="">विकासखंड का चयन करें</option>
+                                </select>
+                                <label class="error" id="blockNameError"></label>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">दूरभाष क्रमांक*(+91)</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="txtphoneno" id="txtphoneno" placeholder="" maxlength="10">
+                                    <label class="error" id="mobileError"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">आधार कार्ड क्रमांक*</label>
+                                <input type="text" class="form-control" name="txtadhar" id="txtadhar" placeholder="">
+                                    <label class="error" id="aadharNoError"></label>
+                            </div> 
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">वोटर कार्ड*</label>
+                                <input type="text" class="form-control" name="txtvoter" id="txtvoter" placeholder="">
+                                    <label class="error" id="voterNoError"></label>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">विद्युत कनेक्शन हेतु डिमाण्ड नोट क्रमांक*</label>
+                                <input type="text" class="form-control" name="txtdemandno" id="txtdemandno" placeholder="">
+                                    <label class="error" id="demandNoError"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">प्रस्तावित भूमि का खसरा नम्बर*</label>
+                                <input type="text" class="form-control" name="txtkhasra" id="txtkhasra" placeholder="">
+                                    <label class="error" id="khasraNoError"></label>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">कुल रकबा (हेक्टेयर मे)*</label>
+                                <input type="text" class="form-control" name="txtrakba" id="txtrakba" placeholder="">
+                                    <label class="error" id="rakbaNoError"></label>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">जल स्त्रोत (कुआँ / बोरवेल / अन्य)*</label>
+                                <input type="text" class="form-control" name="txtwatersrc" id="txtwatersrc" placeholder="">
+                                    <label class="error" id="watersrcError"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">आवेदक का वर्ग*</label>
+                                <select name="txtcast" id="txtcast" class="form-control" onchange="onCategoryChanged()">
+                                    <option value="">आवेदक के वर्ग का चयन करें</option>
+                                    <option value="1">General</option>
+                                    <option value="2">OBC</option>
+                                    <option value="3">SC</option>
+                                    <option value="4">ST</option>
+                                </select>
+                                <label class="error" id="castNameError"></label>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">पंप की क्षमता का चयन करें*</label>
+                                <select class="form-control input-md" id="txtpumpcapacity" name="txtpumpcapacity" style="width:100%" onchange="onPumpCapChanged()">
+                                    <option value="">पंप की क्षमता का चयन करें</option>
+                                    <option value="1">03 HP</option>
+                                    <option value="2">05 HP</option>
+                                </select>
+                                <label class="error" id="pumpCapacityError"></label>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">प्रस्तावित सोलर पंप का प्रकार*</label>
+                                <select name="uni_ddl1" id="uni_ddl1" class="form-control" onchange="onSolarPumpTypeChanged()">
+                                    <option value="">पंप के प्रकार का चयन करें</option>
+                                    <option value="1">AC</option>
+                                    <option value="2">DC</option>
+                                </select>
+                                <label class="error" id="uni_ddl1Error"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="inputZip" class="fw-bold">पंप का चयन करें*</label>
+                                <select class="form-control input-md" id="uni_ddl" name="uni_ddl" onchange="onPumpChoiceChanged()">
+                                    <option value="0">पंप का चयन करें</option>
+                                    <option value="1">Submersible Pump</option>
+                                    <option value="2">Surface Pump</option>
+                                </select>
+                                <label class="error" id="uni_ddlError"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="table-responsive col-sm-12">
+                        <table id="dtable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="margin-bottom:0px">
+                            <thead>
+                                <tr style="background-color: #66a9bd;">
+                                    <th class="primary fw-bold">संयंत्र लागत समस्त व्यय एवं 05 वर्षीय रखरखाव सहित</th>
+                                    <th class="primary fw-bold">राशि (जीएसटी के साथ)</th>
+                                    <th class="primary fw-bold">प्रस्तावित राज्य अनुदान</th>
+                                    <th class="primary fw-bold">प्रस्तावित केन्द्र अनुदान</th>
+                                    <th class="primary fw-bold">मेरे द्वारा इकाई को देय राशि</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="text" class="form-control" name="txtttlcost" id="txtttlcost" placeholder="" disabled>
+                                                <label class="error" id="costError"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="text" class="form-control" name="txtrate" id="txtrate" placeholder="" disabled>
+                                                <label class="error" id="rateError"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="text" class="form-control" name="txtstate1" id="txtstate1" placeholder="" disabled>
+                                                <label class="error" id="state1Error"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="text" class="form-control" name="txtcentralfund" id="txtcentralfund" placeholder="" value="0" disabled>
+                                                <label class="error" id="centralfundError"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="text" class="form-control" name="txtmyfund" id="txtmyfund" placeholder="" disabled>
+                                                <label class="error" id="myfundError"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- <td><div class="col-sm-13 "><div class="form-group" id="opass-group" ><input type="text" class="form-control" name="narbard" id="narbard" placeholder="" readonly></div></div></td> -->
+                                    <!-- <td><div class="col-sm-13 "><div class="form-group" id="opass-group" ><input type="text" class="form-control" name="agr" id="agr" placeholder="" readonly></div></div></td>
+                                        <td><div class="col-sm-13 "><div class="form-group" id="opass-group" ><input type="text" class="form-control" name="txtstatefund" id="txtstatefund" placeholder="" readonly></div></div></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="table-responsive col-sm-12 mt-3">
+                        <table id="dtable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="margin-bottom:0px">
+
+                            <thead>
+                                <tr style="background-color: #66a9bd;color: #000;">
+                                    <th class="primary fw-bold text-light">Bank Account No</th>
+                                    <th class="primary fw-bold text-light">Name Of The Bank</th>
+                                    <th class="primary fw-bold text-light">IFSC Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="text" class="form-control" name="txtaccount" id="txtaccount" placeholder="">
+                                                <label class="error" id="accountNoError"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="text" class="form-control" name="txtbank" id="txtbank" placeholder="">
+                                                <label class="error" id="bankNameError"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="text" class="form-control" name="txtifsc" id="txtifsc" placeholder="">
+                                                <label class="error" id="ifscError"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="table-responsive col-sm-12 mt-3">
+                        <table id="dtable" class="table table-striped table-bordered dt-responsive nowrap mt-3" cellspacing="0" width="100%" style="margin-bottom:0px">
+                            <thead>
+                                <tr style="background-color: #66a9bd;color: #000;">
+                                    <th class="primary fw-bold text-light">आवेदन शुल्क</th>
+                                    <th class="primary fw-bold text-light">डिमांड ड्राफ्ट अथवा रसीद क्रमांक</th>
+                                    <th class="primary fw-bold text-light">दिनांक</th>
+                                    <th class="primary fw-bold text-light">बैंक का नाम</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="text" class="form-control" name="txtprofee" id="txtprofee" placeholder="" disabled>                                               
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="text" class="form-control" name="txtddnumber" id="txtddnumber" placeholder="">
+                                                <label class="error" id="ddNumberError"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="date" class="form-control" name="txtdddate" id="txtdddate" placeholder="">
+                                                    <label class="error" id="ddDateError"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-13 ">
+                                            <div class="form-group" id="opass-group">
+                                                <input type="text" class="form-control" name="txtddbank" id="txtddbank" placeholder="">
+                                                <label class="error" id="ddBankNameError"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                            <button type="submit" id="btnsave" name="btnsave" class="btn btn-info btn-lg" style="margin-top:25px" onclick="RegisterSSY()">
+                            <i class="fa fa-save"> Register</i>
+                        </button>
+                    </div>
+                    <div class="col-sm-6 d-flex flex-row-reverse">
+                        <a class="btn btn-success btn-lg" id="btnback" asp-controller="Home" asp-action="Index" style="margin-top:25px">
+                            <i class="fa fa-reply"> Back</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container Div -->
+    </section>
+    
+    </form>
+    <script src="~/js/ssy.js"></script>
+
+</body>
+
+@section PageScripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/ssy.js"></script>
+    <script>
+        $(document).ready(async function () {
+            getDistrict();
+            hideLoader();
+        });
+    </script>
+
+}

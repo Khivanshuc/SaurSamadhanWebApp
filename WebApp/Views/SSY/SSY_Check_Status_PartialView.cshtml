@@ -1,0 +1,335 @@
+﻿@model List<WebApp.Models.VwSSYRegistrationFormModel>
+@{
+    Layout = "_BlankLayout";
+}
+<style>
+    .geo-tag-container {
+        display: flex;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .geo-tag-text {
+        max-width: calc(100% - 70px); /* Adjust based on button size */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+        .geo-tag-text:hover {
+            overflow: auto;
+            white-space: normal;
+        }
+
+    .copy-btn {
+        margin-left: 10px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .copy-btn:hover {
+            background-color: #e1e1e1;
+        }
+
+    .copy-message {
+        margin-top: 10px;
+        color: green;
+        font-size: 14px;
+        display: none; /* Initially hide the message */
+    }
+
+
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+    }
+
+    /* Modal Content (image) */
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 500px;
+    }
+
+    /* Add Animation */
+    .modal-content, .close {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    @@keyframes zoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    /* The Close Button */
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        z-index: 1300;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    /* Zoom Buttons */
+    .zoom-btn {
+        border-radius: 14px;
+        position: inherit;
+        bottom: 20px;
+        right: 20px;
+        color: black;
+        font-size: 30px;
+        padding: 10px 20px;
+        background-color: lightgray;
+        cursor: pointer;
+    }
+
+    #zoomIn {
+        margin-right: 5px;
+        right: 70px;
+    }
+
+    #zoomOut {
+        right: 20px;
+    }
+
+    .clickable-image {
+        border-radius: 14px;
+    }
+
+    #detail-img {
+        position: relative;
+        right: 1pc;
+    }
+
+    #table th {
+        width: 13pc;
+        font-weight: bold;
+    }
+
+    #table td {
+        width: 26pc;
+    }
+
+    #tables-alignment {
+        display: flex;
+    }
+
+    .table-spacing {
+        display: flex;
+        padding-left: 3pc;
+        flex-direction: column-reverse;
+    }
+
+    #img-detl-report {
+        position: relative;
+        bottom: 6pc;
+        right: 17pc;
+    }
+</style>
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+
+        <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            
+            <div class="d-flex justify-content-around">
+                <div id="tables-alignment">
+                    <div class="form-group">
+                        <table class="table table-bordered" id="table">
+                            <tbody>
+                                <tr>
+                                    <th>आवेदक का नाम :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().ApplicantName)</td>
+                                </tr>
+                                <tr>
+                                    <th>लिंग :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().Gender)</td>
+                                </tr>
+                                <tr>
+                                    <th>पिता/पति का नाम :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().FatherName)</td>
+                                </tr>
+                                <tr>
+                                    <th>स्थापना स्थल :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().InstallationSite)</td>
+                                </tr>
+                                <tr>
+                                    <th>हितग्राही का सम्पूर्ण पता :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().ApplicantAddress)</td>
+                                </tr>
+                                <tr>
+                                    <th>विधानसभा क्षेत्र :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().VidhansabhaRegion)</td>
+                                </tr>
+                                <tr>
+                                    <th>जिला :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().DistrictName)</td>
+                                </tr>
+                                <tr>
+                                    <th>विकासखण्ड :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().BlockName)</td>
+                                </tr>
+                                <tr>
+                                    <th>दूरभाष क्रमांक :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().ApplicantMobileNum)</td>
+                                </tr>
+                                <tr>
+                                    <th>आधार कार्ड क्रमांक :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().AadharNumber)</td>
+                                </tr>
+                                <tr>
+                                    <th>वोटर कार्ड :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().VoterIdNumber)</td>
+                                </tr>
+                                <tr>
+                                    <th>विद्युत कनेक्शन हेतु डिमाण्ड नोट क्रमांक :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().ElectricConnectionSerialNumber)</td>
+                                </tr>
+                                <tr>
+                                    <th>कुल रकबा (हेक्टेयर मे) :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().TotalArea)</td>
+                                </tr>
+                                <tr>
+                                    <th>प्रस्तावित भूमि का खसरा नम्बर :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().KhasraNumber)</td>
+                                </tr>
+
+                                <tr>
+                                    <th>जल स्त्रोत :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().WaterSource)</td>
+                                </tr>
+                                <tr>
+                                    <th>आवेदक का वर्ग :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().Caste)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-spacing">
+                        <table class="table table-bordered" id="table">
+                            <tbody>
+                                
+                                <tr>
+                                    <th>पंप की क्षमता का चयन करें :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().PumpCapacity)</td>
+                                </tr>
+                                <tr>
+                                    <th>प्रस्तावित सोलर पंप का प्रकार :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().SolarPumpType)</td>
+                                </tr>
+                                <tr>
+                                    <th>पंप का चयन करें :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().PumpChoice)</td>
+                                </tr>
+                                <tr>
+                                    <th>संयंत्र लागत समस्त व्यय एवं :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().SystemCost)</td>
+                                </tr>
+                                <tr>
+                                    <th>राशि (जीएसटी के साथ) :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().AmountWithGST)</td>
+                                </tr>
+                                <tr>
+                                    <th>प्रस्तावित राज्य अनुदान :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().StateGrant)</td>
+                                </tr>
+                                <tr>
+                                    <th>प्रस्तावित केन्द्र अनुदान	:</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().CentralGrant)</td>
+                                </tr>
+                                <tr>
+                                    <th>मेरे द्वारा इकाई को देय राशि</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().ApplicationCostToBePaidByUser)</td>
+                                </tr>
+                                <tr>
+                                    <th>Application Cost:</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().ApplicationCost)</td>
+                                </tr>
+                                <tr>
+                                    <th>Bank Name:</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().BankName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Account Number:</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().AccountNumber)</td>
+                                </tr>
+                                <tr>
+                                    <th>IFSC Code:</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().IFSCCode)</td>
+                                </tr>
+                                <tr>
+                                    <th>डिमांड ड्राफ्ट अथवा रसीद क्रमांक :</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().DD_Number)</td>
+                                </tr>
+                                <tr>
+                                    <th>डिमांड ड्राफ्ट दिनांक:</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().DD_Date)</td>
+                                </tr>
+                                <tr>
+                                    <th>डिमांड ड्राफ्ट बैंक का नाम:</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().DD_BankName)</td>
+                                </tr>
+                                @* <tr>
+                                    <th>CreatedBy:</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().CreatedBy)</td>
+                                </tr>
+                                <tr>
+                                    <th>CreatedOn:</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().CreatedOn)</td>
+                                </tr>
+                                <tr>
+                                    <th>UpdatedBy:</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().UpdatedBy)</td>
+                                </tr>
+                                <tr>
+                                    <th>UpdatedOn:</th>
+                                    <td>@Html.DisplayFor(model => model.FirstOrDefault().UpdatedOn)</td>
+                                </tr> *@
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <!-- Modal for displaying the image -->
+
+                <div id="imageModal" class="image-modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="modalImage">
+                    <div id="zoomIn" class="zoom-btn">+</div>
+                    <div id="zoomOut" class="zoom-btn">-</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

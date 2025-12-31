@@ -1,0 +1,97 @@
+﻿@model List<WebApp.Models.VwUserModel>
+
+
+<div id="FiltersPartialView">
+    <div class="row justify-content-center mt-md-3">
+        <h3>User List</h3>
+        <div class="col-md-12">
+            <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+                <!-- First row of fields -->
+                <div class="row g- mb-3">
+                    <!-- First column -->
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center">
+                            <label class="control-label">UserName:</label>
+                            <input id="Username" class="form-control"/>
+                            @* <input id="Username" class="form-control" onchange="GetBlockByDistrictonReport()"/> *@
+                               
+                        </div>
+                    </div>
+
+                    <!-- Second column -->
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center">
+                            <label class="control-label">District:</label>
+                            <select id="txtJila" class="form-control">
+
+                            </select>
+                        </div>                       
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn btn-primary" id="searchButton" onclick="SearchUserlist()" style="margin-right: 10px;">Search</button>
+                            <button type="button" class="btn btn-primary" id="clearButton" onclick="ClearAllUserlist()">Clear All</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form asp-action="View" class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="card-body">                
+                <div class="table-responsive" style="height:50vh">
+                    <table class="table table-hover table-bordered" style="max-height:60vh; overflow:auto;width:100%;">
+                        <thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important">
+                            <tr>
+                                <th style="color:white;" scope="col">User Name</th>
+                                <th style="color:white;" scope="col">Email</th>
+                                <th style="color:white;" scope="col">Mobile Number</th>
+                                <th style="color:white;" scope="col">Role</th>
+                                <th style="color:white;" scope="col">District</th>
+                                <th style="color:white;" scope="col">Block</th>
+                                <th style="color:white;" scope="col">Office Level</th>
+                                <th style="color:white;" scope="col"></th>
+                                @* <th scope="col">Created On</th> *@
+                                @* <th scope="col">Actions</th> *@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.UserName</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.MobileNumber</td>
+                                    <td>@item.RoleName</td>
+                                    <td>@item.DistrictName</td>
+                                    <td>@item.BlockName</td>
+                                    <td>@item.OfficeLevel</td>
+                                    <td>
+                                        <button class="btn p-0" type="button" aria-haspopup="true" onclick="EditUser(@item.Id)">
+                                            <img src="~/img/edit.png" style="width: 20px; height: 20px;" />
+                                        </button>
+                                       
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/vendor/libs/jquery/jquery.js"></script>
+<script src="~/js/admin.js"></script>
+
+<script>
+    $(document).ready(function () {
+        fetchDistforAdminPanel();
+    });
+</script>

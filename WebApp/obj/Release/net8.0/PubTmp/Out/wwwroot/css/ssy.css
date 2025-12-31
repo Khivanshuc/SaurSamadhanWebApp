@@ -1,0 +1,166 @@
+.error {
+    color: red;
+}
+
+#universalLoader {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 64px;
+    height: 64px;
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #3498db;
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+}
+
+
+@@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+body {
+    background-image: url('../img/DB_Background.png');
+}
+
+[data-sr] {
+    visibility: hidden;
+}
+
+.ui-datepicker .ui-datepicker-title select {
+    font-size: 1em;
+    margin: 1px 0;
+    color: black;
+}
+
+#formdata i.form-control-feedback {
+    top: 5px !important;
+    right: 5px;
+}
+
+h2,
+.h2 {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    text-transform: capitalize;
+}
+
+#spinner {
+    display: none;
+    position: fixed;
+    /* background:rgba(20,20,20,0.5); */
+    width: 100%;
+    height: 100%;
+    padding-top: 20%;
+    z-index: 1000;
+}
+
+.form-group {
+    margin-bottom: 8px;
+}
+
+.container1 {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto; /* Centers the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 1100px; /* Limits the width of the container */
+    width: 100%;
+}
+
+#dtable tr th {
+    color: white !important;
+}
+
+.readonly-input {
+    cursor: not-allowed; /* You can use this default cursor */
+}
+
+.readonly-input {
+    cursor: url('img/icons/red_not-allowed.png'), not-allowed;
+}
+
+.container {
+    padding: 0px !important;
+}
+
+/* General styling for the images to stay side by side */
+.cmcg-img {
+    max-height: 150px;
+}
+
+.pm-img {
+    max-height: 200px;
+}
+
+/* Media query for screens with width less than 576px (mobile view) */
+@media (max-width: 1000px) {
+    #desktopScreen {
+        display: none;
+    }
+
+    #mobileScreen {
+        display: block;
+    }
+
+    .cmcg-img {
+        max-width: 100%;
+        height: 180px;
+    }
+
+    .pm-img {
+        max-width: 130%;
+        height: 150px;
+    }
+    /* Adjust the button spacing if needed */
+    h3 a {
+        font-size: smaller;
+    }
+}
+
+/* Media query for tablets and larger screens (default behavior for larger screens) */
+@media (min-width: 1000px) {
+    #desktopScreen {
+        display: block;
+    }
+
+    #mobileScreen {
+        display: none;
+    }
+
+    .cmcg-img {
+        margin-right: auto;
+        max-width: 50%;
+        height: 130px;
+    }
+
+    .pm-img {
+        margin-left: auto;
+        width: 200%;
+    }
+    /* Button style */
+    h3 a {
+        font-size: medium;
+    }
+}

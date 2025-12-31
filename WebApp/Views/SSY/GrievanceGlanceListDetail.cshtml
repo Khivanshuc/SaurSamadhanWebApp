@@ -1,0 +1,59 @@
+﻿@model List<WebApp.Models.GrievanceGlanceListModel>
+@{
+    Layout = "_BlankLayout";
+}
+
+
+<div class="row justify-content-center my-4">
+    <div class="col-md-12">
+        <form class="p-4 border rounded shadow-sm bg-light" style="width:100%;">
+            <div class="card-body">
+                <div class="table-responsive" style="max-height:60vh">
+                    <table class="table table-hover table-bordered" style="max-height:60vh; overflow:auto;width:100%;">
+                        <thead class="table-dark" style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important; text-align:center">
+                            <tr>
+                                <th style="color:white; width:5%;  font-weight:bold;">S.No</th>
+                                <th style="color:white; width:5%;  font-weight:bold;">Grievance Id</th>
+                                <th style="color:white; width:5%;  font-weight:bold;">District</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Block</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Village</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Site</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Project</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Mobile</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Remark</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (Model.Count > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.SerialNo</td>
+                                        <td>@item.Id</td>
+                                        <td>@item.DistrictName</td>
+                                        <td>@item.BlockName</td>
+                                        <td>@item.VillageName</td>
+                                        <td>@item.SiteName</td>
+                                        <td>@item.ProjectName</td>
+                                        <td>@item.MobileNumber</td>
+                                        <td>@item.FaultyRemark</td>
+                                        <td><button type="button" class="btn btn-warning btn-sm" onclick="GrievanceGlanceDetailClicked(@item.Id)">More Details</button></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="13" class="text-center">No Record found</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

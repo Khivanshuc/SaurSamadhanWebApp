@@ -1,0 +1,214 @@
+﻿@model WebApp.Models.otherthanjjmalreadycompleted
+
+<h4>otherthanjjmalreadycompleted</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Save">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SiteId" class="control-label"></label>
+                <input asp-for="SiteId" class="form-control" />
+                <span asp-validation-for="SiteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <input asp-for="ProjectId" class="form-control" />
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SIName" class="control-label"></label>
+                <input asp-for="SIName" class="form-control" />
+                <span asp-validation-for="SIName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InspectionDate" class="control-label"></label>
+                <input asp-for="InspectionDate" class="form-control" />
+                <span asp-validation-for="InspectionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsSystemWorking" class="control-label"></label>
+                <input asp-for="IsSystemWorking" class="form-control" />
+                <span asp-validation-for="IsSystemWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsSystemWorkingRemark" class="control-label"></label>
+                <input asp-for="IsSystemWorkingRemark" class="form-control" />
+                <span asp-validation-for="IsSystemWorkingRemark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsPumpWorking" class="control-label"></label>
+                <input asp-for="IsPumpWorking" class="form-control" />
+                <span asp-validation-for="IsPumpWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsControllerWorking" class="control-label"></label>
+                <input asp-for="IsControllerWorking" class="form-control" />
+                <span asp-validation-for="IsControllerWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SystemLayout" class="control-label"></label>
+                <input asp-for="SystemLayout" class="form-control" />
+                <span asp-validation-for="SystemLayout" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PanelMake" class="control-label"></label>
+                <input asp-for="PanelMake" class="form-control" />
+                <span asp-validation-for="PanelMake" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PanelVolt" class="control-label"></label>
+                <input asp-for="PanelVolt" class="form-control" />
+                <span asp-validation-for="PanelVolt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PanelCapacity" class="control-label"></label>
+                <input asp-for="PanelCapacity" class="form-control" />
+                <span asp-validation-for="PanelCapacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfPanel" class="control-label"></label>
+                <input asp-for="NumberOfPanel" class="form-control" />
+                <span asp-validation-for="NumberOfPanel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ControllerMake" class="control-label"></label>
+                <input asp-for="ControllerMake" class="form-control" />
+                <span asp-validation-for="ControllerMake" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PumpMake" class="control-label"></label>
+                <input asp-for="PumpMake" class="form-control" />
+                <span asp-validation-for="PumpMake" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsHandpumpWorking" class="control-label"></label>
+                <input asp-for="IsHandpumpWorking" class="form-control" />
+                <span asp-validation-for="IsHandpumpWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StandpostCondition" class="control-label"></label>
+                <input asp-for="StandpostCondition" class="form-control" />
+                <span asp-validation-for="StandpostCondition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DefectiveNumberOfModules" class="control-label"></label>
+                <input asp-for="DefectiveNumberOfModules" class="form-control" />
+                <span asp-validation-for="DefectiveNumberOfModules" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsSystemClean" class="control-label"></label>
+                <input asp-for="IsSystemClean" class="form-control" />
+                <span asp-validation-for="IsSystemClean" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsTapWorking" class="control-label"></label>
+                <input asp-for="IsTapWorking" class="form-control" />
+                <span asp-validation-for="IsTapWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsWaterTankLeaking" class="control-label"></label>
+                <input asp-for="IsWaterTankLeaking" class="form-control" />
+                <span asp-validation-for="IsWaterTankLeaking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsTankLidPresent" class="control-label"></label>
+                <input asp-for="IsTankLidPresent" class="form-control" />
+                <span asp-validation-for="IsTankLidPresent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsSensorWorking" class="control-label"></label>
+                <input asp-for="IsSensorWorking" class="form-control" />
+                <span asp-validation-for="IsSensorWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsUnionWorking" class="control-label"></label>
+                <input asp-for="IsUnionWorking" class="form-control" />
+                <span asp-validation-for="IsUnionWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsNippleWorking" class="control-label"></label>
+                <input asp-for="IsNippleWorking" class="form-control" />
+                <span asp-validation-for="IsNippleWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsSocketWorking" class="control-label"></label>
+                <input asp-for="IsSocketWorking" class="form-control" />
+                <span asp-validation-for="IsSocketWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsGateValveWorking" class="control-label"></label>
+                <input asp-for="IsGateValveWorking" class="form-control" />
+                <span asp-validation-for="IsGateValveWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsCableWorking" class="control-label"></label>
+                <input asp-for="IsCableWorking" class="form-control" />
+                <span asp-validation-for="IsCableWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsRopeWireWorking" class="control-label"></label>
+                <input asp-for="IsRopeWireWorking" class="form-control" />
+                <span asp-validation-for="IsRopeWireWorking" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsStandPostCorrectionNeeded" class="control-label"></label>
+                <input asp-for="IsStandPostCorrectionNeeded" class="form-control" />
+                <span asp-validation-for="IsStandPostCorrectionNeeded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastWaterTankCleanDate" class="control-label"></label>
+                <input asp-for="LastWaterTankCleanDate" class="form-control" />
+                <span asp-validation-for="LastWaterTankCleanDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageWithFunctionality" class="control-label"></label>
+                <input asp-for="ImageWithFunctionality" class="form-control" />
+                <span asp-validation-for="ImageWithFunctionality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageWithFunctionalityType" class="control-label"></label>
+                <input asp-for="ImageWithFunctionalityType" class="form-control" />
+                <span asp-validation-for="ImageWithFunctionalityType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GeoTag" class="control-label"></label>
+                <input asp-for="GeoTag" class="form-control" />
+                <span asp-validation-for="GeoTag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedBy" class="control-label"></label>
+                <input asp-for="UpdatedBy" class="form-control" />
+                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedOn" class="control-label"></label>
+                <input asp-for="UpdatedOn" class="form-control" />
+                <span asp-validation-for="UpdatedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsUploaded" class="control-label"></label>
+                <input asp-for="IsUploaded" class="form-control" />
+                <span asp-validation-for="IsUploaded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

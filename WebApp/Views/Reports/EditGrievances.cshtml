@@ -1,0 +1,611 @@
+﻿@model WebApp.Models.VwGrievanceModel
+
+@using System.Security.Claims
+@{
+    var zonalId = User.FindFirst("ZonalId")?.Value;
+}
+
+<style>
+    .readonly-cursor {
+        cursor: not-allowed;
+        background-color: #e9ecef;
+    }
+
+    .select2-container {
+        width: 100% !important;
+        z-index: 1150;
+        position: relative;
+    }
+
+    .image-grid {
+        margin-top: 20px;
+    }
+
+        .image-grid .col-md-4 {
+            margin-bottom: 30px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 10pc;
+        }
+
+    #set-img-row {
+        justify-content: space-around;
+    }
+
+    #set-secondrow-img {
+        justify-content: space-evenly;
+    }
+
+    .clickable-image {
+        border-radius: 14px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+        .clickable-image:hover {
+            transform: scale(1.05);
+        }
+
+    #img-detl-report {
+        width: 40pc;
+        position: relative;
+        left: 5pc;
+        bottom: 0pc;
+    }
+
+    .zoom-btn {
+        border-radius: 14px;
+        position: inherit;
+        bottom: 20px;
+        right: 20px;
+        color: black;
+        font-size: 30px;
+        padding: 10px 20px;
+        background-color: lightgray;
+        cursor: pointer;
+    }
+
+    #zoomIn {
+        margin-right: 5px;
+        right: 70px;
+    }
+
+    #zoomOut {
+        right: 20px;
+    }
+
+    #detail-img {
+        position: relative;
+        right: 1.5pc;
+        width: 10pc;
+        margin-top: 10px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+    }
+
+    .modal-content-img {
+        /* height: 700px; */
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 500px;
+    }
+
+    .modal-content-img, .close {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    @@keyframes zoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        z-index: 1300;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .zoom-btn {
+        border-radius: 14px;
+        position: inherit;
+        bottom: 20px;
+        right: 20px;
+        color: black;
+        font-size: 30px;
+        padding: 10px 20px;
+        background-color: lightgray;
+        cursor: pointer;
+    }
+
+    #zoomIn {
+        margin-right: 5px;
+        right: 70px;
+    }
+
+    #zoomOut {
+        right: 20px;
+    }
+</style>
+
+<div class="row justify-content-center mt-md-3">
+    <input type="hidden" id="hiddenGrievanceId" value="@Model.Id" />
+    <div class="col-md-12">
+        <form asp-action="UpdateGrievances" asp-controller="Reports" method="post" class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <h4> Update Grievances </h4>
+                </div>
+                <div class="form-group mb-3 col-md-5 d-flex justify-content-end">
+                    @* <button asp-action="Grievances" class="btn btn-primary" style="display:none!important"><img src="/img/Back_icon.png" alt="Alternate Text" class="back-icon">Back to List</button> *@
+                    <a onclick="BacktoHome()" style="color:white;" class="btn btn-primary"> <img src="/img/Back_icon.png" alt="Alternate Text" class="back-icon">Go Back</a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" readonly class="form-control readonly-cursor " />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="ApplicantName" class="control-label">Applicant Name</label>
+                    <input asp-for="ApplicantName" readonly class="form-control readonly-cursor" />
+                    <span asp-validation-for="VillageName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="DistrictName" class="control-label">District Name</label>
+                    <input asp-for="DistrictName" readonly class="form-control readonly-cursor " />
+                    <span asp-validation-for="DistrictName" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="BlockName" class="control-label">Block Name</label>
+                    <input asp-for="BlockName" readonly class="form-control readonly-cursor" />
+                    <span asp-validation-for="BlockName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="VillageName" class="control-label">Village Name</label>
+                    <input asp-for="VillageName" readonly class="form-control readonly-cursor " />
+                    <span asp-validation-for="VillageName" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="SiteName" class="control-label">Site </label>
+                    <input asp-for="SiteName" readonly class="form-control readonly-cursor" />
+                    <span asp-validation-for="SiteName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="Region" class="control-label"></label>
+                    <input asp-for="Region" readonly class="form-control readonly-cursor" />
+                    <span asp-validation-for="Region" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="Area" class="control-label"></label>
+                    <input asp-for="Area" readonly class="form-control readonly-cursor" />
+                    <span asp-validation-for="Area" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="ProjectName" class="control-label">Project Name</label>
+                    <input asp-for="ProjectName" readonly class="form-control readonly-cursor" />
+                    <span asp-validation-for="ProjectName" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="FaultRemark" class="control-label">Fault Remark</label>
+                    <input asp-for="FaultRemark" readonly class="form-control readonly-cursor" />
+                    <span asp-validation-for="FaultRemark" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around">
+                @* <div class="form-group mb-3 col-md-5">
+                <label asp-for="FaultRemark" class="control-label">Fault Remark</label>
+                <input asp-for="FaultRemark" readonly class="form-control readonly-cursor" />
+                <span asp-validation-for="FaultRemark" class="text-danger"></span>
+                </div> *@
+            </div>
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="MobileNumber" class="control-label">Applicant Mobile Number</label>
+                    <input asp-for="MobileNumber" readonly class="form-control readonly-cursor" />
+                    <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="CreatedOn" class="control-label">Complaint Date</label>
+                    <label readonly class="form-control readonly-cursor">@Model.CreatedOn</label>
+                    <span asp-validation-for="CreatedOn" class="text-danger"></span>
+                </div>
+            </div>
+
+            @{
+                if (Model.OpenDate == null)
+                {
+                    <div class="d-flex justify-content-around">
+
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="Severity" class="control-label"></label>
+                            <select asp-for="Severity" id="severity" class="form-control readonly-cursor" disabled asp-items="ViewBag.SeverityOptions"></select>
+                            <span asp-validation-for="Severity" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3 col-md-5" style="">
+                            <label asp-for="GrievanceStatus" class="control-label">Grievance Status</label>
+                            <select asp-for="GrievanceStatus" id="grievanceStatus" class="form-control" asp-items="ViewBag.GrievanceStatusOptions"></select>
+                            <span asp-validation-for="GrievanceStatus" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="SIName" class="control-label">SI Name</label>
+                            <select asp-for="SIName" id="siNameSelect" class="form-control" asp-items="ViewBag.SINameOptions"></select>
+                            <span asp-validation-for="SIName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="AssignTo" class="control-label">Assigned To</label>
+                            <select asp-for="AssignTo" id="assignToSelect" class="form-control" asp-items="ViewBag.AssignToOptions"></select>
+                            <span asp-validation-for="AssignTo" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="AdminComment" class="control-label">Admin Comment</label>
+                            <input asp-for="AdminComment" id="adminComment" class="form-control" required />
+                            <span asp-validation-for="AdminComment" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3 col-md-5">
+                        </div>
+                    </div>
+                }
+                else if (Model.OpenDate != null)
+                {
+                    <div class="d-flex justify-content-around">
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="Severity" class="control-label">Severity</label>
+                            <input asp-for="Severity" id="severity" readonly class="form-control readonly-cursor" />
+                            <span asp-validation-for="Severity" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="SIName" class="control-label">SI Name</label>
+                            <input asp-for="SIName" id="siNameInput" readonly class="form-control readonly-cursor" />
+                            <span asp-validation-for="SIName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="AssignTo" class="control-label">Assigned To</label>
+                            <input asp-for="AssignTo" id="assignedToInput" readonly class="form-control readonly-cursor" />
+                            <span asp-validation-for="AssignTo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="AdminComment" class="control-label">Admin Comment</label>
+                            <input asp-for="AdminComment" readonly class="form-control readonly-cursor" required />
+                            <span asp-validation-for="AdminComment" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="OpenDate" class="control-label">Grievance Assigned Date</label>
+                            <label readonly class="form-control readonly-cursor">@Model.OpenDate</label>
+                            <span asp-validation-for="OpenDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="VerifyDate" class="control-label">Grievance Verified Date</label>
+                            <label readonly class="form-control readonly-cursor">@Model.VerifyDate</label>
+                            <span asp-validation-for="VerifyDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                }
+
+
+                if (Model.VerifyDate != null)
+                {
+                    <div class="d-flex justify-content-around">
+
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="MobilePhotoGeoTag" class="control-label">Rectified Photo Geo Tag</label>
+                            <input asp-for="MobilePhotoGeoTag" readonly class="form-control readonly-cursor" />
+                            <span asp-validation-for="MobilePhotoGeoTag" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3 col-md-5">
+                            <label asp-for="VerifyComment" class="control-label"> Verify Comment</label>
+                            <input asp-for="VerifyComment" id="verifyComment" class="form-control " required />
+                            <span asp-validation-for="VerifyComment" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    // if (Model.IsClosedByDO == true)
+                    // {
+                    //     <div class="d-flex justify-content-around">
+                    //         <div class="form-group mb-3 col-md-5">
+                    //             <label asp-for="FaultRemark" class="control-label">DI Close Date</label>
+                    //             <input asp-for="DIClosingDate" readonly class="form-control readonly-cursor" />
+                    //             <span asp-validation-for="FaultRemark" class="text-danger"></span>
+                    //         </div>
+                    //         <div class="form-group mb-3 col-md-5" style="">
+                    //             <label asp-for="FaultRemark" class="control-label">DI Closing Remark</label>
+                    //             <input asp-for="FaultRemark" readonly class="form-control readonly-cursor" value="Closed By District Incharge" />
+                    //             <span asp-validation-for="FaultRemark" class="text-danger"></span>
+                    //         </div>
+                    //     </div>
+                    // }
+
+                    <div class="d-flex justify-content-around">
+                    </div>
+
+                    if (Model.GrievanceStatus == "Closed")
+                    {
+                        <div class="d-flex justify-content-around">
+                            <div class="form-group mb-3 col-md-5">
+                                <label asp-for="GrievanceStatus" class="control-label">Update Status</label>
+                                <select asp-for="GrievanceStatus" readonly class="form-control readonly-cursor" asp-items="ViewBag.GrievanceStatusOptions"></select>
+                                <span asp-validation-for="GrievanceStatus" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3 col-md-5">
+                                <label asp-for="IsActive" class="control-label">Is Active</label>
+                                <input asp-for="IsActive" readonly class="form-control readonly-cursor" />
+                                <span asp-validation-for="IsActive" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="d-flex justify-content-around" style="display:none">
+                            <div class="form-group mb-3 col-md-5">
+                                <label asp-for="GrievanceStatus" class="control-label">Update Status</label>
+                                <select asp-for="GrievanceStatus" class="form-control" asp-items="ViewBag.GrievanceStatusOptions"></select>
+                                <span asp-validation-for="GrievanceStatus" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3 col-md-5">
+                            </div>
+                        </div>
+
+                    }
+                }
+
+
+
+
+
+                <!-- Inline Images Section -->
+                <div class="d-flex justify-content-around" style="display:none!important;">
+                    <div class="form-group col-md-6">
+                        <div id="img-detl-report">
+                            <div class="image-grid">
+                                <div class="row" id="set-img-row">
+                                    <div class="col-md-4 text-center">
+                                        <p class="col-sm-8" id="detail-img">Photo Uploaded By Public</p>
+                                        @if (!string.IsNullOrEmpty(Model.FaultImageBase64))
+                                        {
+                                            <img class="clickable-image" width="200px" height="150px" src="data:@Model.FaultImage;base64,@Model.FaultImageBase64" />
+                                            //<img class="form-control clickable-image" style="max-height:400px;max-width:60%" src="data:@Model.FaultImage;base64,@Model.FaultImageBase64" alt="Fault Image" />
+                                        }
+                                        else
+                                        {
+                                            <p>No image available.</p>
+                                        }
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <p class="col-sm-8" id="detail-img">Photo Uploaded By Public</p>
+                                        @if (!string.IsNullOrEmpty(Model.FaultImageBase64))
+                                        {
+                                            <img class="clickable-image" width="200px" height="150px" src="data:@Model.FaultImage;base64,@Model.FaultImageBase64" />
+                                        }
+                                        else
+                                        {
+                                            <p>No image available.</p>
+                                        }
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <p class="col-sm-8" id="detail-img">Photo Uploaded By Public</p>
+                                        @if (!string.IsNullOrEmpty(Model.FaultImageBase64))
+                                        {
+                                            <img class="clickable-image" width="200px" height="150px" src="data:@Model.FaultImage;base64,@Model.FaultImageBase64" />
+                                            //<img class="form-control clickable-image" style="max-height:400px;max-width:60%" src="data:@Model.FaultImage;base64,@Model.FaultImageBase64" alt="Fault Image" />
+                                        }
+                                        else
+                                        {
+                                            <p>No image available.</p>
+                                        }
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <p class="col-sm-8" id="detail-img">Photo Uploaded By Public</p>
+                                        @if (!string.IsNullOrEmpty(Model.FaultImageBase64))
+                                        {
+                                            <img class="clickable-image" width="200px" height="150px" src="data:@Model.FaultImage;base64,@Model.FaultImageBase64" />
+                                        }
+                                        else
+                                        {
+                                            <p>No image available.</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="imageModal" class="image-modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content-img" id="modalImage">
+                    <div id="zoomIn" class="zoom-btn">+</div>
+                    <div id="zoomOut" class="zoom-btn">-</div>
+                </div>
+
+                <div class="d-flex justify-content-evenly" style="Width:100%; margin-left:60px;">
+                    <div class="form-group mb-3 col-lg-4">
+                        <label class="control-label">Photo Uploaded By Public</label>
+                        @if (!string.IsNullOrEmpty(Model.FaultImageBase64))
+                        {
+                            <img class="form-control clickable-image" style="max-height:400px;max-width:60%" src="data:@Model.FaultImage;base64,@Model.FaultImageBase64" alt="Fault Image" />
+                        }
+                        else
+                        {
+                            <p>No image available.</p>
+                        }
+                        <span asp-validation-for="GrievanceStatus" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3 col-lg-4">
+                        <label class="control-label">Photo During Grievance Verification</label>
+                        @if (!string.IsNullOrEmpty(Model.ImageBeforeRectificationBase64))
+                        {
+                            <img class="form-control clickable-image" style="max-height:400px;max-width:60%" src="data:@Model.MobilePhotoType;base64,@Model.ImageBeforeRectificationBase64" alt="Fault Image" />
+                        }
+                        else
+                        {
+                            <p>No image available.</p>
+                        }
+                        <span asp-validation-for="IsActive" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3 col-lg-4">
+                        <label class="control-label">Photo after Rectification </label>
+                        @if (!string.IsNullOrEmpty(Model.MobilePhotoBase64))
+                        {
+                            <img class="form-control clickable-image" style="max-height:400px;max-width:60%" src="data:@Model.MobilePhotoType;base64,@Model.MobilePhotoBase64" alt="Fault Image" />
+                        }
+                        else
+                        {
+                            <p>No image available.</p>
+                        }
+                        <span asp-validation-for="IsActive" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-around">
+                    <div class="form-group mb-3 col-md-5">
+                        <label class="control-label">Certificate Photo:</label>
+                        @if (!string.IsNullOrEmpty(Model.CertificatePhotoBase64))
+                        {
+                            <img id="certificateimage" style="display: none;" src="data:application/pdf;base64,@Model.CertificatePhotoBase64" />
+                            <button type="button" onclick="previewGrievanceCertificatePDF()">Preview PDF</button>
+                            <button type="button" onclick="downloadGrievanceCertificatePDF()">Download PDF</button>
+                        }
+                        else
+                        {
+                            <p>Certificate Not Uploaded yet</p>
+                        }
+                        <span asp-validation-for="CertificatePhotoBase64" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3 col-md-5"></div>
+                </div>
+
+
+                <div class="d-flex ">
+                    
+                        @if (Model.OpenDate == null && Model.GrievanceStatus != "Closed")
+                        {
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        }
+                        else if (Model.GrievanceStatus != "Closed")
+                        {
+                            if (Model.IsForwardedToZO == false && Model.IsRejectedByZO == false && Model.IsRevertedByZO == false)
+                            {
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button onclick="reassignBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Reassign</button>
+                                if (zonalId == "-1" && !string.IsNullOrEmpty(Model.ComplaintVerificationDate))
+                                {
+                                    <button onclick="forwardBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Forward</button>
+                                }
+                            }
+                            else if (Model.IsForwardedToZO == true || Model.IsForwardedToHO == true)
+                            {
+                                if (Model.IsRejectedByZO == true || Model.IsRevertedByZO == true || Model.IsRejectedByHO == true || Model.IsRevertedByHO == true)
+                                {
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button onclick="reassignBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Reassign</button>
+                                }
+                            }
+
+
+                            // if (Model.OpenDate != null)
+                            // {
+                            //     if (Model.IsForwarded == false || (Model.IsRejected == true || Model.IsReverted == true))
+                            //     {
+                            //         <button onclick="reassignBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Reassign</button>
+                            //     }
+                            // }
+                        }
+                    
+
+                </div>
+
+            }
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<script>
+    var modal = document.getElementById('imageModal');
+    var modalImg = document.getElementById("modalImage");
+
+
+    var images = document.getElementsByClassName('clickable-image');
+    for (var i = 0; i < images.length; i++) {
+        images[i].onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        }
+    }
+
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    var zoomLevel = 1;
+    document.getElementById('zoomIn').onclick = function () {
+        zoomLevel += 0.1;
+        modalImg.style.transform = `scale(${zoomLevel})`;
+    }
+
+    document.getElementById('zoomOut').onclick = function () {
+        if (zoomLevel > 0.1) {
+            zoomLevel -= 0.1;
+            modalImg.style.transform = `scale(${zoomLevel})`;
+        }
+    }
+</script>

@@ -1,0 +1,69 @@
+﻿@model List<WebApp.Models.UserWiseProjectWiseListModel>
+
+@{
+    Layout = "_BlankLayout";
+}
+
+<div class="row my-4">
+    <div class="col-md-12 d-flex justify-content-between">
+        <h3> User Report Details </h3>
+        @* <button type="button" class="btn btn-primary ms-2" id="DownloadButton" onclick="downloadReportClicked()"><img src="~/img/Download_icon.png" alt="" class="download_icon" /> DOWNLOAD</button> *@
+    </div>
+</div>
+
+
+
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <form class="p-4 border rounded shadow-sm bg-light" style="width:100%;">
+            <div class="card-body">
+                <div class="table-responsive" style="height:40vh">
+                    <table class="table table-hover table-bordered" style="max-height:40vh; overflow:auto;width:100%;">
+                        <thead class="table-dark" style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important">
+                            <tr>
+                                <th style="color:white; width:5%;  font-weight:bold;">S.No</th>
+                                <th style="color:white; width:5%;  font-weight:bold;">Project Name</th>
+                                <th style="color:white; width:5%;  font-weight:bold;">District</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Block</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Village</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Site</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Working Status</th>
+                                <th style="color:white; width:10%; font-weight:bold;">SI</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Inspection Date</th>
+                                <th style="color:white; width:10%; font-weight:bold;">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (Model.Count > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.SNo</td>
+                                            <td>@item.ProjectName</td>
+                                            <td>@item.DistrictName</td>
+                                            <td>@item.BlockName</td>
+                                            <td>@item.VillageName</td>
+                                            <td>@item.SiteName</td>
+                                            <td>@item.WorkingStatus</td>
+                                            <td>@item.SIName</td>
+                                            <td>@(item.InspectionDate?.ToString("dd-MM-yyyy"))</td>
+                                            <td><button type="button" class="btn btn-warning btn-sm" onclick="userDetailBtnClicked(@item.Id,@item.ProjectId)">More Details</button></td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="13" class="text-center">No Record found</td>
+                                    </tr>
+                                }
+                     
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,207 @@
+﻿@model WebApp.Models.VwOtherThanRVEDDGMonitoringAlreadyCompleted
+
+@{
+    Layout = "_BlankLayout";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .Reportcontainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .details-table {
+        border-collapse: collapse;
+        width: 100%;
+        float: left;
+    }
+
+        .details-table th,
+        .details-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            height: 30px;
+        }
+
+        .details-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            width: 28%;
+        }
+
+        .details-table td {
+            width: 40%;
+        }
+
+    .image-section {
+        width: 33%;
+        text-align: center;
+        display: inline-block;
+        float: right;
+        margin-left: 20px;
+    }
+
+        /*     img {
+            width: 35%;
+            height: auto;
+        } */
+
+        .image-section p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid #ddd;
+    }
+
+    #setpdfimg {
+        display: flex !important;
+        justify-content: space-evenly;
+    }
+
+    #imgpdf {
+        width: 25.4pc;
+        position: relative;
+        right: 12pc;
+    }
+
+
+    #SSimg {
+        width: 7pc;
+        position: relative;
+        left: 12pc;
+    }
+
+    .footer {
+        margin-top: 1100px;
+    }
+    }
+</style>
+
+<body>
+    <div class="header">
+        <div id="setpdfimg">
+            <img src="~/img/creda_black_logo_title.png" alt="Alternate Text" id="imgpdf" />
+            <img src="~/img/CREDA_SS.png" alt="img" id="SSimg" />
+        </div>
+    </div>
+    <hr />
+    </div>
+
+    <div class="Reportcontainer">
+        <!-- Details Table -->
+        <table class="details-table">
+            <tr>
+                <th>Inspection ID</th>
+                <td>@Model.Id</td>
+                <td><strong>System Working Image</strong></td>
+            </tr>
+            <tr>
+                <th>Inspected By</th>
+                <td>@Model.UserName</td>
+                <td rowspan="5"><img src="data:@Model.SystemWorkingImageType;base64,@Model.SystemWorkingImageBase64" height="200px" width="300px" /></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>@Model.DistrictName</td>
+
+            </tr>
+            <tr>
+                <th>Block</th>
+                <td>@Model.BlockName</td>
+
+            </tr>
+            <tr>
+                <th>Village</th>
+                <td>@Model.VillageName</td>
+
+            </tr>
+            <tr>
+                <th>Site</th>
+                <td>@Model.SiteName</td>
+            </tr>
+            <tr>
+                <th>Project Name</th>
+                <td>@Model.ProjectName</td>
+                <td><strong>System Maintenance Image</strong></td>
+            </tr>
+            <tr>
+                <th>SI Name</th>
+                <td>@Model.SIName</td>
+                <td rowspan="5"><img src="data:@Model.SystemMaintanenceImageType;base64,@Model.SystemMaintanenceImageBase64" height="200px" width="300px" /></td>
+            </tr>
+            <tr>
+                <th>Inspection Date</th>
+                <td>@Model.InspectionDate?.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <th>System Working</th>
+                <td>@(Model.IsSystemWorking ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <th>System Working Remarks</th>
+                <td>@Model.IsSystemWorkingRemarks</td>
+            </tr>
+            <tr>
+                <th>Meter Reading</th>
+                <td>@Model.MeterReading</td>
+            </tr>
+            <tr>
+                <th>Invertor Working Status</th>
+                <td>@(Model.IsInvertorWorking ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>AH Charging Meter Reading</th>
+                <td>@Model.AHChargingMeterReading</td></tr>
+            <tr>
+                <th>AH Discharging Meter Reading</th>
+                <td>@Model.AHDisChargingMeterReading</td>
+            </tr>
+            <tr>
+                <th>Number Of Batteries</th>
+                <td>@Model.NumberOfBatteries</td>
+            </tr>
+            <tr>
+                <th>Battery AH</th>
+                <td>@Model.BatteryAH </td>
+            </tr>
+            <tr>
+                <th>Battery Rated Voltage</th>
+                <td>@Model.BatteryRatedVoltage</td>
+            </tr>
+            <tr>
+                <th>Total Voltage</th>
+                <td>@Model.TotalVoltage</td>
+            </tr>
+            <tr>
+                <th>Total Current</th>
+                <td>@Model.TotalCurrent</td>
+            </tr>
+            <tr>
+                <th>Number Of Defective Battery</th>
+                <td>@Model.NumberOfDefectiveBattery</td>
+            </tr>
+            <tr>
+                <th>Number Of Defective Module</th>
+                <td>@Model.NumberOfDefectiveModule</td>
+            </tr>
+        </table>
+    </div>
+    <div class="footer">
+        <hr />
+        <p style="text-align: right; padding-right: 20px;"><strong>Report generated on:</strong> @DateTime.Now.ToString("dd-MM-yyyy")</p>
+    </div>
+</body>
+

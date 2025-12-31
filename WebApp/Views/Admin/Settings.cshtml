@@ -1,0 +1,270 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ag-format-container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .ag-courses_box {
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 50px 0;
+        }
+
+        .ag-courses_item {
+            flex-basis: calc(20% - 30px);
+            margin: 0 15px 30px;
+            overflow: hidden;
+            border-radius: 28px;
+        }
+
+        .ag-courses-item_link {
+            display: block;
+            padding: 30px 20px;
+            background-color: #add8e6;
+            overflow: hidden;
+            position: relative;
+            text-decoration: none;
+            color: white;
+        }
+
+            .ag-courses-item_link:hover .ag-courses-item_bg {
+                transform: scale(10);
+                transition: all 0.5s ease;
+            }
+
+            .ag-courses-item_link:hover,
+            .ag-courses-item_link:hover .ag-courses-item_date {
+                text-decoration: none;
+                color: #fff;
+            }
+
+        .ag-courses-item_title {
+            top: -28px;
+            min-height: 80px;
+            margin: 0 0 0px;
+            font-weight: bold;
+            font-size: 20px;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 40px;
+        }
+
+            .ag-courses-item_title::after {
+                content: '\2192'; /* Unicode for right arrow */
+                font-size: 30px;
+                font-weight: bold;
+                position: absolute;
+                right: 10px;
+                bottom: -30px;
+            }
+
+        .ag-courses-item_date-box {
+            font-size: 18px;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ag-courses-item_date {
+            font-weight: bold;
+            color: #f9b234;
+            transition: color 0.5s ease;
+        }
+
+        .ag-courses-item_bg {
+            height: 128px;
+            width: 128px;
+            background-color: #f9b234;
+            position: absolute;
+            top: -75px;
+            right: -75px;
+            border-radius: 50%;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        .ag-courses_item:nth-child(2n) .ag-courses-item_bg {
+            background-color: #3ecd5e;
+        }
+
+        .ag-courses_item:nth-child(3n) .ag-courses-item_bg {
+            background-color: #e44002;
+        }
+
+        .ag-courses_item:nth-child(4n) .ag-courses-item_bg {
+            background-color: #952aff;
+        }
+
+        .ag-courses_item:nth-child(5n) .ag-courses-item_bg {
+            background-color: #cd3e94;
+        }
+
+        .ag-courses_item:nth-child(6n) .ag-courses-item_bg {
+            background-color: #4c49ea;
+        }
+
+        .cardicon {
+            position: absolute;
+            z-index: 3;
+            display: block;
+            margin-top: -38px;
+            width: 40px;
+            height: auto;
+            float: left;
+        }
+
+        #solarimg {
+            justify-content: space-between;
+            margin-top: -30px;
+            width: 50px;
+        }
+
+        #ppimg {
+            width: 60px;
+            margin-top: -43px;
+        }
+
+        #lsimg {
+            width: 49px;
+            margin-top: -41px;
+        }
+
+        #imdimg {
+            margin-top: -30px;
+            width: 43px;
+        }
+
+        #drimg {
+            margin-top: -38px;
+        }
+
+        .btn-back-to-dash-MonitotingHome {
+            background-color: orange;
+            position: absolute;
+            right: 46px;
+            width: 10px;
+            transition: background-color 0.3s ease;
+            top: 5.5pc;
+        }
+
+            .btn-back-to-dash-MonitotingHome:hover {
+                background-color: #00CCDD;
+            }
+
+        @@media (max-width: 576px) {
+            .btn-back-to-dash-MonitotingHome {
+                right: 8%;
+                width: 70px;
+            }
+        }
+        @@media (max-width: 1200px) {
+            .ag-courses_item {
+                flex-basis: calc(33.333% - 30px);
+            }
+        }
+
+        @@media (max-width: 900px) {
+            .ag-courses_item {
+                flex-basis: calc(50% - 30px);
+            }
+        }
+
+        @@media (max-width: 600px) {
+            .ag-courses_item {
+                flex-basis: 100%;
+            }
+
+            .ag-courses-item_title {
+                font-size: 18px;
+            }
+
+            .ag-courses-item_bg {
+                height: 100px;
+                width: 100px;
+                top: -55px;
+                right: -55px;
+            }
+        }
+
+        @@media (max-width: 480px) {
+            .ag-courses-item_link {
+                padding: 20px 15px;
+            }
+
+            .ag-courses-item_title {
+                font-size: 16px;
+            }
+
+            .cardicon {
+                margin-top: -30px;
+                width: 35px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>    
+    <div class="ag-format-container">
+        <button id="backToDashButtonmonitotingHome" class="btn btn-back-to-dash-MonitotingHome" onclick="BackToDashboard()">
+            <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+        </button>
+        <div class="ag-courses_box">  
+            <div class="ag-courses_item" id="img">
+                <a asp-controller="Admin" asp-action="Registrations" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">
+                        Registration
+                    </div>
+                    <img src="~/img/Registration.png" alt="Icon" class="cardicon">
+                    <div class="ag-courses-item_date-box">
+                        <span class="ag-courses-item_date">
+                            <!-- 30.11.2022 -->
+                        </span>
+                    </div>
+                </a>
+            </div>
+            <div class="ag-courses_item">
+                <a asp-controller="Imports" asp-action="Index" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">
+                        Import Master Data
+                    </div>
+                    <img src="~/img/Import master data.png" alt="Icon" class="cardicon" id="imdimg">
+                    <div class="ag-courses-item_date-box">
+                        @* Start: *@
+                        <span class="ag-courses-item_date">
+                            @* 31.10.2022 *@
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function BackToDashboard() {
+            window.location.href = '../Dashboards/LandingPage';
+        }
+    </script>
+</body>
+</html>
+

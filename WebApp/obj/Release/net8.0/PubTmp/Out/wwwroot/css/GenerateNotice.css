@@ -1,0 +1,195 @@
+﻿/*Loader Design*/
+.loader {
+    display: none;
+    text-align: center;
+    line-height: 86px;
+    text-align: center;
+    position: relative;
+    padding: 0 48px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #566a7f;
+}
+
+    .loader:before, .loader:after {
+        content: "";
+        display: block;
+        width: 15px;
+        height: 15px;
+        background: currentColor;
+        position: absolute;
+        animation: load .7s infinite alternate ease-in-out;
+        top: 0;
+    }
+
+    .loader:after {
+        top: auto;
+        bottom: 0;
+    }
+
+
+.container {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 8px;
+    width: 98% !important;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.notice-page {
+    display: none;
+    width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+input {
+    width: 20%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+.notice-content {
+    text-align: left;
+    margin-top: 20px;
+}
+
+    .notice-content p {
+        margin: 10px 0;
+    }
+
+.notice-header {
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+#searchInput {
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#searchButton, #clearButton {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.details {
+   /* display: none;*/
+    width: 57%;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+    .details h3 {
+        margin-bottom: 10px;
+    }
+
+    .details p {
+        margin: 5px 0;
+    }
+
+/*Notice Page Style*/
+
+body {
+    /*font-family: Arial, sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;*/
+    display: flex;
+    justify-content: center;
+}
+
+.document {
+    background-color: white;
+    margin-top: 20px;
+    width: 800px;
+    padding: 20px;
+    border: 1px solid black;
+    position: relative;
+}
+
+.header {
+    text-align: center;
+}
+
+    .header img {
+        width: 80px;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+        margin: 10px 0;
+    }
+
+.subheader {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.content {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.order-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.order-body {
+    margin: 20px 40px;
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 50px;
+    font-size: 16px;
+}
+
+.footerNotice {
+    text-align: center;
+    font-size: 12px;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+.border-top {
+    margin-left: -18px;
+    border-top: 1px solid black;
+    margin-top: 20px;
+}

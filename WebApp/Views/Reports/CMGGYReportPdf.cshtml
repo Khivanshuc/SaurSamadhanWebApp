@@ -1,0 +1,271 @@
+﻿@model WebApp.Models.VwCMGGYalreadycompletedModel
+
+@{
+Layout = "_BlankLayout";
+}
+
+<style>
+body {
+font-family: Arial, sans-serif;
+}
+
+.Reportcontainer {
+display: flex;
+justify-content: space-between;
+}
+
+.details-table {
+border-collapse: collapse;
+width: 100%;
+float: left;
+}
+
+.details-table th,
+.details-table td {
+border: 1px solid #ddd;
+padding: 8px;
+text-align: left;
+height: 30px;
+}
+
+.details-table th {
+background-color: #f2f2f2;
+font-weight: bold;
+width: 32%;
+}
+
+.details-table td {
+width: 40%;
+}
+
+.image-section {
+width: 33%;
+text-align: center;
+display: inline-block;
+float: right;
+margin-left: 20px;
+}
+
+
+.image-section p {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.header {
+text-align: center;
+margin-bottom: 20px;
+}
+
+hr {
+border: none;
+border-top: 2px solid #ddd;
+}
+
+#setpdfimg {
+display: flex !important;
+justify-content: space-evenly;
+}
+
+#imgpdf {
+width: 25.4pc;
+position: relative;
+right: 12pc;
+}
+
+
+#SSimg {
+width: 7pc;
+position: relative;
+left: 12pc;
+}
+
+.table2 {
+border-collapse: collapse;
+width: 100%;
+float: left;
+}
+
+.table2 th,
+.table2 td {
+border: 1px solid #ddd;
+padding: 8px;
+text-align: left;
+height: 30px;
+}
+
+.table2 th {
+background-color: #f2f2f2;
+font-weight: bold;
+width: 32%;
+}
+
+.table2 td {
+width: 40%;
+}
+
+    .footer {
+       position:relative;
+       bottom:0px;
+       top:65pc;
+    }
+    }
+
+
+</style>
+
+<body>
+<div class="header">
+    <div id="setpdfimg">
+        <img src="~/img/creda_black_logo_title.png" alt="Alternate Text" id="imgpdf" />
+        <img src="~/img/CREDA_SS.png" alt="img" id="SSimg" />
+    </div>
+</div>
+
+<hr />
+
+<div class="Reportcontainer">
+<!-- Details Table -->
+<table class="details-table">
+    <tr>
+        <th>Inspection ID</th>
+        <td>@Model.Id</td>
+        <td><strong>Solar Pump Image</strong></td>
+    </tr>
+    <tr>
+        <th>Inspected By</th>
+        <td>@Model.User</td>
+       <td rowspan="5"><img src="data:@Model.SolarPumpImageType;base64,@Model.SolarPumpImage" alt="Solar Pump Image" alt="Image with Functionality" height="160px" width="250px" /></td>
+    </tr>
+    <tr>
+        <th>District</th>
+        <td>@Model.District</td>
+
+    </tr>
+    <tr>
+        <th>Block</th>
+        <td>@Model.Block</td>
+
+    </tr>
+    <tr>
+        <th>Village</th>
+        <td>@Model.Village</td>
+
+    </tr>
+    <tr>
+        <th>Site</th>
+        <td>@Model.Site</td>
+    </tr>
+    <tr>
+        <th>Project Name</th>
+        <td>@Model.Project</td>
+        <td><strong>Control Room Image</strong></td>
+
+    </tr>
+    <tr>
+        <th>Inspection Date</th>
+        <td>@Model.InspectionDate.ToShortDateString()</td>
+        <td rowspan="5"><img src="data:@Model.ControlRoomImageType;base64,@Model.ControlRoomImage" alt="Solar Pump Image" alt="Image with Complete System" height="160px" width="250px" /></td>
+    </tr>
+    <tr>
+        <th>Gram Panchayat</th>
+        <td>@Model.GramPanchayatName</td>
+    </tr>
+            
+    <tr>
+        <th>Water Source Name</th>
+        <td>@Model.WaterSourceName</td>
+    </tr>
+    <tr>
+        <th>Number of Pond</th>
+        <td>@Model.PondCount</td>
+    </tr>
+    <tr>
+        <th>Surface Capacity (in HP)</th>
+        <td>@Model.SurfaceCapacityinHP</td>
+    </tr>
+    <tr>
+        <th>Surface Capacity (in number)</th>
+        <td>@Model.SurfaceCapacityCount</td>
+        <td><strong>Solar Panel Image</strong></td>
+    </tr>
+    <tr>
+        <th>Pump Status</th>
+        <td>@(Model.PumpStatus ? "Yes" : "No")</td>
+        <td rowspan="5"><img src="data:@Model.SolarPanelImageType;base64,@Model.SolarPanelImage" alt="Solar Pump Image" alt="Image with Mangpatra" height="160px" width="250px" /></td>
+    </tr>
+    <tr>
+        <th>Number of Working Pump</th>
+        <td>@Model.WorkingPumpCount</td>
+    </tr>
+    <tr>
+        <th>Number of Non Working Pump</th>
+        <td>@Model.NonWorkingPumpCount</td>
+    </tr>
+    <tr>
+        <th>Controller Status</th>
+        <td>@(Model.ControllerStatus ? "Yes" : "No")</td>
+    </tr>
+    <tr>
+        <th>Number of Working Controller</th>
+        <td>@Model.WorkingControllerCount</td>
+                
+    </tr>
+    <tr>
+        <th>Number of Non Working Controller</th>
+        <td>@Model.NonWorkingControllerCount</td>
+        <td><strong>Fencing Image</strong></td>
+    </tr>
+    <tr>
+        <th>Solar Module</th>
+        <td>@Model.SolarModule</td>
+                <td rowspan="5"><img src="data:@Model.FencingImageType;base64,@Model.FencingImage" alt="Solar Pump Image" alt="Image with Mangpatra" height="160px" width="250px" /></td>
+    </tr>
+    <tr>
+        <th>Lightning Arrester & Earthing Status</th>
+        <td>@Model.LightningArresterStatus </td>
+    </tr>
+    <tr>
+        <th>Pipe Line Length (in meter)</th>
+        <td>@Model.PipelineLength</td>
+    </tr>
+    <tr>
+        <th>Pipe Line Status Remark</th>
+        <td>@Model.PipeLineStatusRemark </td>
+                
+    </tr>
+    <tr>
+        <th>Safety Fencing Length</th>
+        <td>@Model.SafetyFencingLength</td>
+    </tr>
+</table>
+
+<div>
+    <table class="table2" style="margin-top:50px">
+        <tr>
+            <th>Fencing And Gate Status Remark</th>
+            <td>@Model.FencingAndGateStatusRemark</td>
+            <td><strong>Pipe Outlet Image</strong></td>
+        </tr>
+        <tr>
+            <th>Control Room and Pump Status Remark</th>
+            <td>@Model.ControlRoomandPumpStatusComment</td>
+             <td rowspan="3"><img src="data:@Model.PipeOutletImageType;base64,@Model.PipeOutletImage" alt="Solar Pump Image" alt="Image with Mangpatra" height="160px" width="250px" /></td>
+        </tr>
+        <tr>
+            <th>System Working</th>
+            <td>@(Model.IsSystemWorking ? "Yes" : "No")</td>
+        </tr>
+        <tr>
+            <th>Other Remark</th>
+            <td>@Model.OtherRemark</td>
+        </tr>
+    </table>
+</div>
+</div>
+    <div class="footer">
+        <hr />
+        <p style="text-align: right; padding-right: 20px;"><strong>Report generated on:</strong> @DateTime.Now.ToString("dd-MM-yyyy")</p>
+    </div>
+</body>
+

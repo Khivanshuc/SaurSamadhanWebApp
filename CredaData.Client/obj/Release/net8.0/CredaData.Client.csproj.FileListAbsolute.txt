@@ -1,0 +1,11 @@
+C:\Work\DevTeamCWP\CredaAdmin\CredaData.Client\bin\Release\net8.0\CredaData.Client.deps.json
+C:\Work\DevTeamCWP\CredaAdmin\CredaData.Client\bin\Release\net8.0\CredaData.Client.dll
+C:\Work\DevTeamCWP\CredaAdmin\CredaData.Client\bin\Release\net8.0\CredaData.Client.pdb
+C:\Work\DevTeamCWP\CredaAdmin\CredaData.Client\obj\Release\net8.0\CredaData.Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\DevTeamCWP\CredaAdmin\CredaData.Client\obj\Release\net8.0\CredaData.Client.AssemblyInfoInputs.cache
+C:\Work\DevTeamCWP\CredaAdmin\CredaData.Client\obj\Release\net8.0\CredaData.Client.AssemblyInfo.cs
+C:\Work\DevTeamCWP\CredaAdmin\CredaData.Client\obj\Release\net8.0\CredaData.Client.csproj.CoreCompileInputs.cache
+C:\Work\DevTeamCWP\CredaAdmin\CredaData.Client\obj\Release\net8.0\CredaData.Client.dll
+C:\Work\DevTeamCWP\CredaAdmin\CredaData.Client\obj\Release\net8.0\refint\CredaData.Client.dll
+C:\Work\DevTeamCWP\CredaAdmin\CredaData.Client\obj\Release\net8.0\CredaData.Client.pdb
+C:\Work\DevTeamCWP\CredaAdmin\CredaData.Client\obj\Release\net8.0\ref\CredaData.Client.dll

@@ -1,0 +1,591 @@
+﻿@model WebApp.Models.ForwardedGrievanceDetailModel
+
+@{
+    // Retrieve the ZonalId from ViewData
+    long zonalId = ViewData["ZonalId"] != null ? Convert.ToInt64(ViewData["ZonalId"]) : -1;
+}
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    #certificatePhoto img {
+        width: 200px;
+        height: auto;
+        display: none;
+    }
+
+    #convertToPdfBtn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        #convertToPdfBtn:hover {
+            background-color: #0056b3;
+        }
+
+    #downloadPdfBtn {
+        display: none;
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+        #downloadPdfBtn:hover {
+            background-color: #218838;
+        }
+
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+    }
+
+    /* Modal Content (image) */
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 500px;
+    }
+
+    /* Add Animation */
+    .modal-content, .close {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    @@keyframes zoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    /* The Close Button */
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        z-index: 1300;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    /* Zoom Buttons */
+    .zoom-btn {
+        border-radius: 14px;
+        position: inherit;
+        bottom: 20px;
+        right: 20px;
+        color: black;
+        font-size: 30px;
+        padding: 10px 20px;
+        background-color: lightgray;
+        cursor: pointer;
+    }
+
+    #zoomIn {
+        margin-right: 5px;
+        right: 70px;
+    }
+
+    #zoomOut {
+        right: 20px;
+    }
+
+    #first-table {
+        width: 41pc;
+    }
+
+    #tables-alignment {
+        display: flex;
+        width: 89.5pc;
+    }
+
+    #table th {
+        font-weight: bold;
+        width: 36%;
+        vertical-align: top;
+    }
+
+    #table td {
+        width: 70%;
+    }
+
+    #tables-alignment {
+        display: flex;
+        width: 89.5pc;
+    }
+
+    .table-spacing {
+        /* height: 870px; */
+        width: 49pc;
+        display: flex;
+        padding-left: 1pc;
+        flex-direction: column-reverse;
+    }
+
+    #detail-img {
+        position: relative;
+        right: 1.5pc;
+        width: 10pc;
+        margin-top: 10px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    #set-img-row {
+        justify-content: space-around;
+    }
+
+    #set-secondrow-img {
+        justify-content: space-evenly;
+    }
+
+    #img-detl-report {
+        width: 40pc;
+        position: relative;
+        left: 4pc;
+        bottom: 1pc;
+    }
+
+    .image-grid {
+        margin-top: 20px;
+    }
+
+        .image-grid .col-md-4 {
+            margin-bottom: 30px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 10pc;
+        }
+
+    .clickable-image {
+        border-radius: 14px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+        .clickable-image:hover {
+            transform: scale(1.05);
+        }
+
+    }
+</style>
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <input type="hidden" id="hiddenForwardedId" value="@Model.Id" />
+        <input type="hidden" id="hiddenGrievanceId" value="@Model.GrievanceId" />
+        <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="detail-report-btn">
+                <h4> Grievance - Report</h4>
+                <div class="form-group">
+                    <button onclick="forwardedListBtnClicked()" class="btn btn-primary" style="display:block;"><img src="/img/Back_icon.png" alt="Alternate Text" class="back-icon">Back to List</button>
+                    <button style="cursor:pointer;display:none;" class="btn btn-primary" onclick="downloadGrievancesPdfclicked(@Model.Id)"><img src="~/img/Download_icon.png" alt="Alternate Text" class="download_icon" /> Download as PDF</button>
+                </div>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-around">
+                <div id="tables-alignment">
+                    <div class="form-group" id="first-table">
+                        <table class="table table-bordered" id="table">
+                            <tbody>
+                                <tr>
+                                    <th>Complaint Id:</th>
+                                    <td>@Html.DisplayFor(model => model.GrievanceId)</td>
+                                </tr>
+                                <tr>
+                                    <th>District:</th>
+                                    <td>@Html.DisplayFor(model => model.DistrictName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Block:</th>
+                                    <td>@Html.DisplayFor(model => model.BlockName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Village:</th>
+                                    <td>@Html.DisplayFor(model => model.VillageName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Region:</th>
+                                    <td>@Html.DisplayFor(model => model.Region)</td>
+                                </tr>
+                                <tr>
+                                    <th>Applicant's Name:</th>
+                                    <td>@Html.DisplayFor(model => model.ApplicantName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Site:</th>
+                                    <td>@Html.DisplayFor(model => model.SiteName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Project Name:</th>
+                                    <td>@Html.DisplayFor(model => model.ProjectName)</td>
+                                </tr>
+                                <tr>
+                                    <th>System Integrator:</th>
+                                    <td>@Html.DisplayFor(model => model.SIName)</td>
+                                </tr>
+                                <tr>
+                                    <th>Fault Remark:</th>
+                                    <td>@Html.DisplayFor(model => model.FaultRemark)</td>
+                                </tr>
+                                <tr>
+                                    <th>GeoTag:</th>
+                                    <td>@Html.DisplayFor(model => model.FaultImageGeoTag)</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Applicant's Mobile Number:</th>
+                                    <td>@Html.DisplayFor(model => model.ApplicantMobileNumber)</td>
+                                </tr>
+                                <tr>
+                                    <th>Complaint Date:</th>
+                                    <td>@Html.DisplayFor(model => model.ComplaintDate)</td>
+                                </tr>
+                                <tr>
+                                    <th>Severity:</th>
+                                    <td>@Html.DisplayFor(model => model.Severity)</td>
+                                </tr>
+                                <tr>
+                                    <th>Assigned To:</th>
+                                    <td>@Html.DisplayFor(model => model.AssignTo)</td>
+                                </tr>
+                                <tr>
+                                    <th>Assigned Date:</th>
+                                    <td>@Html.DisplayFor(model => model.OpenDate)</td>
+                                </tr>
+                                <tr>
+                                    <th>Remark by CREDA Official:</th>
+                                    <td>@Html.DisplayFor(model => model.AdminComment)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-spacing">
+                        <table class="table table-bordered" id="table">
+                            <tbody>
+                                <tr>
+                                    <th>DI Forwarding Remark</th>
+                                    <td>@Html.DisplayFor(model => model.DIForwardingRemark)</td>
+                                </tr>
+                                <tr>
+                                    <th>DI Forwarding Date</th>
+                                    <td>@Html.DisplayFor(model => model.DIForwardingDate)</td>
+                                </tr>
+                                <tr>
+                                    <th>DI Forwarding Document</th>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(Model.DIForwardingDocumentBase64))
+                                        {
+                                            <button type="button" style="border: 2px solid black;" onclick="handlePDFAction('preview', '@Model.DIForwardingDocumentBase64')">Preview PDF</button>
+                                            <button type="button" style="border: 2px solid black;" onclick="handlePDFAction('download', '@Model.DIForwardingDocumentBase64')">Download PDF</button>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Complaint Closing Date:</th>
+                                    <td>@Html.DisplayFor(model => model.CloseDate)</td>
+                                </tr>
+                                <tr>
+                                    <th>Grievance Status:</th>
+                                    <td>@Html.DisplayFor(model => model.GrievanceStatus)</td>
+                                </tr>
+                                @if (Model.IsAcceptedByZO == true)
+                                {
+                                    <tr>
+                                        <th>ZO Acceptance Date</th>
+                                        <td>@Html.DisplayFor(model => model.ZOAcceptanceDate)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ZO Acceptance Remark</th>
+                                        <td>@Html.DisplayFor(model => model.ZOAcceptanceComment)</td>
+                                    </tr>
+                                    
+                                }
+                                @if (Model.IsRejectedByZO == true)
+                                {
+                                    <tr>
+                                        <th>ZO Rejection Date</th>
+                                        <td>@Html.DisplayFor(model => model.ZORejectionDate)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ZO Rejection Remark</th>
+                                        <td>@Html.DisplayFor(model => model.ZORejectionComment)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ZO Rejection Document</th>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(Model.ZORejectionDocumentBase64))
+                                            {
+                                                <button type="button" style="border: 2px solid black;" onclick="handlePDFAction('preview', '@Model.ZORejectionDocumentBase64')">Preview PDF</button>
+                                                <button type="button" style="border: 2px solid black;" onclick="handlePDFAction('download', '@Model.ZORejectionDocumentBase64')">Download PDF</button>
+                                            }
+                                        </td>
+                                    </tr>
+
+                                }
+                                @if (Model.IsRevertedByZO == true)
+                                {
+                                    <tr>
+                                        <th>ZO Reversion Date</th>
+                                        <td>@Html.DisplayFor(model => model.ZOReversionDate)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ZO Reversion Remark</th>
+                                        <td>@Html.DisplayFor(model => model.ZOReversionComment)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ZO Reversion Document</th>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(Model.ZOReversionDocumentBase64))
+                                            {
+                                                <button type="button" style="border: 2px solid black;" onclick="handlePDFAction('preview', '@Model.ZOReversionDocumentBase64')">Preview PDF</button>
+                                                <button type="button" style="border: 2px solid black;" onclick="handlePDFAction('download', '@Model.ZOReversionDocumentBase64')">Download PDF</button>
+                                            }
+                                        </td>
+                                    </tr>
+
+                                }
+                                @if (Model.IsForwardedByZO == true)
+                                {
+                                    <tr>
+                                        <th>ZO Forwarding Date</th>
+                                        <td>@Html.DisplayFor(model => model.ZOForwardingDate)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ZO Forwarding Remark</th>
+                                        <td>@Html.DisplayFor(model => model.ZOForwardingComment)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ZO Forwarding Document</th>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(Model.ZOForwardingDocumentBase64))
+                                            {
+                                                <button type="button" style="border: 2px solid black;" onclick="handlePDFAction('preview', '@Model.ZOForwardingDocumentBase64')">Preview PDF</button>
+                                                <button type="button" style="border: 2px solid black;" onclick="handlePDFAction('download', '@Model.ZOForwardingDocumentBase64')">Download PDF</button>
+                                            }
+                                        </td>
+                                    </tr>
+
+                                }
+                                @if (Model.IsAcceptedByHO == true)
+                                {
+                                    <tr>
+                                        <th>HO Acceptance Date</th>
+                                        <td>@Html.DisplayFor(model => model.HOAcceptanceDate)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>HO Acceptance Remark</th>
+                                        <td>@Html.DisplayFor(model => model.HOAcceptanceComment)</td>
+                                    </tr>
+
+                                }
+                                @if (Model.IsRejectedByHO == true)
+                                {
+                                    <tr>
+                                        <th>HO Rejection Date</th>
+                                        <td>@Html.DisplayFor(model => model.HORejectionDate)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>HO Rejection Remark</th>
+                                        <td>@Html.DisplayFor(model => model.HORejectionComment)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>HO Rejection Document</th>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(Model.HORejectedDocumentBase64))
+                                            {
+                                                <button type="button" style="border: 2px solid black;" onclick="handlePDFAction('preview', '@Model.HORejectedDocumentBase64')">Preview PDF</button>
+                                                <button type="button" style="border: 2px solid black;" onclick="handlePDFAction('download', '@Model.HORejectedDocumentBase64')">Download PDF</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                                @if (Model.IsRevertedByHO == true)
+                                {
+                                    <tr>
+                                        <th>HO Reversion Date</th>
+                                        <td>@Html.DisplayFor(model => model.HOReversionDate)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>HO Reversion Remark</th>
+                                        <td>@Html.DisplayFor(model => model.HOReversionComment)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>HO Reversion Document</th>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(Model.HOReversionDocumentBase64))
+                                            {
+                                                <button type="button" style="border: 2px solid black;"  onclick="handlePDFAction('preview', '@Model.HOReversionDocumentBase64')">Preview PDF</button>
+                                                <button type="button" style="border: 2px solid black;" onclick="handlePDFAction('download', '@Model.HOReversionDocumentBase64')">Download PDF</button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+
+                        <!-- Inline Images Section -->
+                        <div class="form-group col-md-6">
+                            <div id="img-detl-report">
+                                <div class="image-grid">
+                                    <div class="row" id="set-img-row">
+                                        <div class="col-md-4 text-center">
+                                            <p class="col-sm-8" id="detail-img">Fault Image:</p>
+                                            @if (!string.IsNullOrEmpty(Model.FaultImageBase64))
+                                            {
+                                                <img class="clickable-image" width="150px" height="150px" src="data:;base64,@Model.FaultImageBase64" alt="Fault Image" />
+                                            }
+                                            else
+                                            {
+                                                <p>No image available.</p>
+                                            }
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <p class="col-sm-8" id="detail-img">Image Before Rectification:</p>
+                                            @if (!string.IsNullOrEmpty(Model.ImageBeforeRectificationBase64))
+                                            {
+                                                <img class="clickable-image" width="150px" height="150px" src="data:;base64,@Model.ImageBeforeRectificationBase64" alt="Mobile Photo" />
+                                            }
+                                            else
+                                            {
+                                                <p>No image available.</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            @if (zonalId == 0)
+            {
+                <div style="display : flex;">
+                    @if (Model.IsForwardedByZO == true && Model.IsAcceptedByHO == false && Model.IsRejectedByHO == false && Model.IsRevertedByHO == false)
+                    {
+                        <button onclick="fdComplaintAcceptBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Accept</button>
+                    }
+                    @if (Model.IsForwardedByZO == true && Model.IsRejectedByHO == false && Model.IsAcceptedByHO == false && Model.IsRevertedByHO == false)
+                    {
+                        <button onclick="fdComplaintRejectBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Reject</button>
+                    }
+                    @if (Model.IsForwardedByZO == true && Model.IsRevertedByHO == false && Model.IsRejectedByHO == false && Model.IsAcceptedByHO == true)
+                    {
+                        <button onclick="fdComplaintRevertBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Revert</button>
+                    }
+                </div>
+            }
+            else if (zonalId > 0)
+            {
+                <div style="display : flex;">
+                    @if (Model.IsForwardedByZO == false && Model.IsAcceptedByZO == false && Model.IsRejectedByZO == false && Model.IsRevertedByZO == false)
+                    {
+                        <button onclick="fdComplntZOAcceptBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Accept</button>
+                    }
+                    @if (Model.IsForwardedByZO == false && Model.IsRejectedByZO == false && Model.IsAcceptedByZO == false && Model.IsRevertedByZO == false)
+                    {
+                        <button onclick="fdComplntZORejectBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Reject</button>
+                    }
+                    @if (Model.IsForwardedByZO == false && Model.IsRevertedByZO == false && Model.IsRejectedByZO == false && Model.IsAcceptedByZO == true)
+                    {
+                        <button onclick="fdComplntZORevertBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Revert</button>
+                        <button onclick="fdComplntZOForwardBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Forward</button>
+                    }
+                </div>
+            }
+
+
+            <!-- Modal for displaying the image -->
+            <div id="imageModal" class="image-modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="modalImage">
+                <div id="zoomIn" class="zoom-btn">+</div>
+                <div id="zoomOut" class="zoom-btn">-</div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+
+    // Get the modal
+    var modal = document.getElementById('imageModal');
+    var modalImg = document.getElementById("modalImage");
+
+    // Get the images and attach click event
+    var images = document.getElementsByClassName('clickable-image');
+    for (var i = 0; i < images.length; i++) {
+        images[i].onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        }
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // Zoom functionality
+    var zoomLevel = 1;
+    document.getElementById('zoomIn').onclick = function () {
+        zoomLevel += 0.1;
+        modalImg.style.transform = `scale(${zoomLevel})`;
+    }
+
+    document.getElementById('zoomOut').onclick = function () {
+        if (zoomLevel > 0.1) {
+            zoomLevel -= 0.1;
+            modalImg.style.transform = `scale(${zoomLevel})`;
+        }
+    }
+
+</script>

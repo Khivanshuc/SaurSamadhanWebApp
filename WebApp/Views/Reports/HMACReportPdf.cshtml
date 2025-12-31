@@ -1,0 +1,185 @@
+﻿@model WebApp.Models.VwHMalreadycompletedModel
+
+@{
+    Layout = "_BlankLayout";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .Reportcontainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .details-table {
+        border-collapse: collapse;
+        width: 100%;
+        float: left;
+    }
+
+        .details-table th,
+        .details-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            height: 30px;
+        }
+
+        .details-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            width: 28%;
+        }
+
+        .details-table td {
+            width: 40%;
+        }
+
+    .image-section {
+        width: 33%;
+        text-align: center;
+        display: inline-block;
+        float: right;
+        margin-left: 20px;
+    }
+
+        /*     img {
+            width: 35%;
+            height: auto;
+        } */
+
+        .image-section p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid #ddd;
+    }
+
+    #setpdfimg {
+        display: flex !important;
+        justify-content: space-evenly;
+    }
+
+    #imgpdf {
+        width: 25.4pc;
+        position: relative;
+        right: 12pc;
+    }
+
+
+    #SSimg {
+        width: 7pc;
+        position: relative;
+        left: 12pc;
+    }
+
+    .footer {
+        margin-top: 1100px;
+    }
+    }
+</style>
+
+<body>
+    <div class="header">
+        <div id="setpdfimg">
+            <img src="~/img/creda_black_logo_title.png" alt="Alternate Text" id="imgpdf" />
+            <img src="~/img/CREDA_SS.png" alt="img" id="SSimg" />
+        </div>
+    </div>
+    <hr />
+    </div>
+
+    <div class="Reportcontainer">
+        <!-- Details Table -->
+        <table class="details-table">
+            <tr>
+                <th>Inspection ID</th>
+                <td>@Model.Id</td>
+                <td><strong>Image With Functionality</strong></td>
+            </tr>
+            <tr>
+                <th>Inspected By</th>
+                <td>@Model.User</td>
+                <td rowspan="5"><img src="data:@Model.ImageWithCompleteSystemType;base64,@Model.ImageWithCompleteSystem" alt="Image with Functionality" height="200px" width="300px" /></td>
+            </tr>
+            <tr>
+                <th>Inspection Date</th>
+                <td>@Model.InspectionDate?.ToShortDateString()</td>
+            <tr>
+            <tr>
+                <th>District</th>
+                <td>@Model.District</td>
+
+            </tr>
+            <tr>
+                <th>Block</th>
+                <td>@Model.Block</td>
+
+            </tr>
+            <tr>
+                <th>Village</th>
+                <td>@Model.Village</td>
+
+            </tr>
+            <tr>
+                <th>Site</th>
+                <td>@Model.Site</td>
+            </tr>
+            <tr>
+                <th>Project Name</th>
+                <td>@Model.Project</td>
+            </tr>
+                <th>SI Name</th>
+                <td>@Model.SIName</td>
+            </tr>
+            <tr>
+                <th>System Working</th>
+                <td>@(Model.IsSystemWorking ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>Number Of Working Lights</th>
+                <td>@Model.NumberOfWorkingLights</td>
+            </tr>
+            <tr>
+                <th>Number Of Non Working Lights</th>
+                <td>@Model.NumberOfNotWorkingLights</td>
+            </tr>
+            <tr>
+                <th>Rope Wire Status</th>
+                <td>
+                        @if (Model.RopeWireStatus == "1")
+                        {
+                            @:Working
+                        }
+                        else
+                        {
+                            @:Not Working
+                        }
+                </td>
+            </tr>
+            <tr>
+                <th>System Working Hours</th>
+                <td>@Model.SystemWorkingHours</td>
+            </tr>
+            
+        </table>
+    </div>
+
+    <div class="footer">
+        <hr />
+        <p style="text-align: right; padding-right: 20px;"><strong>Report generated on:</strong> @DateTime.Now.ToString("dd-MM-yyyy")</p>
+    </div>
+</body>
+
+

@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="~/css/userprofile.css" rel="stylesheet" />
+</head>
+
+
+<body>
+
+    <div class="container">
+        <h1>User Profile</h1>
+        <form id="userProfileForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" disabled>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" disabled>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" disabled>
+            <label id="resetPasswordBtn" class="text">Reset Password</label>
+            <!-- <button type="button" id="resetPasswordBtn">Reset Password</button> -->
+
+            <label for="district">District:</label>
+            <input type="text" id="district" disabled>
+
+            <label for="officeLevel">Office Level:</label>
+            <input type="text" id="officeLevel" disabled>
+
+            <!-- <button type="submit">Save Changes</button> -->
+        </form>
+    </div>
+
+    <!-- Popup for Reset Password -->
+    <div id="resetPasswordPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" id="closePopup">&times;</span>
+            <h2>Reset Password</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="modal_username" name="username" value="john_doe" disabled>
+
+            <label for="oldPassword">Old Password:</label>
+            <input type="password" id="oldPassword" name="oldPassword" autocomplete="off" required>
+
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" name="newPassword" required>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+           <!---  <button id="updatePasswordBtn">Update</button> --->
+            <div style="display: grid">
+                <button id="updatePasswordBtn" onclick="passwordUpdateBtnClicked()">Update</button>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="~/js/userprofile.js"></script>
+</body>
+</html>

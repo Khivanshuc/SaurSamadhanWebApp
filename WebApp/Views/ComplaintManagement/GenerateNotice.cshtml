@@ -1,0 +1,47 @@
+﻿
+<link href="~/css/generatenotice.css" rel="stylesheet" />
+
+@* <div class="container" id="inputContainer">
+    <h2>Enter Details to Generate Notice</h2>
+    <input type="text" id="inputId" placeholder="Enter ID">
+    <button onclick="generateNotice()">Generate</button>
+</div> *@
+
+<div class="container">
+    <h2>Search for Details</h2>
+    <input type="text" id="searchInput" placeholder="Enter Complaint ID" />
+    <button id="searchButton">Search</button>
+    <button id="clearButton">Clear</button> 
+
+    <div id="GenerateNoticePartialView"></div>
+</div>
+
+<script src="~/js/generatenotice.js"></script>
+<script>
+    const searchButton = document.getElementById("searchButton");
+    const clearButton = document.getElementById("clearButton");
+    const generateNoticePartialView = document.getElementById("GenerateNoticePartialView");
+
+    searchButton.addEventListener("click", () => {
+        const searchInput = document.getElementById("searchInput").value;
+        if (searchInput) {
+            // Load partial view with AJAX
+            fetch('_GenerateNoticePartialView') // Replace with your partial view URL
+                .then(response => response.text())
+                .then(html => {
+                    generateNoticePartialView.innerHTML = html;
+                    document.getElementById("detailId").textContent = searchInput;
+                    generateNoticePartialView.style.display = "block";
+                })
+                .catch(error => console.error('Error loading partial view:', error));
+        } else {
+            alert("Please enter an ID");
+        }
+    });
+
+    clearButton.addEventListener("click", () => {
+        document.getElementById("searchInput").value = "";
+        generateNoticePartialView.innerHTML = ""; // Clear the partial view content
+        generateNoticePartialView.style.display = "none";
+    });
+</script>

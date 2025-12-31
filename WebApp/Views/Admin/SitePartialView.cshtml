@@ -1,0 +1,216 @@
+﻿@model WebApp.Models.UserVwModel
+@*
+<h4>UserModel</h4>
+<hr /> *@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+<style>
+    .select2-container--default .select2-selection--single {
+        height: 38px;
+        border: var(--bs-border-width) solid #d9dee3;
+    }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 35px;
+            color: #697a8d;
+        }
+
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 5px;
+            right: 9px;
+        }
+</style>
+
+@section PageScripts {
+    <script src="~/js/Admin.js"></script>
+}
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form asp-action="View" class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+            <h4>Register New Site</h4>
+
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <label class="form-label">Site Id (optional)</label>
+                    <input id="siteId" class="form-control flex-grow-1" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label class="form-label">Site Name</label>
+                    <input id="siteName" class="form-control flex-grow-1"  required/>
+                    <span  class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <label class="form-label">District</label>
+                    <select id="DistrictId" class="form-control" onchange="DistrictClicked()">
+                        <option value="">Select District</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label class="form-label">Block</label>
+                    <select id="BlockId" onchange="BlockClicked()()" class="form-control">
+                        <option value="">Select Block</option>
+                    </select>
+                    <span asp-validation-for="BlockId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <label class="form-label">Village</label>
+                    <select id="VillageId" class="form-control" >
+                        <option value="">Select Village</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label class="form-label">Project Name</label>
+                    <select id="projectName" class="form-control">
+                        <option value="">Select Project</option>
+                    </select>
+                    <span id="projectNameError" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <label class="form-label">SI Name</label>
+                    <select id="SIName" class="form-control" required>
+                        <option value="">Select SI Name</option>
+                    </select>
+                    <span id="SINameError" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label class="form-label">Commissioning Date</label>
+                    <input type="date" id="commissioningDate" class="form-control flex-grow-1" />
+                    <span id="commissioningDateError" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-4 ">
+                    <a  style="color:white" class="btn btn-primary" >Create</a>
+                    @* <a class="btn btn-primary" style="color:white" onclick="SitelistShow()">Go to Site List</a> *@
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/admin.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+
+<script type="text/javascript">
+    function validateForm() {
+        let isValid = true;
+
+        // Site Name Validation
+        let siteName = $("#siteName").val().trim();
+        if (siteName === "") {
+            $("#siteName").addClass("is-invalid");
+            $("#siteName").next(".text-danger").text("Site Name is required.");
+            isValid = false;
+        } else {
+            $("#siteName").removeClass("is-invalid");
+            $("#siteName").next(".text-danger").text("");
+        }
+
+        // District Validation
+        let district = $("#DistrictId").val();
+        if (!district) {
+            $("#DistrictId").addClass("is-invalid");
+            $("#DistrictId").next(".text-danger").text("Please select a District.");
+            isValid = false;
+        } else {
+            $("#DistrictId").removeClass("is-invalid");
+            $("#DistrictId").next(".text-danger").text("");
+        }
+
+        // Block Validation
+        let block = $("#BlockId").val();
+        if (!block) {
+            $("#BlockId").addClass("is-invalid");
+            $("#BlockId").next(".text-danger").text("Please select a Block.");
+            isValid = false;
+        } else {
+            $("#BlockId").removeClass("is-invalid");
+            $("#BlockId").next(".text-danger").text("");
+        }
+
+        // Village Validation
+        let village = $("#VillageId").val();
+        if (!village) {
+            $("#VillageId").addClass("is-invalid");
+            $("#VillageId").next(".text-danger").text("Please select a Village.");
+            isValid = false;
+        } else {
+            $("#VillageId").removeClass("is-invalid");
+            $("#VillageId").next(".text-danger").text("");
+        }
+
+        // Project Name Validation
+        let projectName = $("#projectName").val();
+        if (!projectName) {
+            $("#projectName").addClass("is-invalid");
+            $("#projectNameError").text("Please select a Project.");
+            isValid = false;
+        } else {
+            $("#projectName").removeClass("is-invalid");
+            $("#projectNameError").text("");
+        }
+
+        // SI Name Validation
+        let siName = $("#SIName").val();
+        if (!siName) {
+            $("#SIName").addClass("is-invalid");
+            $("#SINameError").text("Please select an SI Name.");
+            isValid = false;
+        } else {
+            $("#SIName").removeClass("is-invalid");
+            $("#SINameError").text("");
+        }
+
+        // Commissioning Date Validation
+        let commissioningDate = $("#commissioningDate").val();
+        if (!commissioningDate) {
+            $("#commissioningDate").addClass("is-invalid");
+            $("#commissioningDateError").text("Commissioning Date is required.");
+            isValid = false;
+        } else {
+            $("#commissioningDate").removeClass("is-invalid");
+            $("#commissioningDateError").text("");
+        }
+
+        return isValid;
+    }
+
+    // Bind validation to the "Create" button
+    $(document).ready(function () {
+        fetchDist();
+        getProjectName();
+        getSIName();
+
+        $("#SIName").select2();
+        $("#VillageId").select2();
+
+
+        // Add validation when clicking the "Create" button
+        $(".btn-primary").click(function (e) {
+            e.preventDefault(); // Prevent form submission
+
+            if (validateForm()) {
+                AddSite(); // Call your function only if validation passes
+            }
+        });
+    });
+
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }   
+}
+
+

@@ -1,0 +1,184 @@
+﻿@{
+    ViewData["Title"] = "Complaint List | CREDA";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+
+<link href="~/css/complaintmanagement.css" rel="stylesheet" />
+<style>
+    /* Universal Loader CSS */
+    #universalLoader {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .spinner {
+        width: 64px;
+        height: 64px;
+        border: 8px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #3498db;
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+    }
+
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .select2-container--default .select2-selection--single {
+        height: 38px;
+        border: var(--bs-border-width) solid #d9dee3;
+    }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 35px;
+            color: #697a8d;
+        }
+
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 5px;
+            right: 9px;
+        }
+</style>
+<div id="universalLoader">
+    <div class="spinner"></div>
+</div>
+
+<div id="FaultFiltersView">
+    <div class="row justify-content-center mt-2 ">
+        <h2>Complaint List</h2>
+        <button id="" class="btn btn-back-to-list" onclick="BacktoHome()"><img src="~/img/Back_icon.png" alt="Alternate Text" class="back-icon" />BACK</button>
+        <button id="backToDashButton" class="btn btn-back-to-dash" onclick="BackToDashboard()">
+            <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+        </button>
+
+        <div class="col-12">
+            <div class="col-12">
+                <form class="p-4 border rounded shadow-sm bg-light">
+                    <!-- First row of fields -->
+                    <div class="row g-3 mb-3">
+                        <div class="setform">
+                            <!-- First column -->
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <div class="position-relative" id="down">
+                                        <select name="txtjila" id="txtjila" class="form-control custom-dropdown" onchange="districtOptionClick()">
+                                            <option value="">Select District</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Second column -->
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <div class="position-relative" id="down">
+                                        <select id="txtvikaskhand" name="txtvikaskhand" class="form-control custom-dropdown" onchange="blockOptionClicked()">
+                                            <option value="">Select Block</option>
+                                        </select>
+                                        <span class="dropdown-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <div class="position-relative" id="down">
+                                        <select id="WorkingStatus" class="form-control custom-dropdown" onchange="workingStatusClicked()">
+                                            <option value="-1">Select Status</option>
+                                            <option value="0">Pending</option>
+                                            <option value="1">Resolved</option>
+                                        </select>
+                                        <span class="dropdown-arrow"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <div class="position-relative" id="down">
+                                        <select id="txtSIname" name="txtSIname" class="form-control" onchange="SIOptionClicked()">
+                                            <option value="0">Please Select SI</option>
+                                            <option value="notAssigned">Not Assigned</option>
+                                        </select>
+                                        <label class="error" id="SInameError"></label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-3" id="down">
+                                    <div class="position-relative" id="down">
+                                        <input type="text" class="form-control search-box" placeholder="Complaint Number" id="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-3" id="down">
+                                    <div class="position-relative" id="down">
+                                        <button type="button" class="btn btn-primary" id="searchButton" onclick="onSearchClicked()" style=""><img src="/img/Search_icon.png" alt="" class="search_icon">SEARCH</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Search and Clear Buttons -->
+                        <div class="col-12 col-md-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
+                            <div class="alinebutton" style="top:131px!important;">
+                                <button type="button" class="btn btn-primary ms-2" id="clearButtonreport" onclick="clearButtonClicked()"><img src="/img/Clear_icon.png" alt="Alternate Text" class="clear_icon"> CLEAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ComplaintListPartialView"></div>
+<div id="ComplaintDetailPartialView"></div>
+
+@section PageScripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/complaintmanagement.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+
+    <script>
+        $(document).ready(function () {
+            hideLoader();
+            getDistrict();
+            getComplaintList();
+            getSIName();
+
+            $("#txtSIname").select2();
+        });
+
+        const dotMenu = document.querySelector('.dot-menu');
+        if (dotMenu) {
+            dotMenu.addEventListener('click', function (event) {
+                event.stopPropagation();
+                const dropdown = document.querySelector('.dropdown');
+                if (dropdown) {
+                    dropdown.classList.toggle('show');
+                }
+            });
+        }
+
+        window.addEventListener('click', function (event) {
+            if (!event.target.closest('.dot-menu')) {
+                document.querySelectorAll('.dropdown').forEach(function (dropdown) {
+                    dropdown.classList.remove('show');
+                });
+            }
+
+            const modal = document.getElementById('returnModal');
+            if (modal && event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+}

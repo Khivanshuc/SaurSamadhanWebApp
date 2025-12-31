@@ -1,0 +1,153 @@
+﻿@model WebApp.Models.VwGrievanceModel
+
+<input type="hidden" id="hiddenDistrictId" value="@Model.DistrictId" disabled>
+<input type="hidden" id="hiddenBlockId" value="@Model.BlockId" disabled>
+<input type="hidden" id="hiddenVillageId" value="@Model.VillageId" disabled>
+<input type="hidden" id="hiddenSiteId" value="@Model.SiteId" disabled>
+<input type="hidden" id="hiddenGrievanceId" value="@Model.Id" disabled>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="inputPassword4" class="fw-bold">हितग्राही का परिचय</label>
+                <input type="text" class="form-control" name="txtappname" id="txtappname" value="@Model.Area" disabled>
+                <label class="error" id="appnameError"></label>
+            </div>
+            <div class="col-lg-4">
+                <label for="inputAddress" class="fw-bold">शिकायत दर्ज करने का दिनांक</label>
+                <input type="text" class="form-control" name="txtdate" id="txtdate" value="@Model.CreatedOn" disabled>
+                <label class="error" id="DateError"></label>
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="inputZip" class="fw-bold">जिला</label>
+                <select name="txtjila" id="txtjila" class="form-control" disabled>
+                    <option selected>@Model.DistrictName</option>
+                </select>
+                <label class="error" id="distNameError"></label>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="form-group col-lg-4">
+                <label for="inputZip" class="fw-bold">विकासखण्ड</label>
+                <select id="txtvikaskhand" name="txtvikaskhand" class="form-control" disabled>
+                    <option selected>@Model.BlockName</option>
+                </select>
+                <label class="error" id="blockNameError"></label>
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="inputZip" class="fw-bold">ग्राम</label>
+                <select id="txtVillage" name="txtVillage" class="form-control" disabled>
+                    <option selected>@Model.VillageName</option>
+                </select>
+                <label class="error" id="villageNameError"></label>
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="inputZip" class="fw-bold">साइट</label>
+                <select id="txtSite" name="txtSite" class="form-control" disabled>
+                    <option selected>@Model.SiteName</option>
+                </select>
+                <label class="error" id="siteNameError"></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="form-group col-lg-4">
+                <label for="inputZip" class="fw-bold">शिकायत का विषय</label>
+                <input type="text" class="form-control" name="txtComplaintRemark" id="txtComplaintRemark" value="@Model.FaultRemark" disabled>
+                <label class="error" id="complaintRemarkError"></label>
+            </div>
+            <div class="form-group col-lg-4" style="display:none">
+                <label for="txtComplaintStatus" class="fw-bold">शिकायत की स्थिति</label>
+                <select id="txtComplaintStatus" name="txtComplaintStatus" class="form-control" disabled>
+                    <option selected>@Model.GrievanceStatus</option>
+                </select>
+                <label class="error" id="complaintStatusError"></label>
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="complainCame" class="fw-bold">शिकायत किस माध्यम से आया</label>
+                <select id="complainCame" name="complainCame" class="form-control" disabled>
+                    <option value="3" selected>सौर समाधान - शिकायत पोर्टल</option>
+                </select>
+                <label class="error" id="complainCameError"></label>
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="actionTaken" class="fw-bold">जिला द्वारा कार्यवाही की गई</label>
+                <div class="mt-2">
+                    <label><input type="radio" name="actionTaken" value="yes" onclick="toggleActionFields(this)"> हाँ</label>
+                    <label><input type="radio" name="actionTaken" value="no" onclick="toggleActionFields(this)" checked> नहीं</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="row" id="actionFields" style="display:none;">
+            <div class="form-group col-lg-4">
+                <label for="letterDate" class="fw-bold">पत्र दिनांक</label>
+                <input type="date" id="letterDate" name="letterDate" class="form-control">
+                <label class="error" id="letterDateError"></label>
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="letterNumber" class="fw-bold">पत्र क्रमांक</label>
+                <input type="text" id="letterNumber" name="letterNumber" class="form-control">
+                <label class="error" id="letterNumberError"></label>
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="letterSent" class="fw-bold">पत्र किसको भेजा गया</label>
+                <select id="letterSent" name="letterSent" class="form-control">
+                    <option value="0">चयन करें</option>
+                    <option value="1">D.O.</option>
+                    <option value="2">Z.O.</option>
+                    <option value="3">H.O.</option>
+                </select>
+                <label class="error" id="letterSentError"></label>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="row" id="fileUploadFields" style="display: flex; justify-content: space-between;">
+            <div class="form-group col-lg-6">
+                <label for="fileUpload" class="fw-bold">पत्र अपलोड कीजिये</label>
+                <div style="position: relative;">
+                    <input type="file" id="fileUpload" name="fileUpload" class="form-control custom-file-input" accept=".pdf,.doc,.docx" style="background-color: #f8f9fa;">
+                    <small id="fileError" class="error" style="color:red;"></small>
+                    <span id="deleteIcon" class="delete-icon" style="display: none; position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;">
+                        &#x274C;
+                    </span>
+                </div>
+            </div>
+            <div class="form-group col-lg-6">
+                <label for="fileUpload" class="fw-bold">यदि कोई अन्य अटैचमेंट</label>
+                <div style="position: relative;">
+                    <input type="file" id="OtherfileUpload" name="fileUpload" class="form-control custom-file-input" accept=".pdf,.doc,.docx" style="background-color: #f8f9fa;">
+                    <small id="fileError" class="error" style="color:red;"></small>
+                    <span id="deleteIcon" class="delete-icon" style="display: none; position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;">
+                        &#x274C;
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex">
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-5 d-flex justify-content-end">
+            <button type="submit" id="btnsave" name="btnsave" class="btn btn-info btn-lg" style="margin-top:25px" onclick="registerPublicGrievanceComplaintBtnClicked()">
+                Register
+            </button>
+        </div>
+        <div class="col-sm-1">
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementById("letterDate").value = today;
+    });
+</script>

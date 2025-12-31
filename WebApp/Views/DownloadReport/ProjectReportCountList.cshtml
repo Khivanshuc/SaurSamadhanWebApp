@@ -1,0 +1,85 @@
+﻿@model List<WebApp.Models.VwProjectReportListWithCount>
+
+@{
+    Layout = "_BlankLayout";
+}
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="card-body">
+                <div class="table-responsive" style="height:60vh">
+                    <table class="table table-hover table-bordered" style="max-height:60vh; overflow:auto;width:100%;">
+
+                        <thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important">
+
+                            <tr>
+                                <th style="color:white; width:5%; font-weight: bold;">Name of District</th>
+                                <th style="color:white; width:5%; font-weight: bold;">Biogas</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Jal Jivan Mission</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Other Than JJM</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Saur Sujla Yojna</th>
+                                <th style="color:white; width:10%; font-weight: bold;">CM Gaon Ganga Yojana</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Community Irrigation</th>
+                                <th style="color:white; width:10%; font-weight: bold;">RVE DDG Monitoring</th>
+                                <th style="color:white; width:10%; font-weight: bold;">RVE DDG - Off Grid</th>
+                                <th style="color:white; width:10%; font-weight: bold;">On Grid Power Plant</th>
+                                <th style="color:white; width:10%; font-weight: bold;">High Mast</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Mini Mast</th>
+                                <th style="color:white; width:10%; font-weight: bold;">Total</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                <tr style="background-color:orange;">
+                                    <td style="color:black"><strong>Total </strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.BioGasProjectTotal</strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.JJMProjectTotal</strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.OtherThanJJMProjectTotal</strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.SSYProjectTotal</strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.CMYojnaProjectTotal</strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.CommunityIrrigationProjectTotal</strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.RVEDDProjectTotal</strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.OtherRVEDDProjectTotal</strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.OnGridProjectTotal</strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.HighMastProjectTotal</strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.MiniMastProjectTotal</strong></td>
+                                    <td style="color:black"><strong>@Model.FirstOrDefault()?.GrandTotalProjectCount</strong></td>
+                                </tr>
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.AreaName</td>
+                                        <td id="5"><a href="javascript:void(0);" data-td-id="5" onclick="GetProjectCountDetailsClicked(@item.Id, '@item.AreaName',this)">@item.BioGasProjectCount</a></td>
+                                        <td id="7"><a href="javascript:void(0);" data-td-id="7" onclick="GetProjectCountDetailsClicked(@item.Id, '@item.AreaName',this)">@item.JJMProjectCount</a></td>
+                                        <td id="8"><a href="javascript:void(0);" data-td-id="8" onclick="GetProjectCountDetailsClicked(@item.Id, '@item.AreaName',this)">@item.OtherThanJJMProjectCount</a></td>
+                                        <td id="9"><a href="javascript:void(0);" data-td-id="10" onclick="GetProjectCountDetailsClicked(@item.Id, '@item.AreaName',this)">@item.SSYProjectCount</a></td>
+                                        <td id="10"><a href="javascript:void(0);" data-td-id="12" onclick="GetProjectCountDetailsClicked(@item.Id, '@item.AreaName',this)">@item.CMYojnaProjectCount</a></td>
+                                        <td id="11"><a href="javascript:void(0);" data-td-id="13" onclick="GetProjectCountDetailsClicked(@item.Id, '@item.AreaName',this)">@item.CommunityIrrigationProjectCount</a></td>
+                                        <td id="12"><a href="javascript:void(0);" data-td-id="14" onclick="GetProjectCountDetailsClicked(@item.Id, '@item.AreaName',this)">@item.RVEDDProjectCount</a></td>
+                                        <td id="13"><a href="javascript:void(0);" data-td-id="15" onclick="GetProjectCountDetailsClicked(@item.Id, '@item.AreaName',this)">@item.OtherRVEDDProjectCount</a></td>
+                                        <td id="14"><a href="javascript:void(0);" data-td-id="16" onclick="GetProjectCountDetailsClicked(@item.Id, '@item.AreaName',this)">@item.OnGridProjectCount</a></td>
+                                        <td id="15"><a href="javascript:void(0);" data-td-id="17" onclick="GetProjectCountDetailsClicked(@item.Id, '@item.AreaName',this)">@item.HighMastProjectCount</a></td>
+                                        <td id="16"><a href="javascript:void(0);" data-td-id="18" onclick="GetProjectCountDetailsClicked(@item.Id, '@item.AreaName',this)">@item.MiniMastProjectCount</a></td>
+                                        <td id="">@item.TotalProjectCount</td>
+                                    </tr>
+                                }
+
+
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="13" class="text-center">No data available</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

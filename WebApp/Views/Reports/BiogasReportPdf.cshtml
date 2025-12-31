@@ -1,0 +1,195 @@
+﻿@model WebApp.Models.VwBiogasalreadycompletedModel
+
+@{
+    Layout = "_BlankLayout";
+}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .Reportcontainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .details-table {
+        border-collapse: collapse;
+        width: 100%;
+        float: left;
+    }
+
+        .details-table th,
+        .details-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            height: 30px;
+        }
+
+        .details-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            width: 28%;
+        }
+
+        .details-table td {
+            width: 40%;
+        }
+
+    .image-section {
+        width: 33%;
+        text-align: center;
+        display: inline-block;
+        float: right;
+        margin-left: 20px;
+    }
+
+        /*     img {
+                    width: 35%;
+                    height: auto;
+                } */
+
+        .image-section p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid #ddd;
+    }
+
+    #setpdfimg {
+        display: flex !important;
+        justify-content: space-evenly;
+    }
+
+    #imgpdf {
+        width: 25.4pc;
+        position: relative;
+        right: 12pc;
+    }
+
+
+    #SSimg {
+        width: 7pc;
+        position: relative;
+        left: 12pc;
+    }
+
+    .footer {
+        margin-top: 1100px;
+    }
+
+</style>
+<body>
+    <div class="header">
+        <div id="setpdfimg">
+            <img src="~/img/creda_black_logo_title.png" alt="Alternate Text" id="imgpdf" />
+            <img src="~/img/CREDA_SS.png" alt="img" id="SSimg" />
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="Reportcontainer">
+        <!-- Details Table -->
+        <table class="details-table">
+            <tr>
+                <th>Project</th>
+                <td>@Model.Project</td>
+                <td><strong>Upload Photo</strong></td>
+            </tr>
+            <tr>
+                <th>Inspection ID</th>
+                <td>@Model.Id</td>
+                <td rowspan="5"><img
+                <td rowspan="5"><img src="data:@Model.UploadPhotoType;base64,@Model.UploadPhoto" height="200px" width="300px" />
+            </tr>
+            <tr>
+                <th>Inspected By</th>
+                <td>@Model.User</td>
+            </tr>
+            <tr>
+                <th>Inspection Date</th>
+                <td>@Model.InspectionDate.ToShortDateString()</td>
+
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>@Model.District</td>
+            </tr>
+            <tr>
+                <th>Block</th>
+                <td>@Model.Block</td>
+            </tr>
+            <tr>
+                <th>Village</th>
+                <td>@Model.Village</td>
+            </tr>
+            <tr>
+                <th>Site</th>
+                <td>@Model.Site</td>
+            </tr>
+            <tr>
+                <th>Inspector Designation</th>
+                <td>@Model.InspectorDesignation</td>
+            </tr>
+            
+            <tr>
+                <th>Gram Panchayat</th>
+                <td>@Model.GramPanchayatName</td>
+            </tr>
+            <tr>
+                <th>Beneficiary Name</th>
+                <td>@(Model.BeneficiaryName)</td>
+            </tr>
+            <tr>
+                <th>Beneficiary Class</th>
+                <td>@Model.BeneficiaryClass</td>
+            </tr>
+            <tr>
+                <th>Biogas Installation Year</th>
+                <td>@Model.BiogasInstallationYear</td>
+            </tr>
+            <tr>
+            <tr>
+                <th>Biogas SEW Name</th>
+                <td>@Model.BiogasSEWName</td>
+            </tr>
+            
+            <tr>
+                <th>Dinbandhu Biogas Capacity</th>
+                <td>@Model.DinbandhuBiogasCapacity</td>
+            </tr>
+            <tr>
+            <tr>
+                <th>System Construction Status</th>
+                <td>@Model.SystemConstructionStatus</td>
+            </tr>
+            <tr>
+            <tr>
+                <th>System Working</th>
+                <td>@(Model.IsSystemWorking ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>Remarks</th>
+                <td>@Model.Remarks</td>
+            </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        <hr />
+        <p style="text-align: right; padding-right: 20px;"><strong>Report generated on:</strong> @DateTime.Now.ToString("dd-MM-yyyy")</p>
+    </div>
+</body>
+
+

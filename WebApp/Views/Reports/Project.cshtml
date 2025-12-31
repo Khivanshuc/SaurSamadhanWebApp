@@ -1,0 +1,100 @@
+﻿@model List<WebApp.Models.VwProjectWorkingCountModel>
+@{
+    ViewData["Title"] = "Projects | CREDA";
+}
+
+<div class="container d-flex justify-content-center">
+    <div id="projecthomebtn">
+        <button id="backToDashButton" class="btn btn-back-to-dash" onclick="BackToDashboard()">
+            <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+        </button>
+    </div>
+    <div class="row justify-content-center w-100">
+        @foreach (var item in Model)
+        {
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3" onclick="OpenProjectList(@item.ProjectId)" style="cursor:pointer">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="avatar">
+                                @if (item.ProjectId == 5)
+                                {
+                                    <img src="~/img/biogas.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 6)
+                                {
+
+                                    <img src="~/img/cold_storage.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 7)
+                                {
+
+                                    <img src="~/img/jjm.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 8)
+                                {
+                                    <img src="~/img/other_than_jjm.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 9)
+                                {
+                                    <img src="~/img/solar_ro.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 10)
+                                {
+                                    <img src="~/img/solar_irrigation.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 11)
+                                {
+                                    <img src="~/img/other_solar_pump.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 12)
+                                {
+                                    <img src="~/img/cm_gaon_ganga_yojna.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 13)
+                                {
+                                    <img src="~/img/community_irrigation.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 14)
+                                {
+                                    <img src="~/img/rve_ddg.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 15)
+                                {
+                                    <img src="~/img/other_rve_ddg.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 16)
+                                {
+                                    <img src="~/img/on_grid_power_plant.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 17)
+                                {
+                                    <img src="~/img/high_mast.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else if (item.ProjectId == 18)
+                                {
+                                    <img src="~/img/high_mast.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                                else
+                                {
+                                    <img src="~/img/street_light.png" alt="chart success" class="rounded-circle" style="width: 50px; height: 50px;">
+                                }
+                            </div>
+                        </div>
+                        <span style="display: none;">@item.ProjectId</span>
+                        <span class="fw-medium d-block mb-1" style="font-size:20px !important; font-weight:1000 !important;">@item.ProjectName</span>
+                        <h3 class="card-title mb-2 text-success small">Working Projects: @item.WorkingProjectCount</h3>
+                        <h3 class="card-title mb-2 text-danger small">Not Working Projects: @item.NonWorkingProjectCount</h3>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/report.js"></script>
+</script>
+
+
+

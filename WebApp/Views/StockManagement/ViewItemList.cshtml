@@ -1,0 +1,86 @@
+﻿@{
+    Layout = "_BlankLayout";
+}
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="card-body">
+                <div class="table-responsive ListTable" style="height:60vh">
+                    <table class="table table-hover table-bordered " style="max-height:60vh; overflow:auto;width:100%;">
+                        <thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important">
+                            <tr>
+                                <th style="color:white; width:5%;">Serial No.</th>
+                                <th style="color:white; width:5%;">Chalan No.</th>
+                                <th style="color:white; width:5%;">District</th>
+                                <th style="color:white; width:5%;">Item</a></th>
+                                <th style="color:white; width:5%;">Make</th>
+                                <th style="color:white; width:5%;">Capacity</th>
+                                <th style="color:white; width:10%;" id="qtyUptoHead">Quantity Upto</th>
+                                <th style="color:white; width:10%;" id="qtyAfterHead">Quantity After</th>
+                                <th style="color:white; width:4%;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>CH1234</td>
+                                <td>Raipur</td>
+                                <td><a href="#" onclick="getViewItemListDetails()">Steel Rod</a></td>
+                                <td>TATA</td>
+                                <td>0</td>
+                                <td>500</td>
+                                <td>300</td>
+                                <td>800</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>CH1235</td>
+                                <td>Durg</td>
+                                <td><a href="#" onclick="getViewItemListDetails()">Cement Bags</a></td>
+                                <td>ACC</td>
+                                <td>0</td>
+                                <td>200</td>
+                                <td>100</td>
+                                <td>300</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>CH1236</td>
+                                <td>Bilaspur</td>
+                                <td><a href="#" onclick="getViewItemListDetails()">Sand</a></td>
+                                <td>Local</td>
+                                <td>0</td>
+                                <td>1000</td>
+                                <td>500</td>
+                                <td>1500</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>CH1237</td>
+                                <td>Korba</td>
+                                <td><a href="#" onclick="getViewItemListDetails()">Bricks</a></td>
+                                <td>Birla</td>
+                                <td>0</td>
+                                <td>1500</td>
+                                <td>800</td>
+                                <td>2300</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>CH1238</td>
+                                <td>Raigarh</td>
+                                <td><a href="#" onclick="getViewItemListDetails()">Pipes</a></td>
+                                <td>Jindal</td>
+                                <td>0</td>
+                                <td>400</td>
+                                <td>200</td>
+                                <td>600</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

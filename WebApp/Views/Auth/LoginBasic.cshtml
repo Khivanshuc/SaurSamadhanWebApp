@@ -1,0 +1,86 @@
+
+@model WebApp.Models.LoginModel
+@{
+    ViewData["Title"] = "Login | CREDA ";
+    Layout = "_CommonMasterLayout";
+}
+
+@section PageStyles {
+    <link rel="stylesheet" href="~/vendor/css/pages/page-auth.css">
+}
+@* ************** Content ************** *@
+
+<div class="container-xxl" id="bgimg">
+    <div class="d-flex justify-content:flex-end">
+        <button asp-action="" class="btn btn-back-to-dash mt-4" onclick="BackToHomePage();">
+            <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+        </button>
+    </div>
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+            <!-- Register -->
+            <div class="card">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="app-brand justify-content-center">
+                        <a href="/" class="app-brand-link gap-2">
+                            <span class="app-brand-logo demo">
+                                <img src="~/img/favicon/favicon.ico" />
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+                    <h4 class="mb-2">Welcome to CREDA! 👋</h4>
+                    <p class="mb-4">Please sign-in to your account.</p>
+
+                    <form id="formAuthentication" class="mb-3" asp-action="AdminPanelLogin" asp-controller="Auth" method="POST">
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div> 
+                        <div class="mb-3">
+                            <label class="form-label">Enter User Name</label>
+                            <input type="text" class="form-control" asp-for="Username" placeholder="Enter your username" autofocus>
+                            <span class="text-danger" asp-validation-for="Username"></span>
+                        </div>
+                        <div class="mb-3 form-password-toggle">
+                            <div class="d-flex justify-content-between">
+                                <label class="form-label" asp-for="Password" for="password">Password</label>
+                                @* <a href="/Auth/ForgotPasswordBasic">
+                                <small>Forgot Password?</small>
+                                </a> *@
+                            </div>
+                            <div class="input-group input-group-merge">
+                                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                            </div>
+                            <span class="text-danger" asp-validation-for="Password"></span>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                @* <input class="form-check-input" type="checkbox" asp-for="RememberMe">
+                                <label class="form-check-label" >
+                                Remember Me
+                                </label> *@
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                        </div>
+                    </form>
+
+                    @*  <p class="text-center">
+                    <span>New on our platform?</span>
+                    <a href="/Auth/RegisterBasic">
+                    <span>Create an account</span>
+                    </a>
+                    </p> *@
+                </div>
+            </div>
+            <!-- /Register -->
+        </div>
+    </div>
+</div>
+<script>
+    function BackToHomePage() {
+        window.location.href = '../Home/Index';
+    }
+</script>

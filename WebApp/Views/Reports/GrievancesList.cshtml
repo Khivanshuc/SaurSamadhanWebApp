@@ -1,0 +1,67 @@
+﻿@model List<WebApp.Models.VwGrievanceListModel>
+
+<div class="row justify-content-center ">
+    <div class="col-md-12">
+        <form asp-action="View" class=" border shadow-sm bg-light" style="width: 100%;">
+            <div class="card-body">
+                @* <h4 class="card-title mb-4">Grievances List</h4> *@
+                <div class="table-responsive" style="height:60vh">
+                    <table class="table table-hover table-bordered" style="max-height:60vh; overflow:auto;width:100%;">
+                        <thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important">
+                            <tr>
+                                <th style="color:white; width:5%;">Grievance Id</th>
+                                <th style="color:white; width:5%;">Grievance Status</th>
+                                <th style="color:white; width:5%;">District Name</th>
+                                <th style="color:white; width:5%;">Block Name</th>
+                                <th style="color:white; width:15%;">Project Name</th>
+                                <th style="color:white; width:30%;">Fault Remark</th>
+                                <th style="color:white; width:10%;">Assign To</th>
+                                <th style="color:white; width:10%;">Complaint From</th>
+                                <th style="color:white; width:1%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                if (Model.Count > 0)
+                                {
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>  @item.Id</td>
+                                            <td>  @item.GrievanceStatus</td>
+                                            <td>  @item.DistrictName</td>
+                                            <td>  @item.BlockName</td>
+                                            <td>  @item.ProjectName</td>
+                                            <td>  @item.FaultRemark</td>
+                                            <td>  @item.AssignTo</td>
+                                            <td>  @item.EntryType</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <button class="btn p-0 mr-1" type="button" aria-haspopup="true" onclick="EditGrievances(@item.Id)">
+                                                        <img src="~/img/edit.png" style="width: 20px; height: 20px;" />
+                                                    </button>
+                                                    <button class="btn p-0" type="button" aria-haspopup="true" onclick="GrievancesDetails(@item.Id)">
+                                                        <img src="~/img/view.png" style="width: 20px; height: 15px;" />
+                                                    </button>
+                                                </div>
+                                               
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="8" style="text-align:center">
+                                            No Record Found
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

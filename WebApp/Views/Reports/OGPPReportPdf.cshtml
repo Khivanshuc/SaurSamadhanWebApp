@@ -1,0 +1,206 @@
+﻿@model WebApp.Models.VwOGPPalreadycompletedModel
+
+@{
+    Layout = "_BlankLayout";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .Reportcontainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .details-table {
+        border-collapse: collapse;
+        width: 100%;
+        float: left;
+    }
+
+        .details-table th,
+        .details-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            height: 30px;
+        }
+
+        .details-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            width: 28%;
+        }
+
+        .details-table td {
+            width: 40%;
+        }
+
+    .image-section {
+        width: 33%;
+        text-align: center;
+        display: inline-block;
+        float: right;
+        margin-left: 20px;
+    }
+
+        /*     img {
+                width: 35%;
+                height: auto;
+            } */
+
+        .image-section p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid #ddd;
+    }
+
+    #setpdfimg {
+        display: flex !important;
+        justify-content: space-evenly;
+    }
+
+    #imgpdf {
+        width: 25.4pc;
+        position: relative;
+        right: 12pc;
+    }
+
+
+    #SSimg {
+        width: 7pc;
+        position: relative;
+        left: 12pc;
+    }
+
+    .footer {
+        margin-top: 1100px;
+    }
+
+</style>
+
+<body>
+    <div class="header">
+        <div id="setpdfimg">
+            <img src="~/img/creda_black_logo_title.png" alt="Alternate Text" id="imgpdf" />
+            <img src="~/img/CREDA_SS.png" alt="img" id="SSimg" />
+        </div>
+    </div>
+    <hr />
+    </div>
+
+    <div class="Reportcontainer">
+        <!-- Details Table -->
+        <table class="details-table">
+            <tr>
+                <th>Inspection ID</th>
+                <td>@Model.Id</td>
+                <td><strong>System Working Image</strong></td>
+            </tr>
+            <tr>
+                <th>Inspected By</th>
+                <td>@Model.User</td>
+                <td rowspan="5"><img src="data:@Model.SystemWorkingImageType;base64,@Model.SystemWorkingImage" height="200px" width="300px" /></td>
+            </tr>
+            <tr>
+                <th>Inspection Date</th>
+                <td>@Model.InspectionDate.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>@Model.District</td>
+
+            </tr>
+            <tr>
+                <th>Block</th>
+                <td>@Model.Block</td>
+
+            </tr>
+            <tr>
+                <th>Village</th>
+                <td>@Model.Village</td>
+
+            </tr>
+            <tr>
+                <th>Site</th>
+                <td>@Model.Site</td>
+                <td><strong>System Maintenance Image</strong></td>
+            </tr>
+            <tr>
+                <th>Project Name</th>
+                <td>@Model.Project</td>
+                <td rowspan="5"><img src="data:@Model.SystemMaintanenceImageType;base64,@Model.SystemMaintanenceImage" height="200px" width="300px" /></td>
+            </tr>
+            <tr>
+                <th>SI Name</th>
+                <td>@Model.SIName</td>
+            </tr>
+            
+            <tr>
+                <th>System Working</th>
+                <td>@(Model.IsSystemWorking ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>System Working Remarks</th>
+                <td>@Model.IsSystemWorkingRemarks</td>
+            </tr>
+            <tr>
+                <th>Number of Invertors</th>
+                <td>@Model.InvertorCount</td>
+            </tr>
+            <tr>
+                <th>Number of Faulty Invertor</th>
+                <td>@Model.FaultInvertorCount </td>
+            </tr>
+            <tr>
+                <th>Number of Solar Module</th>
+                <td>@Model.SolarModuleCount</td>
+            </tr>
+            <tr>
+                <th>Number of Faulty Solar Module</th>
+                <td>@Model.FaultSolarModuleCount</td>
+            </tr>
+            <tr>
+                <th>DC Combiner Box Status</th>
+                <td>@(Model.DCCombinerBoxStatus ? "Working" : "Not Working")</td>
+            </tr>
+
+            <tr>
+                <th>AC Combiner Box Status</th>
+                <td>@(Model.ACCombinerBoxStatus ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>Earthing Status</th>
+                <td>@(Model.EarthingStatus ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>LA Status</th>
+                <td>@(Model.LAStatus ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>RMS Installation Status</th>
+                <td>@(Model.RMSInstallationStatus ? "Installed" : "Not Installed")</td>
+            </tr>
+            <tr>
+                <th>RMS Faulty Remark</th>
+                <td>@Model.RMSFaultRemark</td>
+            </tr>
+        </table>
+    </div>
+    <div class="footer">
+        <hr />
+        <p style="text-align: right; padding-right: 20px;"><strong>Report generated on:</strong> @DateTime.Now.ToString("dd-MM-yyyy")</p>
+    </div>
+</body>
+

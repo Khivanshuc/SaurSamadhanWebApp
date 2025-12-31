@@ -1,0 +1,399 @@
+﻿@model WebApp.Models.VwRVEDDGalreadycompletedModel
+
+@{
+    Layout = "_BlankLayout";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .Reportcontainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .details-table {
+        border-collapse: collapse;
+        width: 100%;
+        float: left;
+    }
+
+    .details-table th,
+    .details-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        height: 20px;
+    }
+
+    .details-table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        width: 35%;
+    }
+
+    .details-table td {
+        width: 40%;
+    }
+
+    .image-section {
+        width: 33%;
+        text-align: center;
+        display: inline-block;
+        float: right;
+        margin-left: 20px;
+    }
+
+        /*     img {
+                width: 35%;
+                height: auto;
+            } */
+
+        .image-section p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid #ddd;
+    }
+
+    #setpdfimg {
+        display: flex !important;
+        justify-content: space-evenly;
+    }
+
+    #imgpdf {
+        width: 25.4pc;
+        position: relative;
+        right: 12pc;
+    }
+
+
+    #SSimg {
+        width: 7pc;
+        position: relative;
+        left: 12pc;
+    }
+
+    .table2 {
+        border-collapse: collapse;
+        width: 100%;
+        float: left;
+    }
+
+        .table2 th,
+        .table2 td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            height: 20px;
+        }
+
+        .table2 th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            width: 35%;
+        }
+
+        .table2 td {
+            width: 40%;
+        }
+
+    .footer {
+        margin-top: 2200px;
+    }
+</style>
+
+<body>
+    <div class="header">
+        <div id="setpdfimg">
+            <img src="~/img/creda_black_logo_title.png" alt="Alternate Text" id="imgpdf" />
+            <img src="~/img/CREDA_SS.png" alt="img" id="SSimg" />
+        </div>
+    </div>
+    <hr />
+
+    <div class="Reportcontainer">
+        <!-- Details Table -->
+        <table class="details-table">
+            <tr>
+                <th>Inspection ID</th>
+                <td>@Model.Id</td>
+                <td><strong>Image With Panel</strong></td>
+            </tr>
+            <tr>
+                <th>Inspected By</th>
+                <td>@Model.User</td>
+                <td rowspan="6"><img src="data:@Model.ImageWithPanelAndControlRoomType;base64,@Model.ImageWithPanelAndControlRoom" alt="Solar Pump Image" height="160px" width="250px" /></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>@Model.District</td>
+
+            </tr>
+            <tr>
+                <th>Block</th>
+                <td>@Model.Block</td>
+            </tr>
+            <tr>
+                <th>Village</th>
+                <td>@Model.Village</td>
+            </tr>
+            <tr>
+                <th>Site</th>
+                <td>@Model.Site</td>
+            </tr>
+            <tr>
+                <th>Project Name</th>
+                <td>@Model.Project</td>
+            </tr>
+            <tr>
+                <th>Inspection Date</th>
+                <td>@Model.InspectionDate?.ToShortDateString()</td>
+                <td><strong>Image With PDN</strong></td>
+            </tr>
+            <tr>
+                <th>SI Name</th>
+                <td>@Model.SIName</td>
+                <td rowspan="6"><img src="data:@Model.ImageWithPDNType;base64,@Model.ImageWithPDN" alt="Control Room Image" height="160px" width="250px" /></td>
+            </tr>
+            <tr>
+                <th>System Name</th>
+                <td>@Model.SystemName</td>
+            </tr>
+            <tr>
+                <th>System Working</th>
+                <td>@(Model.IsSystemWorking ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>Monthly Working Days</th>
+                <td>@Model.MonthlyWorkingDays</td>
+            </tr>
+            <tr>
+                <th>Number Of Batteries</th>
+                <td>@Model.NumberOfBattery</td>
+            </tr>
+            <tr>
+                <th>Battery AH</th>
+                <td>@Model.BatteryAH</td>
+                
+            </tr>
+            <tr>
+                <th>Battery Rated Voltage</th>
+                <td>@Model.BatteryRatedVoltage</td>
+                <td><strong>Image With Functionality</strong></td>  
+            </tr>
+            <tr>
+                <th>Measured Battery Bank Voltage</th>
+                <td>@Model.MeasuredBatteryBankVoltage</td>
+                <td rowspan="6"><img src="data:@Model.ImageWithFunctionalityType;base64,@Model.ImageWithFunctionality" alt="Solar Panel Image" height="160px" width="250px" /></td>
+            </tr>
+            <tr>
+                <th>Last Date of Distilled Water in System</th>
+                <td>@Model.LastDateSystemDistilledWater</td>
+            </tr>
+            <tr>
+                <th>Number Of Established Solar Panel</th>
+                <td>@Model.NumberOfEstablishedSolarPanel</td>
+            </tr>
+            <tr>
+                <th>Solar Panel Capacity</th>
+                <td>@Model.SolarPanelCapacity</td>
+            </tr>
+            <tr>
+                <th>Total Array</th>
+                <td>@Model.TotalArray</td>
+
+            </tr>
+            <tr style="height:20px">
+                <th>Voltage Array 1</th>
+                <td>@Model.VoltageArray1</td>
+            </tr>
+            <tr>
+                <th>Voltage Array 2</th>
+                <td>@Model.VoltageArray2</td>
+                <td><strong>Image With Meter Reading</strong></td>
+            </tr>
+            <tr>
+                <th>Voltage Array 3</th>
+                <td>@Model.VoltageArray3</td>
+                <td rowspan="6"><img src="data:@Model.ImageWithMeterReadingType;base64,@Model.ImageWithMeterReading" alt="Fencing Image" height="160px" width="250px" /></td>
+            </tr>
+            <tr>
+                <th>Voltage Array 4</th>
+                <td>@Model.VoltageArray4</td>
+            </tr>
+            <tr>
+                <th>Voltage Array 5</th>
+                <td>@Model.VoltageArray5</td>
+            </tr>
+            <tr>
+                <th>Voltage Array 6</th>
+                <td>@Model.VoltageArray6</td>
+            </tr>
+            <tr>
+                <th>Voltage Array 7</th>
+                <td>@Model.VoltageArray7</td>
+            </tr>
+            <tr>
+                <th>Voltage Array 8</th>
+                <td>@Model.VoltageArray8</td>
+            </tr>
+
+        </table>
+
+        <div>
+            <table class="table2" style="margin-top:70px">
+
+                <tr>
+                    <th>Voltage Array 9</th>
+                    <td>@Model.VoltageArray9</td>
+                    <td><strong>Image With Mangpatra</strong></td> 
+                </tr>
+                <tr >
+                    <th>Voltage Array 7</th>
+                    <td>@Model.VoltageArray7</td>
+                    <td rowspan="6"><img src="data:@Model.ImageWithMangpatraType;base64,@Model.ImageWithMangpatra" alt="Pipe Outlet Image" height="160px" width="250px" /></td>
+                </tr>
+                <tr>
+                    <th>Voltage Array 8</th>
+                    <td>@Model.VoltageArray8</td>
+                </tr>
+                <tr>
+                    <th>Voltage Array 9</th>
+                    <td>@Model.VoltageArray9</td>
+                </tr>
+                <tr>
+                    <th>Voltage Array 10</th>
+                    <td>@Model.VoltageArray10</td>
+                </tr>
+                <tr>
+                    <th>Total Voltage</th>
+                    <td>@Model.TotalVoltage</td> 
+                </tr>
+                <tr>
+                    <th>Current Array 1</th>
+                    <td>@Model.CurrentArray1</td>
+                    
+                </tr>
+                <tr>
+                    <th>Current Array 2</th>
+                    <td>@Model.CurrentArray2</td>
+                </tr>
+                <tr>
+                    <th>Current Array 3</th>
+                    <td>@Model.CurrentArray3</td>
+                </tr>
+                <tr>
+                    <th>Current Array 4</th>
+                    <td>@Model.CurrentArray4</td>
+                </tr>
+                <tr>
+                    <th>Current Array 5</th>
+                    <td>@Model.CurrentArray5</td>
+                </tr>
+                <tr>
+                    <th>Current Array 6</th>
+                    <td>@Model.CurrentArray6</td>
+                </tr>
+                <tr>
+                    <th>Current Array 7</th>
+                    <td>@Model.CurrentArray7</td>
+                </tr>
+                <tr>
+                    <th>Current Array 8</th>
+                    <td>@Model.CurrentArray8</td>
+                </tr>
+                <tr>
+                    <th>Current Array 9</th>
+                    <td>@Model.CurrentArray9</td>
+                </tr>
+                <tr>
+                    <th>Current Array 10</th>
+                    <td>@Model.CurrentArray10</td>
+                </tr>
+                <tr>
+                    <th>Total Current</th>
+                    <td>@Model.TotalCurrent </td>
+                </tr>
+                <tr>
+                    <th>Energy Meter Reading</th>
+                    <td>@Model.EnergyMeterReading</td>
+                </tr>
+                <tr>
+                    <th>AH Charging Meter Reading</th>
+                    <td>@Model.AHChargingMeterReading </td>
+                </tr>
+                <tr>
+                    <th>AH Discharging Meter Reading</th>
+                    <td>@Model.AhDischargingMeterReading</td>
+                </tr>
+                <tr>
+                    <th>Number Of Poles</th>
+                    <td>@Model.NumberOfPoles</td>
+                </tr>
+                <tr>
+                    <th>Number Of Family Members With System</th>
+                    <td>@Model.NumberOfFamilyMembersWithSystem</td>
+                </tr>
+                <tr>
+                    <th>Number Of Working Connection</th>
+                    <td>@Model.NumberOfSystemWorkingConnection</td>
+                </tr>
+                <tr>
+                    <th>Number Of Established Street Lights</th>
+                    <td>@Model.NumberOfEstablishedStreetLight</td>
+                </tr>
+                <tr>
+                    <th>System Working Hours</th>
+                    <td>@Model.SystemWorkingHours</td>
+                </tr>
+                <tr>
+                    <th>Number Of Working Street Lights</th>
+                    <td>@Model.NumberOfWorkingStreetLights</td>
+                </tr>
+                <tr>
+                    <th>System Working Remark</th>
+                    <td>@Model.IsSystemWorkingRemarks</td>
+                </tr>
+                <tr>
+                    <th>Number Of Defective Batteries</th>
+                    <td>@Model.NumberOfDefectiveBattery</td>
+                </tr>
+                <tr>
+                    <th>Number Of Defective Module</th>
+                    <td>@Model.NumberOfDefectiveModule</td>
+                </tr>
+                <tr>
+                    <th>System Status</th>
+                    <td>@Model.IsInvertorWorking </td>
+                </tr>
+                <tr>
+                    <th>PDN Status Remark</th>
+                    <td>@Model.PDNStatusRemark </td>
+                </tr>
+                <tr>
+                    <th>Any Other Remark</th>
+                    <td>@Model.AnyOtherRemark </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        <hr />
+        <p style="text-align: right; padding-right: 20px;"><strong>Report generated on:</strong> @DateTime.Now.ToString("dd-MM-yyyy")</p>
+    </div>
+
+
+</body>
+

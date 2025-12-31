@@ -1,0 +1,216 @@
+﻿@model WebApp.Models.VwSSYalreadyCompletedDetailModel
+@{
+    Layout = "_BlankLayout";
+}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .Reportcontainer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .details-table {
+        border-collapse: collapse;
+        width: 100%;
+        float: left;
+    }
+
+        .details-table th,
+        .details-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            height: 30px;
+        }
+
+        .details-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            width: 28%;
+        }
+
+        .details-table td {
+            width: 40%;
+        }
+
+    .image-section {
+        width: 33%;
+        text-align: center;
+        display: inline-block;
+        float: right;
+        margin-left: 20px;
+    }
+
+        /*     img {
+                    width: 35%;
+                    height: auto;
+                } */
+
+        .image-section p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid #ddd;
+    }
+
+    #setpdfimg {
+        display: flex !important;
+        justify-content: space-evenly;
+    }
+
+    #imgpdf {
+        width: 25.4pc;
+        position: relative;
+        right: 12pc;
+    }
+
+
+    #SSimg {
+        width: 7pc;
+        position: relative;
+        left: 12pc;
+    }
+
+    .footer {
+        margin-top: 1170px;
+    }
+
+</style>
+
+<body>
+    <div class="header">
+        <div id="setpdfimg">
+            <img src="~/img/creda_black_logo_title.png" alt="Alternate Text" id="imgpdf" />
+            <img src="~/img/CREDA_SS.png" alt="img" id="SSimg" />
+        </div>
+    </div>
+    <hr style="margin-top:-10px;" />
+
+    <div class="Reportcontainer">
+        <!-- Details Table -->
+        <table class="details-table">
+            <tr>
+                <th>Project</th>
+                <td>@Model.ProjectName</td>
+                <td><strong>System Working Image</strong></td>
+            </tr>
+            <tr>
+                <th>Inspection ID</th>
+                <td>@Model.Id</td>
+                <td rowspan="5"><img src="data:@Model.SystemWorkingImageType;base64,@Model.SystemWorkingImage" height="200px" width="300px" />
+            </tr>
+            <tr>
+                <th>Inspection Date</th>
+                <td>@Model.InspectionDate.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <th>Inspected By</th>
+                <td>@Model.UserName</td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>@Model.DistrictName</td>
+            </tr>
+            <tr>
+                <th>Block</th>
+                <td>@Model.BlockName</td>
+            </tr>
+            <tr>
+                <th>Village</th>
+                <td>@Model.VillageName</td>
+            </tr>
+            <tr>
+                <th>Place/Beneficiary Name</th>
+                <td>@Model.PlaceOrBeneficiaryName</td>
+            </tr>
+            <tr>
+                <th>Place/Beneficiary ID</th>
+                <td>@Model.PlaceOrBeneficiaryId</td>
+            </tr>
+            
+            <tr>
+                <th>SI Name</th>
+                <td>@Model.SIName</td>
+            </tr>
+            <tr>
+                <th>System Working</th>
+                <td>@(Model.IsSystemWorking ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <th>System Working Remark</th>
+                <td>@Model.IsSystemWorkingRemarks</td>
+            </tr>
+            <tr>
+                <th>Pump Working</th>
+                <td>@(Model.PumpStatus ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <th>Controller Working</th>
+                <td>@(Model.ControllerStatus ? "Yes" : "No")</td>
+            </tr>
+            <tr>
+                <th>System Layout</th>
+                <td>@Model.SystemLayout</td>
+            </tr>
+            <tr>
+                <th>Module Status</th>
+                <td>@(Model.IsModuleWorking ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>Number of Modules</th>
+                <td>@Model.NumberOfModules </td>
+            </tr>
+            <tr>
+                <th>Module Capacity</th>
+                <td>@Model.ModuleCapacity</td>
+            </tr>
+            <tr>
+                <th>Structure Status</th>
+                <td>@(Model.StructureStatus ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>Controller Make</th>
+                <td>@Model.ControllerMake</td>
+            </tr>
+            <tr>
+                <th>Lighting Arrester</th>
+                <td>@(Model.LightingArrester ? "Working" : "Need Improvement")</td>
+            </tr
+            <tr>
+                <th>Earthing Status</th>
+                <td>@(Model.TankLidStatus ? "Working" : "Need Improvement")</td>
+            </tr>
+            <tr>
+                <th>Cable Status</th>
+                <td>@(Model.IsCableWorking ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>Rope Wire Status</th>
+                <td>@(Model.IsRopeWireWorking ? "Working" : "Not Working")</td>
+            </tr>
+            <tr>
+                <th>System Clean</th>
+                <td>@(Model.IsSystemClean ? "Yes" : "No")</td>
+            </tr>
+        
+       </table>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <hr />
+        <p style="text-align: right; padding-right: 20px;"><strong>Report generated on:</strong> @DateTime.Now.ToString("dd-MM-yyyy")</p>
+    </div>
+</body>

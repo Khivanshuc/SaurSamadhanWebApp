@@ -1,0 +1,161 @@
+﻿@model List<WebApp.Models.VwJJMAlreadyCompletedListModel>
+@{
+    ViewData["Title"] = "Project Wise Report | CREDA";
+}
+
+ 
+<style>
+    
+    /* Universal Loader CSS */
+    #universalLoader {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .spinner {
+        width: 64px;
+        height: 64px;
+        border: 8px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #3498db;
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+    }
+
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<div id="universalLoader">
+    <div class="spinner"></div>
+</div>
+
+<div id="FaultFiltersView">
+    <div class="row justify-content-center mt-md-3">
+        <h2>Project Reports</h2>
+        <button id="backToDashButton" class="btn btn-back-to-dash">
+            <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+        </button>
+        <div class="col-12">
+            <form class="p-4 border rounded shadow-sm bg-light">
+                <!-- First row of fields -->
+                <div class="row g-3 mb-3">
+                    <div class="setform">
+                        <!-- First column -->
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="d-flex align-items-center" id="down">
+                                    <select id="Project" class="form-control custom-dropdown" >
+                                        <option value="">Select Project</option>
+                                    </select>
+                                    <span class="dropdown-arrow"></span>
+                                </div>
+                            </div>
+
+                            <!-- Second column -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="d-flex align-items-center position-relative" id="down">
+                                    <select id="District" class="form-control custom-dropdown">
+                                        <option value="">Select District</option>
+                                    </select>
+                                    <span class="dropdown-arrow"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Start Date Picker column -->
+                            <div class="col-12 col-md-6 col-lg-4" id="Size1">
+                                <div class="d-flex align-items-center">
+                                    <!-- Date Picker Input -->
+                                    <input type="date" id="StartDate" class="form-control custom-dropdown">
+                                    <span id="dropdownarrow"></span>
+                                </div>
+                            </div>
+
+                            <!-- Last Date Picker column -->
+                            <div class="col-12 col-md-6 col-lg-4" id="Size1">
+                                <div class="d-flex align-items-center">
+                                    <!-- Date Picker Input -->
+                                    <input type="date" id="EndDate" class="form-control custom-dropdown">
+                                    <span id="dropdownarrow"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Inspection ID Search -->
+                    @* <div class="col-12 col-md-6 col-lg-4" id="Size">
+                    <div class="d-flex align-items-center">
+                    <input type="text" class="form-control search-box" placeholder="Inspection ID" id="inspectionId">
+                    </div>
+                    </div> *@
+
+
+
+                    <!-- Search and Clear Buttons -->
+                    <div class="col-12 col-md-12 col-lg-4 d-flex justify-content-center justify-content-lg-start">
+                        <div class="alinebutton">
+                            <button type="button" class="btn btn-primary" id="searchButton" onclick="onSearchClicked()" style=""><img src="~/img/Search_icon.png" alt="" class="search_icon" />SEARCH</button>
+                            <button type="button" class="btn btn-primary ms-2" id="clearButtonreport" onclick="ClearAllSearchJJM()"><img src="~/img/Clear_icon.png" alt="Alternate Text" class="clear_icon" /> CLEAR</button>
+                        </div>
+                        <div class="alinedownlodbtn">
+                            <button type="button" class="btn btn-primary ms-2" id="DownloadButton" onclick="downloadReportClicked()"><img src="~/img/Download_icon.png" alt="" class="download_icon" /> DOWNLOAD</button>
+                        </<div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="ProjectReportPartialView"></div>
+@section PageScripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/downloadreports.js"></script>
+    <script>
+
+        $(document).ready(async function () {
+            await getProjectName();           // Wait for this to complete
+            await loadOneMonthAgoDate();      // Then wait for this to complete
+            await fetchDistforAdminPanel();   // Then wait for this to complete
+            await onSearchClicked();          // Finally, execute this
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get today's date
+            var today = new Date();
+
+            // Format the date to yyyy-MM-dd
+            var day = ("0" + today.getDate()).slice(-2);
+            var month = ("0" + (today.getMonth() + 1)).slice(-2);
+            var formattedDate = today.getFullYear() + '-' + month + '-' + day;
+
+            // Set the date picker's value to today
+            document.getElementById('StartDate').value = formattedDate;
+            document.getElementById('EndDate').value = formattedDate;
+        });
+
+        document.getElementById('backToDashButton').addEventListener('click', function () {
+            BackToDashboard();
+        });
+
+
+    </script>
+
+}

@@ -1,0 +1,101 @@
+﻿@model List<WebApp.Models.VwGrievanceListModel>
+
+<style>
+	.tbl-header-style {
+		color: white;
+		background-color: #00ccdd !important;
+	}
+
+	.card-body {
+		padding: 0px 5px 5px 5px;
+	}
+</style>
+<div class="row justify-content-center " style="z-index:0;">
+	<div class="col-md-12">
+		<form asp-action="View" style="width: 100%;">
+			<div class="card-body">
+				@* <h4 class="card-title mb-4">Grievances List</h4> *@
+				<div style="height:85vh">
+					<table id="grievanceTable" class="table table-bordered table-striped" style="max-height:80vh; overflow:auto;width:100%;">
+						<thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important ">
+							<tr>
+								<th class="tbl-header-style" style=" width:5%;">Grievance Id</th>
+								<th class="tbl-header-style" style=" width:5%;">Grievance Status</th>
+								<th class="tbl-header-style" style=" width:5%;">District Name</th>
+								<th class="tbl-header-style" style=" width:5%;">Block Name</th>
+								<th class="tbl-header-style" style=" width:15%;">Project Name</th>
+								<th class="tbl-header-style" style=" width:30%;">Fault Remark</th>
+								<th class="tbl-header-style" style=" width:10%;">Assign To</th>
+								<th class="tbl-header-style" style=" width:10%;">Complaint From</th>
+								<th class="tbl-header-style" style=" width:1%;"></th>
+							</tr>
+						</thead>
+						<tbody>
+							@{
+								if (Model.Count > 0)
+								{
+									@foreach (var item in Model)
+									{
+										<tr>
+											<td>  @item.Id</td>
+											<td>  @item.GrievanceStatus</td>
+											<td>  @item.DistrictName</td>
+											<td>  @item.BlockName</td>
+											<td>  @item.ProjectName</td>
+											<td>  @item.FaultRemark</td>
+											<td>  @item.AssignTo</td>
+											<td>  @item.EntryType</td>
+											<td>
+												<div class="d-flex">
+													<button class="btn p-0 mr-1" type="button" aria-haspopup="true" onclick="revertBtnClicked(@item.Id)" data-toggle=" tooltip" data-placement="top" title="Revert">
+														<img src="~/img/revert.png" style="width: 20px; height: 20px;" />
+													</button>
+													<button class="btn p-0 mr-1" type="button" aria-haspopup="true" onclick="uploadBtnClicked(@item.Id)" data-toggle="tooltip" data-placement="top" title="Upload">
+														<img src="~/img/uploadicon.png" style="width: 20px; height: 20px;" />
+													</button>
+													<button class="btn p-0" type="button" aria-haspopup="true" onclick="deleteBtnClicked(@item.Id)" data-toggle="tooltip" data-placement="top" title="Delete">
+														<img src="~/img/delete.png" style="width: 20px; height: 18px;" />
+													</button>
+												</div>
+
+											</td>
+										</tr>
+									}
+								}
+								else
+								{
+									<tr>
+										<td colspan="8" style="text-align:center">
+											No Record Found
+										</td>
+									</tr>
+								}
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="remarkModal" tabindex="-1" aria-labelledby="remarkModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="remarkModalLabel">Enter Remark</h5>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<input type="hidden" id="deleteGrievanceId" name="id">
+					<textarea class="form-control" id="remark" name="remark" rows="4"></textarea>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" onclick="confirmDeleteClicked()">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>

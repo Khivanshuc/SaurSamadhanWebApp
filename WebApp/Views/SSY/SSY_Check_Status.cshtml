@@ -1,0 +1,295 @@
+﻿<head>
+    <style type="text/css">
+        body {
+            background-image: url('../img/DB_Background.png');
+        }
+        .lblstatus {
+            background: #e96060;
+            cursor: default;
+        }
+
+        .lbloutput {
+            text-transform: capitalize;
+        }
+
+        .row {
+            padding: 5px 0;
+        }
+
+        .ui-datepicker .ui-datepicker-title select {
+            font-size: 1em;
+            margin: 1px 0;
+            color: black;
+        }
+
+        #spinner {
+            display: none;
+            position: absolute;
+            /* background:rgba(20,20,20,0.5); */
+            width: 100%;
+            height: 100%;
+            padding-top: 20%;
+            z-index: 1000;
+        }
+
+        #dttable th {
+            background: #14b1bb;
+            color: white;
+        }
+
+        td.details-control {
+            background: url('images/btn_click_green2.png') no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.shown td.details-control {
+            background: url('images/btn_click_red2.png') no-repeat center center;
+        }
+
+        .link {
+            min-width: 150px;
+        }
+
+        table td {
+            text-transform: capitalize;
+        }
+
+        .modal {
+            z-index: 10000
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ============ PAGE LOADER START ============ -->
+
+    <div id="loader">
+        <i class="fa fa-cog fa-4x fa-spin">
+        </i>
+    </div>
+    <div id="spinner" class="spinner" align="center">
+        <img id="img-spinner" src="images/loader1.gif" alt="Loading..."></img>
+    </div>
+
+    <section id="jobs" style="min-height: 525px;padding:0px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xs-6">
+                    <h2>सोलर पंप की स्थापना हेतु हितग्राही अपने आवेदन की स्थिति जांचें</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6 col-lg-4">
+                            <input id="aadharno" type="text" class="form-control" maxlength="12" minlength="6" placeholder="Aadhar Number">
+                            <label id="aadharError" style="color: red;"></label>
+                        </div>
+                        <div class="col-md-3 col-xs-6 col-lg-4">
+                            <input id="mobileno" type="text" class="form-control" maxlength="10" minlength="6" placeholder="Mobile Nmber">
+                            <label id="mobileError" style="color: red;"></label>
+                        </div>
+                        <div class="col-lg-2">
+                            <button id="aadharSearch" class="btn btn-sm btn-info" style="height:37px;width:50%;" onclick="searchSSYDetail()"><i class="fa fa-search"></i> Search</button>
+                        </div>
+                        <div class="col-lg-2">
+                            <a asp-controller="SSY" asp-action="SSY_Registration"><button id="btnBack" type="button" class="btn btn-sm btn-warning" style="height:37px;width:50%;margin-left:-90px;"><i class="fa fa-arrow-circle-o-left"></i> Back</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="SSYDetailParitalView"></div>
+
+            <div class="table-responsive col-sm-12" id="aadhardiv" style="display: none;">
+                <table id="dtable1" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="margin-bottom: 0px">
+                    <tbody>
+                        <tr>
+                            <td style="width:25%;"></td>
+
+                            <td style="width:25%;font-weight: bolder; color:red;text-align: center" colspan="2">
+
+                                STATUS - <span type="text" name="phase" id="phase"></span>
+                            </td>
+                            <td style="width:25%;"></td>
+
+                        </tr>
+
+                        <tr>
+                            <td style="width:25%;font-weight: bold">Registration ID</td>
+                            <td style="width:25%;font-weight: bold"><span id="appid" name="appid"></span></td>
+                            <td style="width:25%;"> <span id="s_txtbfntype"></span> का नाम</td>
+                            <td style="width:25%;"><span type="text" name="txtappname" id="txtappname">----</span></td>
+                        </tr>
+                        <tr>
+                            <td id="divfathername">पिता/पति का नाम</td>
+                            <td id="divfathername2"><span name="txtfathername" id="txtfathername">----</span></td>
+
+                            <td>स्थापना स्थल</td>
+                            <td><span name="txtinstall" id="txtinstall">----</span></td>
+                        </tr>
+                        <tr>
+                            <td> हितग्राही का प्रकार</td>
+                            <td><span name="txtbfntype" id="txtbfntype">----</span></td>
+                            <td><span id="add_txtbfntype"></span> का सम्पूर्ण पता</td>
+                            <td><span name="txtbfnaddr" id="txtbfnaddr">----</span></td>
+                        </tr>
+                        <tr>
+                            <td>विधानसभा क्षेत्र</td>
+                            <td><span name="txtvidhansabha" id="txtvidhansabha">----</span></td>
+                            <td>जिला</td>
+                            <td><span name="txtjila" id="txtjila">----</span></td>
+                        </tr>
+                        <tr>
+                            <td>विकासखण्ड</td>
+                            <td><span name="txtvikaskhand" id="txtvikaskhand">----</span></td>
+                            <td>दूरभाष क्रमांक</td>
+                            <td><span name="txtphoneno" id="txtphoneno">----</span></td>
+                        </tr>
+                        <tr>
+                            <td>आवेदक का वर्ग</td>
+                            <td><span name="txtcast" id="txtcast">----</span></td>
+                            <td id="ssy1" style="display: none;font-weight: bold;color:black">आधार कार्ड क्रमांक</td>
+                            <td id="ssy2" style="display: none;font-weight: bold;color:black">
+                                <span name="txtadhar" id="txtadhar" style=" color:black">----</span>
+
+                            </td>
+
+                        </tr>
+                        <tr id="ssy3" style="display: none">
+                            <td>वोटर कार्ड</td>
+                            <td><span name="txtvoter" id="txtvoter">----</span></td>
+                            <td>विद्युत कनेक्शन हेतु डिमाण्ड नोट क्रमांक</td>
+                            <td><span name="txtdemandno" id="txtdemandno">----</span></td>
+                        </tr>
+                        <tr>
+                            <td>प्रस्तावित भूमि का खसरा नम्बर</td>
+                            <td><span name="txtkhasra" id="txtkhasra">----</span></td>
+                            <td>कुल रकबा (हेक्टेयर मे)</td>
+                            <td><span name="txtrakba" id="txtrakba">----</span></td>
+                        </tr>
+                        <tr>
+                            <td>जल स्त्रोत</td>
+                            <td><span name="txtwatersrc" id="txtwatersrc">----</span></td>
+                            <td>प्रस्तावित सोलर पंप का प्रकार</td>
+                            <td><span name="txtpumptype" id="txtpumptype">----</span> / <span name="cmbpumptype1" id="cmbpumptype1">----</span></td>
+                        </tr>
+                        <tr>
+                            <td>स्थापनाकर्ता इकाई</td>
+                            <td width="350px"><span name="siid" id="siid">----</span></td>
+                            <td>प्रस्तावित सोलर पंप की क्षमता</td>
+                            <td><span name="txtpumpcapacity" id="txtpumpcapacity">----</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="dtable2" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="margin-bottom: 0px">
+                    <thead>
+                        <tr style="background-color: #66a9bd; color: white; font-size: 12px">
+                            <th style="width:25%;">संयंत्र लागत समस्त व्यय एवं 05 वर्षीय रखरखाव सहित</th>
+                            <th class="primary">राशि (जीएसटी के साथ)</th>
+                            <th style="width:25%;" class="primary">प्रस्तावित राज्य अनुदान</th>
+                            <th style="width:25%;" class="primary">प्रस्तावित केन्द्र अनुदान</th>
+                            <th style="width:25%;" class="primary">मेरे द्वारा इकाई को देय राषि</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="col-sm-13 ">
+                                    <div class="form-group" id="opass-group">
+                                        <span name="txtttlcost" id="txtttlcost">----</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-sm-13 ">
+                                    <div class="form-group" id="opass-group">
+                                        <span name="txtrate" id="txtrate">----</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-sm-13 ">
+                                    <div class="form-group" id="opass-group">
+                                        <span name="txtstate1" id="txtstate1">----</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-sm-13 ">
+                                    <div class="form-group" id="opass-group">
+                                        <span name="txtcentralfund" id="txtcentralfund">----</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-sm-13 ">
+                                    <div class="form-group" id="opass-group">
+                                        <span name="txtmyfund" id="txtmyfund">----</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="dtable3" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="margin-bottom: 0px">
+                    <thead>
+                        <tr style="background-color: #66a9bd; color:white; font-size: 12px">
+                            <th style="width:33%;" class="primary">Bank Account No</th>
+                            <th style="width:33%;" class="primary">Name Of The Bank</th>
+                            <th style="width:33%;" class="primary">IFSC Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span name="txtaccount" id="txtaccount">----</span></td>
+                            <td><span name="txtbank" id="txtbank">----</span></td>
+                            <td><span name="txtifsc" id="txtifsc">----</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="dtable4" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="margin-bottom: 0px">
+                    <thead>
+                        <tr style="background-color: #66a9bd; color: white; font-size: 12px">
+                            <th style="width:25%;" class="primary">आवेदन शुल्क</th>
+                            <th style="width:25%;" class="primary">डिमांड ड्राफ्ट क्रमांक</th>
+                            <th style="width:25%;" class="primary">दिनांक</th>
+                            <th style="width:25%;" class="primary">बैंक का नाम</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span name="txtprofee" id="txtprofee">----</span></td>
+                            <td><span name="txtddnumber" id="txtddnumber">----</span></td>
+                            <td><span name="txtdddate" id="txtdddate">----</span></td>
+                            <td><span name="txtddbank" id="txtddbank">----</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <!-- Container Div -->
+    </section>
+
+</body>
+
+
+@section PageScripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/ssy.js"></script>
+    <script>
+        $(document).ready(async function () {
+        });
+
+        document.getElementById('btnBack').addEventListener('click', function () {
+            window.close();  // Close the current tab
+        });
+
+        
+    </script>
+}
+

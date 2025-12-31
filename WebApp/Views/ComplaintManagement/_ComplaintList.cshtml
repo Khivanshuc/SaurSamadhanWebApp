@@ -1,0 +1,242 @@
+﻿@model List<WebApp.Models.VwComplaintListModel>
+
+@{
+    //var zonalId = User.Claims.FirstOrDefault(c => c.Type == "ZonalId")?.Value;
+}
+
+
+<style>
+    body {
+        background-color: #ffffff !important;
+    }
+
+    label {
+        margin-left: 53px;
+        display: inline-block;
+        margin-right: 8px;
+    }
+</style>
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="card-body">
+
+                <div class="table-responsive" style="height:60vh">
+                    <table class="table table-hover table-bordered" style="max-height:60vh; overflow:auto;width:100%;">
+                        <thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important">
+                            <tr>
+                                <th style="color:white; width:5%;font-weight:bold">S.NO</th>
+                                <th style="color:white; width:5%;font-weight:bold">Complaint Number</th>
+                                <th style="color:white; width:13%;font-weight:bold">District</th>
+                                <th style="color:white; width:10%;font-weight:bold">Block</th>
+                                <th style="color:white; width:10%;font-weight:bold">Village</th>
+                                <th style="color:white; width:5%;font-weight:bold">Site</th>
+                                <th style="color:white; width:20%;font-weight:bold">SI Name</th>
+                                <th style="color:white; width:5%;font-weight:bold">Complaint Date</th>
+                                <th style="color:white; width:5%;font-weight:bold">Complaint Status</th>
+                                <th style="color:white; width:5%;font-weight:bold">Return Remark</th>
+                                <th style="color:white; width:5%;font-weight:bold">Forwarded To</th>
+                                <th style="color:white; width:10%;font-weight:bold">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                if (Model != null && Model.Count > 0)
+                                {
+                                        @foreach (var item in Model)
+                                    {
+                                            <tr>
+                                                <td>  @item.SerialNo</td>
+                                                <td>  @item.Id</td>
+                                                <td>  @item.DistrictName</td>
+                                                <td>  @item.BlockName</td>
+                                                <td>  @item.VillageName</td>
+                                                <td>  @item.SiteName</td>
+                                                <td>  @item.SIName</td>
+                                                <td>  @item.ComplaintDate</td>
+                                                <td>  @item.ComplaintStatus</td>
+                                                <td> - </td>
+                                                <td> - </td>
+                                                <td>
+                                                <div class="button-container">
+                                                    <button id="" onclick="viewComplaintDetail(@item.Id)" style="border:none; background:none"><img src="~/img/view.png" height="15px" width="25px" /></button>
+                                                    <button id="" onclick="editComplaintDetail()" style="border:none; background:none;margin-left: -5px;"><img src="~/img/verify.png" height="20px" width="20px" /></button>
+                                                    <button class="dot-menu" onclick="toggleDropdown(this)">&#8942;</button>
+                                                    <div class="dropdown">
+                                                        <span class="inline-item">
+                                                            <a onclick="editComplaintDetail()"><img src="~/img/edit.png" height="20px" width="22px" /> Edit</a>
+                                                        </span>
+                                                        <span class="inline-item">
+                                                            <a onclick="showReturnModal()"><img src="~/img/undo.png" height="20px" width="22px" /> Return</a>
+                                                        </span>
+                                                        <span class="inline-item">
+                                                            <a href="" onclick="actionComplaintDetail(@item.Id)"><img src="~/img/assign.png" height="20px" width="22px" /> Assign</a>
+                                                        </span>
+
+                                                        @if (true)//zonalId == "0")
+                                                        {
+                                                            <span class="inline-item">
+                                                                <a onclick="forwardHOClick()"><img src="~/img/forward_arrow.png" height="20px" width="22px" /> Forward HO</a>
+                                                            </span>
+                                                        }else{
+                                                            <span class="inline-item">
+                                                                <a onclick="showForwardModal()"><img src="~/img/forward_arrow.png" height="20px" width="22px" /> Forward</a>
+                                                            </span>
+                                                        }
+                                                        <span class="inline-item">
+                                                            <a onclick=""><img src="~/img/forward_arrow.png" height="20px" width="22px" /> Accept</a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                </td>
+                                            </tr>
+                                    }
+                                }
+                                else
+                                {
+                                        <tr>
+                                            <td colspan="8" style="text-align:center">
+                                                No Record Found
+                                            </td>
+                                        </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <div id="returnModal" class="modal-overlay" style="display:none;">
+                        <div class="modal-container">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <img src="~/img/undo.png" height="40px" width="50px" style="display: flex;justify-content: flex-start;" />
+                                    </div>
+                                    <div class="col-lg-9" style="display: flex;justify-content: flex-start; margin-left: -15px;">
+                                        <h2><u>Return Complaint </u></h2>
+                                        <span class="close-icon" onclick="closeReturnModal()" aria-label="Close Modal">&times;</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12" style="margin-top: 15px !important;margin-left: 19px;">
+                                <div class="row">
+                                    <div class="col-lg-10 d-flex">
+                                        <!-- Dropdown Field for DO, ZO, HO -->
+                                        <label for="department">ऑफिस का चयन करे:</label>
+                                        <select id="department" class="form-control custom-dropdown">
+                                            <option>चयन करे</option>
+                                            <option value="ZO">ZO</option>
+                                            <option value="HO">HO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4" style="margin-left: 19px;">
+                                <div class="row">
+                                    <div class="col-lg-10 d-flex">
+                                        <label for="returnRemarks">वापस करने का विषय:</label>
+                                        <textarea id="returnRemarks" placeholder="Enter your remarks" class="form-control search-box"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4" style="margin-left: 19px;">
+                                <div class="row">
+                                    <div class="col-lg-10 d-flex">
+                                        <label for="returnDate">वापस करने की तिथि:</label>
+                                        <input type="date" id="returnDate" class="form-control search-box">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="submit-btn" onclick="confirmReturn(event)">Return</button>
+                        </div>
+                    </div>
+                    <div id="successModal2" class="modal-overlay" style="display: none;">
+                        <div class="modal-container" style="height:200px!important; width:19%!important">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-lg-9 d-flex justify-content-end">
+                                        <h2>Success</h2>
+                                    </div>
+                                    <div class="col-lg-3 d-flex justify-content-start">
+                                        <img src="~/img/success.png" alt="Success" class="success-icon" style="margin-left:-21px;" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="success-message">
+                                <p>Your message has been returned!</p>
+                            </div>
+                            <button onclick="closeSuccessModal2()" class="close-btn">Close</button>
+                        </div>
+                    </div>
+
+
+                    @* For Forward Complaint *@
+                    <div id="forwardModal" class="modal-overlay" style="display:none;">
+                        <div class="modal-container">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <img src="~/img/forward_arrow.png" height="40px" width="50px" style="display: flex;justify-content: flex-start;" />
+                                    </div>
+                                    <div class="col-lg-9" style="display: flex;justify-content: flex-start; margin-left: -15px;">
+                                        <h2><u>Forward Complaint </u></h2>
+                                        <span class="close-icon" onclick="closeForwardModal()" aria-label="Close Modal">&times;</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12" style="margin-top: 15px !important;margin-left: 19px;">
+                                    <div class="row">
+                                        <div class="col-lg-10 d-flex">
+                                            <!-- Dropdown Field for DO, ZO, HO -->
+                                            <label for="department">ऑफिस का चयन करे:</label>
+                                            <select id="department" class="form-control custom-dropdown">
+                                                <option>चयन करे</option>
+                                                <option value="ZO">ZO</option>
+                                                <option value="HO">HO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-4" style="margin-left: 19px;">
+                                    <div class="row">
+                                        <div class="col-lg-10 d-flex">
+                                            <!-- Forwarded Remarks Field -->
+                                        <label for="remarks">फॉरवर्ड का विषय:</label>
+                                        <textarea id="remarks" placeholder="Enter your remarks" class="form-control search-box"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-4" style="margin-left: 19px;">
+                                    <div class="row">
+                                        <div class="col-lg-10 d-flex">
+                                            <label for="forwardDate">फॉरवर्ड करने की तिथि:</label>
+                                            <input type="date" id="forwardDate" class="form-control search-box">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Forward Button -->
+                            <button type="submit" class="submit-btn" onclick="confirmForward(event)">Forward</button>
+                        </div>
+                    </div>
+                    <div id="successModal" class="modal-overlay" style="display: none;">
+                        <div class="modal-container" style="height:200px!important; width:19%!important">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-lg-9 d-flex justify-content-end">
+                                        <h2>Success</h2>
+                                    </div>
+                                    <div class="col-lg-3 d-flex justify-content-start">
+                                        <img src="~/img/success.png" alt="Success" class="success-icon" style="margin-left:-21px;"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="success-message">
+                                <p>Your message has been forwarded!</p>                                
+                            </div>
+                            <button onclick="closeSuccessModal()" class="close-btn">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,134 @@
+﻿@model WebApp.Models.VwUserModel
+
+@{
+    var zonalId = User.Claims.FirstOrDefault(c => c.Type == "ZonalId")?.Value;
+}
+
+<style>
+    .readonly-cursor {
+        cursor: not-allowed; /* Changes cursor to 'not-allowed' */
+        background-color: #e9ecef; /* Matches Bootstrap's disabled input background color */
+    }
+</style>
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form asp-action="UpdateUser" class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+            <h4>Update Applicant</h4>
+            <div hidden class="form-group mb-3 col-md-5">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" readonly class="form-control readonly-cursor" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="d-flex justify-content-around">
+               
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-around">
+                
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="MobileNumber" class="control-label"></label>
+                    <input asp-for="MobileNumber" class="form-control" />
+                    <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="RoleId" class="control-label"></label>
+                    <select asp-for="RoleId" class="form-control" asp-items="ViewBag.RoleOptions"></select>
+                    <span asp-validation-for="RoleId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around">
+               
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="DistrictId" class="control-label"></label>
+                    <select id="DistrictId" asp-for="DistrictId" class="form-control" onchange="GetBlocksByDistrict()" required>
+                        <option value="">Select District</option>
+                    </select>
+                    <span asp-validation-for="DistrictId" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label asp-for="BlockId" class="control-label"></label>
+                    <select id="BlockId" asp-for="BlockId" class="form-control" required>
+                        <option value="">Select Block</option>
+                    </select>
+                    <span asp-validation-for="BlockId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-around">
+                <div class="form-group mb-3 col-md-5">
+                    <label  class="control-label"> Office Level</label>
+                    <select id="OfficeLevelId" asp-for="OfficeLevel" class="form-control" onchange="GetZonal()">
+                        <option value="">Select Office</option>
+                    </select>
+                    <span asp-validation-for="OfficeLevel" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label class="control-label">Zonal Level</label>
+                    <select id="ZonalId" asp-for="ZonalId" class="form-control">
+                        <option value="">Select Zonal</option>
+                    </select>
+                    <span asp-validation-for="ZonalId" class="text-danger"></span>
+                </div>
+            </div>
+
+            @if (zonalId != "-1")
+            {
+
+            <div class="d-flex justify-content-around" style="display:none!important">
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsDistrictIncharge" /> @Html.DisplayNameFor(model => model.IsDistrictIncharge)
+                    </label>
+                </div>
+                <div class="form-group mb-3 col-md-5">
+                    <label class="form-label"></label>
+                </div>
+            </div>
+
+            }
+
+            <!-- Hidden input to store IsDistrictIncharge value -->
+            <input type="hidden" id="IsDistrictIncharge" name="IsDistrictIncharge" />
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Registrations">Back to List</a>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        // Function to fetch districts and blocks
+        GetRoles();
+        fetchDist();
+        fetchOfficeLevel();
+
+    }); 
+
+    function setDistrictInchargeValue() {
+        var districtInchargeCheckBox = document.getElementById("districtInchargeCheckBox");
+        var districtId = document.getElementById("DistrictId").value;
+        var isDistrictIncharge = districtInchargeCheckBox.checked ? districtId : 0;
+
+        document.getElementById("IsDistrictIncharge").value = isDistrictIncharge;
+    }
+</script>
+

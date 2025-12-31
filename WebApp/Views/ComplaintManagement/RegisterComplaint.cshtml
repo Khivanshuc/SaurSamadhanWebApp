@@ -1,0 +1,247 @@
+﻿
+<link href="~/css/complaintmanagement.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+
+<style>
+    #notificationContainer{
+        background-color: white;
+        width: 30%;
+        margin-left: 25px;
+        display: none;
+        height: 445px;
+        box-shadow: 8px 8px 12px 2px gray;
+        border: 3px solid #777ec19c;
+    }
+
+    #GrievancesDate{
+        width: 155px;
+        border-width: 1px;
+        border-radius: 4px;
+    }
+
+    .select2-container--default .select2-selection--single {
+        height: 38px;
+        border: var(--bs-border-width) solid #d9dee3;
+    }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 35px;
+            color: #697a8d;
+        }
+
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 5px;
+            right: 9px;
+        }
+</style>
+<div id="universalLoader">
+    <div class="spinner"></div>
+</div>
+
+<div class="row justify-content-center mt-2 mb-5">
+    <button id="" class="btn btn-back-to-list" onclick="BacktoHome()" style="margin-top:34px;"><img src="~/img/Back_icon.png" alt="Alternate Text" class="back-icon" />BACK</button>
+    <button id="backToDashButton" class="btn btn-back-to-dash" onclick="BackToDashboard()" style="margin-top:34px;">
+        <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+    </button>
+    <div class="d-flex ">
+        <input type="radio" id="notification1" name="showNotification" value="yes" onclick="showContainer(this)" style="display: none;">
+        <label for="notification1">
+            <div class="parent">
+                <span><i class="fa fa-bell" for="notification1"></i></span>
+            </div>
+        </label>
+    </div>
+</div>
+<div class="main-container">
+    <div class="container1">
+        <div id="registerComplaint">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="inputPassword4" class="fw-bold">हितग्राही का परिचय</label>
+                            <input type="text" class="form-control" name="txtappname" id="txtappname" placeholder="">
+                            <label class="error" id="appnameError"></label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="inputAddress" class="fw-bold">शिकायत दर्ज करने का दिनांक</label>
+                            <input type="date" class="form-control" name="txtdate" id="txtdate" placeholder="">
+                            <label class="error" id="DateError"></label>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="inputZip" class="fw-bold">जिला</label>
+                            <select name="txtjila" id="txtjila" class="form-control" onchange="getBlockByDistrict()">
+                                <option value="">जिला का चयन करें</option>
+                            </select>
+                            <label class="error" id="distNameError"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            <label for="inputZip" class="fw-bold">विकासखण्ड</label>
+                            <select id="txtvikaskhand" name="txtvikaskhand" class="form-control" onchange="blockOptionClicked()">
+                                <option value="">विकासखंड का चयन करें</option>
+                            </select>
+                            <label class="error" id="blockNameError"></label>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="inputZip" class="fw-bold">ग्राम</label>
+                            <select id="txtVillage" name="txtVillage" class="form-control" onchange="villageOptionClicked()">
+                                <option value="">गांव का चयन करें</option>
+                            </select>
+                            <label class="error" id="villageNameError"></label>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="inputZip" class="fw-bold">साइट</label>
+                            <select id="txtSite" name="txtSite" class="form-control" onchange="">
+                                <option value="">साइट का चयन करें</option>
+                            </select>
+                            <label class="error" id="siteNameError"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            <label for="inputZip" class="fw-bold">शिकायत का विषय</label>
+                            <input type="text" class="form-control" name="txtComplaintRemark" id="txtComplaintRemark" placeholder="">
+                            <label class="error" id="complaintRemarkError"></label>
+                        </div>
+                        <div class="form-group col-lg-4" style="display:none">
+                            <label for="txtComplaintStatus" class="fw-bold">शिकायत की स्थिति</label>
+                            <select id="txtComplaintStatus" name="txtComplaintStatus" class="form-control" disabled>
+                                <option value="0">Pending</option>
+                                <option value="1">Resolved</option>
+                            </select>
+                            <label class="error" id="complaintStatusError"></label>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="complainCame" class="fw-bold">शिकायत किस माध्यम से आया</label>
+                            <select id="complainCame" name="complainCame" class="form-control">
+                                <option value="0">चयन करें</option>
+                                <option value="1">पत्र</option>
+                                <option value="2">टेलीफोन</option>
+                                <option value="3">सौर समाधान - शिकायत पोर्टल</option>
+                            </select>
+                            <label class="error" id="complainCameError"></label>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="actionTaken" class="fw-bold">जिला द्वारा कार्यवाही की गई</label>
+                            <div class="mt-2">
+                                <label><input type="radio" name="actionTaken" value="yes" onclick="toggleActionFields(this)"> हाँ</label>
+                                <label><input type="radio" name="actionTaken" value="no" onclick="toggleActionFields(this)"> नहीं</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row" id="actionFields" style="display:none;">
+                        <div class="form-group col-lg-4">
+                            <label for="letterDate" class="fw-bold">पत्र दिनांक</label>
+                            <input type="date" id="letterDate" name="letterDate" class="form-control">
+                            <label class="error" id="letterDateError"></label>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="letterNumber" class="fw-bold">पत्र क्रमांक</label>
+                            <input type="text" id="letterNumber" name="letterNumber" class="form-control">
+                            <label class="error" id="letterNumberError"></label>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label for="letterSent" class="fw-bold">पत्र किसको भेजा गया</label>
+                            <select id="letterSent" name="letterSent" class="form-control">
+                                <option value="0">चयन करें</option>
+                                <option value="1">D.O.</option>
+                                <option value="2">Z.O.</option>
+                                <option value="3">H.O.</option>
+                            </select>
+                            <label class="error" id="letterSentError"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row" id="fileUploadFields" style="display: flex; justify-content: space-between;">
+                        <div class="form-group col-lg-6">
+                            <label for="fileUpload" class="fw-bold">पत्र अपलोड कीजिये</label>
+                            <div style="position: relative;">
+                                <input type="file" id="cmpFileUpload" name="fileUpload" class="form-control custom-file-input" accept=".pdf,.doc,.docx" style="background-color: #f8f9fa;">
+                                <small id="fileError" class="error" style="color:red;"></small>
+                                <span id="deleteIcon" class="delete-icon" style="display: none; position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;">
+                                    &#x274C;
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="fileUpload" class="fw-bold">यदि कोई अन्य अटैचमेंट</label>
+                            <div style="position: relative;">
+                                <input type="file" id="cmpOtherAttach" name="fileUpload" class="form-control custom-file-input" accept=".pdf,.doc,.docx" style="background-color: #f8f9fa;">
+                                <small id="fileError" class="error" style="color:red;"></small>
+                                <span  id="deleteIcon" class="delete-icon" style="display: none; position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;">
+                                    &#x274C;
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex">
+                    <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-5 d-flex justify-content-end">
+                        <button type="submit" id="btnsave" name="btnsave" class="btn btn-info btn-lg" style="margin-top:25px" onclick="registerComplaintBtnClicked()">
+                            Register
+                        </button>
+                    </div>
+                    <div class="col-sm-1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-2" id="notificationContainer">
+        <div class="row" style="margin-top:-20px!important; display:flex; justify-content:end;">
+            <input type="radio" id="hideBar" name="showNotification" value="no" onclick="showContainer(this)" style="display: none;">
+            <input type="date" class="form-control" id="GrievancesDate" />
+            <img src="~/img/backtolist.png" class="return-icon" alt="Back Icon" onclick="showContainer(document.getElementById('hideBar'))" />
+        </div>
+        <div class="row">
+            <div class="tab-container mt-2" id="notificationTab">
+                <ul class="tabs">
+                    <li class="tab active" data-target="complaint-container" onclick="RegisterComplaintNotificationClicked()">Complaints Registered</li>
+                    <li class="tab" data-target="grievance-container" onclick="GrievanceNotificationClicked()">Assigned Grievances</li>
+                </ul>
+                <div id="complaint-container" class="tab-content active">
+                    
+                </div>
+                <div id="grievance-container" class="tab-content">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section PageScripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/complaintmanagement.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+    <script>
+        $(document).ready( function () {
+            getDistrict();
+
+            $("#txtVillage").select2();
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById("txtdate").value = today;
+            document.getElementById("GrievancesDate").value = today;
+            document.getElementById("letterDate").value = today;
+        });
+
+    </script>
+}
+

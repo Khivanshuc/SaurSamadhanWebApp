@@ -1,0 +1,64 @@
+﻿@model List<WebApp.Models.VwSSYInspectionInProgressListModel>
+
+
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="card-body">
+                
+                <div class="table-responsive" style="height:60vh">
+                    <table class="table table-hover table-bordered" style="max-height:60vh; overflow:auto;width:100%;">
+                        <thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important" >
+                            <tr>
+                                <th style="color:white; width:5%;">Inspection Id</th>
+                                <th style="color:white; width:5%;">District</th>
+                                <th style="color:white; width:5%;">Block</th>
+                                <th style="color:white; width:5%;">Village</th>
+                                <th style="color:white; width:5%;">Site Name</th>
+                                <th style="color:white; width:15%;">Project Name</th>
+                                <th style="color:white; width:10%;">IsComplete</th>
+                                <th style="color:white; width:4%;">Inspection Date</th>
+                                <th style="color:white; width:1%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                if (Model.Count > 0)
+                                {
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>  @item.Id</td>
+                                            <td>  @item.District</td>
+                                            <td>  @item.Block</td>
+                                            <td>  @item.Village</td>
+                                            <td>  @item.PlaceorBeneficiaryName</td>
+                                            <td>  @item.Project</td>
+                                            <td>  @item.IsCompleted</td>
+                                            <td>  @item.UpdatedOn.ToString("dd-MM-yyyy")</td>
+                                            <td onclick="IPIDetails(@item.Id)">
+                                                <div class="d-flex">
+                                                    <button class="btn p-0" type="button" aria-haspopup="true" onclick="SSYIPIDetails(@item.Id)">
+                                                        <img src="~/img/view.png" style="width: 20px; height: 15px;" />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="8" style="text-align:center">
+                                            No Record Found
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

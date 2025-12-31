@@ -1,0 +1,65 @@
+﻿@model List<WebApp.Models.ForwardedGrievanceListModel>
+
+<div class="row justify-content-center ">
+    <div class="col-md-12">
+        <form asp-action="View" class=" border shadow-sm bg-light" style="width: 100%;">
+            <div class="card-body">
+                <div class="table-responsive" style="height:60vh">
+                    <table class="table table-hover table-bordered" style="max-height:60vh; overflow:auto;width:100%;">
+                        <thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important">
+                            <tr>
+                                <th style="color:white; width:5%;">S.No.</th>
+                                <th style="color:white; width:5%;">Grievance Id</th>
+                                <th style="color:white; width:15%;">District Name</th>
+                                <th style="color:white; width:15%;">Block Name</th>
+                                <th style="color:white; width:20%;">Forwarding Remark</th>
+                                <th style="color:white; width:5%%;">Forwarding Date</th>
+                                <th style="color:white; width:15%%;">Forwarding Status</th>
+                                <th style="color:white; width:1%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int serialNumber = 1;
+                                if (Model.Count > 0)
+                                {
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td> @serialNumber</td>
+                                            <td>  @item.GrievanceId</td>
+                                            <td>  @item.DistrictName</td>
+                                            <td>  @item.BlockName</td>
+                                            <td>  @item.DIForwardingRemark</td>
+                                            <td>  @item.DIForwardingDate</td>
+                                            <td>  @item.ForwardedGrievanceStatus</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <button class="btn p-0" type="button" aria-haspopup="true" onclick="getForwardedGrievanceDetail(@item.GrievanceId)">
+                                                        <img src="~/img/view.png" style="width: 20px; height: 15px;" />
+                                                    </button>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        serialNumber++;
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="8" style="text-align:center">
+                                            No Record Found
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+               

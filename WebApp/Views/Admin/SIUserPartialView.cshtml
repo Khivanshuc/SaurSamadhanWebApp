@@ -1,0 +1,112 @@
+﻿@model List<WebApp.Models.SIUserModel>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+<style>
+    .select2-container--default .select2-selection--single {
+        height: 38px;
+        border: var(--bs-border-width) solid #d9dee3;
+    }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 35px;
+            color: #697a8d;
+        }
+
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 5px;
+            right: 9px;
+        }
+</style>
+
+<div class="col-12 mt-4" id="setform">
+    <div class="p-4 border rounded shadow-sm bg-light">
+        <!-- First row of fields -->
+        <div class="row g-3 mb-3">
+            <div class="col-12 col-md-6 col-lg-3">
+                <label class="form-label">Username</label>
+                <input id="SIContactPerson" class="form-control flex-grow-1" required />
+                <span id="SIContactPersonError" class="text-danger"></span>
+            </div>
+
+            <!-- Second column -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <label class="form-label">SI Name</label>
+                <select id="SIName" class="form-control" required>
+                    <option value="">Select SI Name</option>
+                </select>
+                <span id="SINameError" class="text-danger"></span>
+            </div>
+            <!-- Third column -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <label class="form-label">MobileNumber</label>
+                <input type="text" id="mobileNumber" class="form-control flex-grow-1" maxlength="10" required/>
+                <span id="mobileError" class="text-danger"></span>
+            </div>
+
+            <!-- Fourth column -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <label class="form-label">Email</label>
+                <input id="emailId" class="form-control flex-grow-1" required/>
+                <span id="emailError" class="text-danger"></span>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-12 mt-0">
+                <div class="form-group d-flex justify-content-end">
+                    <a onclick="AddSIUser()" style="color:white;margin-top: 6px;" class="btn btn-primary">Create</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center mt-md-3">
+    <div class="col-md-12">
+        <form asp-action="View" class="p-4 border rounded shadow-sm bg-light" style="width: 100%;">
+            <div class="card-body">
+                <div class="table-responsive" style="height:50vh">
+                    <table class="table table-hover table-bordered" style="max-height:60vh; overflow:auto;width:100%;">
+                        <thead style="position: sticky; top: 0; z-index: 1; background:#00CCDD;color:white !important">
+                            <tr>
+                                <th style="color:white;" scope="col">User Name</th>
+                                <th style="color:white;" scope="col">SI Name</th>
+                                <th style="color:white;" scope="col">Mobile Number</th>
+                                <th style="color:white;" scope="col">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(Model.Count != 0){
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.SIContactPerson</td>
+                                        <td>@item.SIName</td>
+                                        <td>@item.MobileNumber</td>
+                                        <td>@item.Email</td>
+                                    </tr>
+                                }
+                            }else{
+                                <tr>
+                                    <td style="text-align:center" colspan="4" >No Record Found</td>
+                                    
+                                </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+
+<script src="~/js/admin.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        getSIName();
+
+        $("#SIName").select2();
+    });
+</script>

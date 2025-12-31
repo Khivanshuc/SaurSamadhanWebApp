@@ -1,0 +1,396 @@
+﻿@{
+    ViewData["Title"] = "Stock Management | CREDA";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" /> 
+
+<head>
+    <link href="~/css/stockmanagement.css" rel="stylesheet" />
+
+    <style>
+        .container {
+            padding-top: 0px !important;
+        }
+
+        .select2-container--default .select2-selection--single {
+            height: 38px;
+            border: var(--bs-border-width) solid #d9dee3;
+        }
+
+            .select2-container--default .select2-selection--single .select2-selection__rendered {
+                padding-right: 213px;
+                padding-left: 13px;
+                line-height: 35px;
+                color: #697a8d;
+            }
+
+
+            .select2-container--default .select2-selection--single .select2-selection__arrow {
+                top: 5px;
+                right: 9px;
+            }
+
+        
+    </style>
+</head>
+<body>
+    <div id="universalLoader">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="row justify-content-center mt-2 mb-5">
+        <button id="" class="btn btn-back-to-list" onclick="BacktoHome()"><img src="~/img/Back_icon.png" alt="Alternate Text" class="back-icon" />BACK</button>
+        <button id="backToDashButton" class="btn btn-back-to-dash" onclick="BackToDashboard()">
+            <img src="~/img/Home_icon.png" alt="Alternate Text" class="home-icon">
+        </button>
+    </div>
+
+    <div class="container1">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-2" style="margin-left:15px;">
+                    <!-- Dropdown Menu -->
+                    <div class="dropdown" style="width:100%;">
+                        <label for="challanOptions" class="fw-bold">चालान कैटेगरी:</label>
+                        <select id="challanOptions" name="challanOptions" class="form-control mt-2" onchange="showContainer()">
+                            <option value="">चयन करे</option>
+                            <option value="Incoming">Incoming</option>
+                            <option value="Outgoing">Outgoing</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <!-- Dropdown Menu -->
+                    <div class="dropdown" style="width:100%;">
+                        <label for="options" class="fw-bold">सामग्री का चयन करे:</label>
+                        <select id="options" name="options" class="form-control mt-2" onchange="showContainer()">
+                            <option value="">चयन करे</option>
+                            <option value="Inverter">इन्वर्टर</option>
+                            <option value="Controller">कंट्रोलर</option>
+                            <option value="Pump">पंप</option>
+                            <option value="waterLevelSensor">वाटर लेवल सेंसर</option>
+                        </select>
+                    </div>
+                </div>
+             </div>
+        </div>
+
+        <div id="commonFields" class="container2 hidden">
+            <div class="col-12">
+                <div class="row">
+                    <div class="form-group col-lg-3">
+                        <label for="txtjila" class="fw-bold">जिला</label>
+                        <select name="txtjila" id="txtjila" class="form-control" onchange="getBlockByDistrict()">
+                            <option value="">जिला का चयन करें</option>
+                        </select>
+                        <label class="error" id="distNameError"></label>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="txtvikaskhand" class="fw-bold">विकासखण्ड</label>
+                        <select id="txtvikaskhand" name="txtvikaskhand" class="form-control" onchange="blockOptionClicked()">
+                            <option value="">विकासखंड का चयन करें</option>
+                        </select>
+                        <label class="error" id="blockNameError"></label>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="txtVillage" class="fw-bold">ग्राम</label><br/>
+                        <select id="txtVillage" name="txtVillage" class="form-control" onchange="villageOptionClicked()">
+                            <option value="">गांव का चयन करें</option>
+                        </select>
+                        <label class="error" id="villageNameError"></label>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="txtSite" class="fw-bold">साइट</label>
+                        <select id="txtSite" name="txtSite" class="form-control" onchange="">
+                            <option value="">साइट का चयन करें</option>
+                        </select>
+                        <label class="error" id="siteNameError"></label>
+                    </div>
+                </div>
+            </div>
+            <h2>चालान नंबर</h2>
+            <div class="col-12">
+                <div class="row">
+                     <div class="col-lg-4">
+                        <label for="challanNumber" class="fw-bold">चालान नंबर</label>
+                        <input type="text" class="form-control mt-2" name="challanNumber" id="challanNumber" placeholder="">
+                        <label class="error" id="challanNumberError"></label>
+                     </div>
+                </div>
+            </div>
+            
+            <h2>सामग्री से सम्बंधित जानकारी</h2>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label for="itemComeFrom" class="fw-bold">सामग्री किस्से प्राप्त हुई</label>
+                        <input type="text" class="form-control mt-2" name="itemComeFrom" id="itemComeFrom" placeholder="">
+                        <label class="error" id="itemComeFromError"></label>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="receivedItem" class="fw-bold">सामग्री कितनी प्राप्त हुई (नग में)</label>
+                        <input type="text" class="form-control mt-2" name="receivedItem" id="receivedItem" placeholder="">
+                        <label class="error" id="receivedItemError"></label>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="sentItem" class="fw-bold">सामग्री किसे भेजी गयी</label>
+                        <input type="text" class="form-control mt-2" name="sentItem" id="sentItem" placeholder="">
+                        <label class="error" id="warrantyItemError"></label>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="sentItemDay" class="fw-bold">सामग्री किस दिन भेजी गयी</label>
+                        <input type="date" class="form-control mt-2" name="sentItemDay" id="sentItemDay" placeholder="">
+                        <label class="error" id="sentItemDayError"></label>
+                    </div>
+                </div>
+            </div>
+            <div id="Incoming" class="hidden">
+                <h2>यदि रिसीविंग सामग्री है, तो उसकी जानकारी भरे</h2>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="receivingItem" class="fw-bold">रिसीविंग चालान (यदि हो तो)</label>
+                            <input type="text" class="form-control mt-2" name="receivingItem" id="receivingItem" placeholder="">
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="workingItem" class="fw-bold">कार्यशील सामग्री</label>
+                            <input type="text" class="form-control mt-2" name="workingItem" id="workingItem" placeholder="" oninput="calculateSum()">
+                            <label class="error" id="workingItemError"></label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="notWorkingItem" class="fw-bold">अकार्यशील सामग्री</label>
+                            <input type="text" class="form-control mt-2" name="notWorkingItem" id="notWorkingItem" placeholder="" oninput="calculateSum()">
+                            <label class="error" id="warrantyItemError"></label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="totalItem" class="fw-bold">कुल सामग्री</label>
+                            <input type="text" class="form-control mt-2" name="totalItem" id="totalItem" placeholder="">
+                            <label class="error" id="totalItemError"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unique Containers (Initially Hidden, Shown Based on Selection) -->
+        <div id="Inverter" class="unique-container container2 hidden">
+            <h2>इन्वर्टर से सम्बंधित जानकारी </h2>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="inverterCapacity" class="fw-bold">इन्वर्टर की क्षमता </label>
+                        <input type="text" class="form-control mt-2" name="inverterCapacity" id="inverterCapacity" placeholder="">
+                        <label class="error" id="inverterCapacityError"></label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="inverterMake" class="fw-bold">इन्वर्टर का मेक</label>
+                        <div class="dropdown-container">
+                            <select id="inverterMake" class="form-control mt-2" name="inverterMake">
+                                <option value="">इन्वर्टर के मेक चयन करे</option>
+                                <option> A</option>
+                                <option> B</option>
+                                <option> C</option>
+                                <option> D</option>
+                            </select>
+                        </div>
+                        <label class="error" id="inverterMakeError"></label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="inverterWarranty" class="fw-bold">इन्वर्टर की वारंटी</label>
+                        <div class="mt-2">
+                            <label><input type="radio" name="actionTaken" value="yes"> वारंटी में है</label>
+                            <label><input type="radio" name="actionTaken" value="no"> वारंटी में नहीं है</label>
+                        </div>
+                        <label class="error" id="inverterWarrantyError"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="inverterSerialNumber" class="fw-bold">इन्वर्टर का सीरियल नंबर</label>
+                        <input type="text" class="form-control mt-2" name="inverterSerialNumber" id="inverterSerialNumber" placeholder="">
+                        <label class="error" id="inverterSerialNumberError"></label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="inverterNumber" class="fw-bold">इन्वर्टर की संख्या</label>
+                        <input type="text" class="form-control mt-2" name="inverterNumber" id="inverterNumber" placeholder="">
+                        <label class="error" id="inverterNumberError"></label>
+                    </div>
+                    <div class="col-lg-4 mt-2">
+                        <label for="txtSIname" class="fw-bold">SI Name</label><br/>
+                        <select id="txtSIname" name="txtSIname" class="form-control">
+                            <option value="0">Please Select SI</option>
+                        </select>
+                        <label class="error" id="SInameError"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="Controller" class="unique-container container2 hidden">
+            <h2>कंट्रोलर से सम्बंधित जानकारी</h2>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="controllerCapacity" class="fw-bold">कंट्रोलर की क्षमता</label>
+                        <input type="text" class="form-control mt-2" name="controllerCapacity" id="controllerCapacity" placeholder="">
+                        <label class="error" id="controllerCapacityError"></label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="controllerMake" class="fw-bold">कंट्रोलर का मेक</label>
+                        <div class="dropdown-container">
+                            <select id="controllerMake" class="form-control mt-2" name="controllerMake">
+                                <option value="">कंट्रोलर के मेक चयन करे</option>
+                                <option> A</option>
+                                <option> B</option>
+                                <option> C</option>
+                                <option> D</option>
+                            </select>
+                        </div>
+                        <label class="error" id="controllerMakeError"></label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="controllerWarranty" class="fw-bold">कंट्रोलर की वारंटी</label>
+                        <div class="mt-2">
+                            <label><input type="radio" name="actionTaken" value="yes"> वारंटी में है</label>
+                            <label><input type="radio" name="actionTaken" value="no"> वारंटी में नहीं है</label>
+                        </div>
+                        <label class="error" id="controllerWarrantyError"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="controllerNumber" class="fw-bold">कंट्रोलर की संख्या</label>
+                        <input type="text" class="form-control mt-2" name="controllerNumber" id="controllerNumber" placeholder="">
+                        <label class="error" id="controllerNumberError"></label>
+                    </div>
+                    <div class="col-lg-4 mt-2">
+                        <label for="txtSIname" class="fw-bold">SI Name</label><br/>
+                        <select id="txtSIname" name="txtSIname" class="form-control">
+                            <option value="0">Please Select SI</option>
+                        </select>
+                        <label class="error" id="SInameError"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="Pump" class="unique-container container2 hidden">
+            <h2>पंप से सम्बंधित जानकारी</h2>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="pumpCapacity" class="fw-bold">पंप की क्षमता</label>
+                        <input type="text" class="form-control mt-2" name="pumpCapacity" id="pumpCapacity" placeholder="">
+                        <label class="error" id="pumpCapacityError"></label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="pumpMake" class="fw-bold">पंप का मेक</label>
+                        <div class="dropdown-container">
+                            <select id="pumpMake" class="form-control mt-2" name="pumpMake">
+                                <option value="">पंप के मेक चयन करे</option>
+                                <option> A</option>
+                                <option> B</option>
+                                <option> C</option>
+                                <option> D</option>
+                            </select>
+                        </div>
+                        <label class="error" id="pumpMakeError"></label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="pumpWarranty" class="fw-bold">पंप की वारंटी</label>
+                        <div class="mt-2">
+                            <label><input type="radio" name="actionTaken" value="yes"> वारंटी में है</label>
+                            <label><input type="radio" name="actionTaken" value="no"> वारंटी में नहीं है</label>
+                        </div>
+                        <label class="error" id="pumpWarrantyError"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="pumpNumber" class="fw-bold">पंप की संख्या</label>
+                        <input type="text" class="form-control mt-2" name="pumpNumber" id="pumpNumber" placeholder="">
+                        <label class="error" id="pumpNumberError"></label>
+                    </div>
+                    <div class="col-lg-4 mt-2">
+                        <label for="txtSIname" class="fw-bold">SI Name</label><br/>
+                        <select id="txtSIname" name="txtSIname" class="form-control">
+                            <option value="0">Please Select SI</option>
+                        </select>
+                        <label class="error" id="SInameError"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="waterLevelSensor" class="unique-container container2 hidden">
+            <h2>वाटर लेवल सेंसर से सम्बंधित जानकारी</h2>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="wlsCapacity" class="fw-bold">वाटर लेवल सेंसर की क्षमता</label>
+                        <input type="text" class="form-control mt-2" name="wlsCapacity" id="wlsCapacity" placeholder="">
+                        <label class="error" id="wlsCapacityError"></label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="wlsMake" class="fw-bold">वाटर लेवल सेंसर का मेक</label>
+                        <div class="dropdown-container">
+                            <select id="wlsMake" class="form-control mt-2" name="wlsMake">
+                                <option value="">वाटर लेवल सेंसर के मेक चयन करे</option>
+                                <option> A</option>
+                                <option> B</option>
+                                <option> C</option>
+                                <option> D</option>
+                            </select>
+                        </div>
+                        <label class="error" id="wlsMakeError"></label>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="wlsWarranty" class="fw-bold">वाटर लेवल सेंसर की वारंटी</label>
+                        <div class="mt-2">
+                            <label><input type="radio" name="actionTaken" value="yes"> वारंटी में है</label>
+                            <label><input type="radio" name="actionTaken" value="no"> वारंटी में नहीं है</label>
+                        </div>
+                        <label class="error" id="wlsWarrantyError"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="wlsNumber" class="fw-bold">वाटर लेवल सेंसर की संख्या</label>
+                        <input type="text" class="form-control mt-2" name="wlsNumber" id="wlsNumber" placeholder="">
+                        <label class="error" id="wlsNumberError"></label>
+                    </div>
+                    <div class="col-lg-4 mt-2">
+                        <label for="txtSIname" class="fw-bold">SI Name</label><br/>
+                        <select id="txtSIname" name="txtSIname" class="form-control">
+                            <option value="0">Please Select SI</option>
+                        </select>
+                        <label class="error" id="SInameError"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section PageScripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/stockmanagement.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+    <script>
+        $(document).ready(async function () {
+            getDistrict();
+            getSIName();
+            // hideLoader();
+
+            $("#txtSIname").select2();
+            $("#txtVillage").select2();
+    });
+    </script>
+ }   
+</body>
