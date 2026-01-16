@@ -539,10 +539,15 @@
                             {
                                 <button type="submit" class="btn btn-primary">Update</button>
                                 <button onclick="reassignBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Reassign</button>
-                                if (zonalId == "-1" && !string.IsNullOrEmpty(Model.ComplaintVerificationDate))
-                                {
+                                // if (zonalId == "-1" && !string.IsNullOrEmpty(Model.ComplaintVerificationDate))
+                                // {
+                                //     <button onclick="forwardBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Forward</button>
+                                // }
+
+                                @if (zonalId == "-1"&& !string.IsNullOrEmpty(Model.ComplaintVerificationDate) && string.IsNullOrEmpty(Model.VerifyDate)){
                                     <button onclick="forwardBtnClicked()" type="button" class="btn btn-primary ms-3" style="display:block">Forward</button>
                                 }
+
                             }
                             else if (Model.IsForwardedToZO == true || Model.IsForwardedToHO == true)
                             {

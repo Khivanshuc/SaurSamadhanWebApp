@@ -314,7 +314,7 @@ namespace WebApp.Controllers
                     new SelectListItem { Value = "InProgress", Text = "In Progress" },
                 };
             }
-            else if (model.MobilePhotoBase64 != null || model.GrievanceStatus == "Verified")
+            else if (model.MobilePhotoBase64 != null || model.GrievanceStatus == "Verified" && User.FindFirst("ZonalId")?.Value == "-1")
             {
                 ViewBag.GrievanceStatusOptions = new List<SelectListItem>
                 {
